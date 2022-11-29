@@ -4,9 +4,34 @@
   
     
     <entry>
+      <title>浅谈二分查找</title>
+      <link href="/2022/11/29/%E6%B5%85%E8%B0%88%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"/>
+      <url>/2022/11/29/%E6%B5%85%E8%B0%88%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> C语言 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 查找 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>最大公因数和最小公倍数（欧几里得算法）</title>
-      <link href="/2022/11/28/hello-world/"/>
-      <url>/2022/11/28/hello-world/</url>
+      <link href="/2022/11/28/%E6%9C%80%E5%A4%A7%E5%85%AC%E5%9B%A0%E6%95%B0%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0/"/>
+      <url>/2022/11/28/%E6%9C%80%E5%A4%A7%E5%85%AC%E5%9B%A0%E6%95%B0%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0/</url>
       
         <content type="html"><![CDATA[<p>我们在学习时经常性遇见求最大公因数和最小公倍数的问题，而使用枚举的话非常容易超时，那么我们应该怎样更快更好地解决它们呢?</p><span id="more"></span><h2 id="最大公因数"><a href="#最大公因数" class="headerlink" title="最大公因数"></a>最大公因数</h2><h3 id="欧几里得算法"><a href="#欧几里得算法" class="headerlink" title="欧几里得算法"></a>欧几里得算法</h3><p>又称<em>辗转相除法</em>，使用int类型的函数实现，两个参数的传入条件要求<em><strong>a大于b</strong></em>。<br><strong>百度百科</strong>：欧几里得算法又称辗转相除法，是指用于计算两个非负整数a，b的最大公约数。应用领域有数学和计算机两个方面。计算公式gcd(a,b) = gcd(b,a mod b)。<br>总之就是不断把<em>除数当被除数，余数当除数</em><br>假如需要求 1997 和 615 两个正整数的最大公约数,用欧几里得算法，是这样进行的：<br>1997 ÷ 615 = 3 (余 152)<br>615 ÷ 152 = 4(余7)<br>152 ÷ 7 = 21(余5)<br>7 ÷ 5 = 1 (余2)<br>5 ÷ 2 = 2 (余1)<br>2 ÷ 1 = 2 (余0)<br>至此，最大公约数为1<br>以除数和余数反复做除法运算，当余数为 0 时，取当前算式除数为最大公约数，所以就得出了 1997 和 615 的最大公约数 1。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int gcd(int a,int b)</span><br><span class="line">&#123;</span><br><span class="line">    int t;</span><br><span class="line">    if(a&lt;b)&#123;  //使大的作被除数</span><br><span class="line">        t=a;a=b;b=t;</span><br><span class="line">    &#125;</span><br><span class="line">    if(b==0)  //判断是否存在0的情况</span><br><span class="line">        return a;</span><br><span class="line">    else</span><br><span class="line">        return gcd(b,a%b);</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int a,b;</span><br><span class="line">    scanf(&quot;%d%d&quot;,&amp;a,&amp;b);</span><br><span class="line">    printf(&quot;%d&quot;,gcd(a,b));</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="最小公倍数"><a href="#最小公倍数" class="headerlink" title="最小公倍数"></a>最小公倍数</h2><p>相信你已经学会求最大公因数，那么最小公倍数呢？<br><strong>当然也是非常简单滴！</strong><br><em><strong>最小公倍数=（ab）/最大公因数</strong></em></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int gcd(int a,int b)</span><br><span class="line">&#123;</span><br><span class="line">    int t;</span><br><span class="line">    if(a&lt;b)&#123;  //使大的作被除数</span><br><span class="line">        t=a;a=b;b=t;</span><br><span class="line">    &#125;</span><br><span class="line">    if(b==0)  //判断是否存在0的情况</span><br><span class="line">        return a;</span><br><span class="line">    else</span><br><span class="line">        return gcd(b,a%b);</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int a,b;</span><br><span class="line">    scanf(&quot;%d%d&quot;,&amp;a,&amp;b);</span><br><span class="line">    printf(&quot;%d&quot;,(a*b)/gcd(a,b));</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       
@@ -34,9 +59,9 @@
     
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
+      <title>友链</title>
+      <link href="/link/index.html"/>
+      <url>/link/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -56,31 +81,9 @@
     
     
     <entry>
-      <title>友链</title>
-      <link href="/link/index.html"/>
-      <url>/link/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>myself</title>
-      <link href="/myself/index.html"/>
-      <url>/myself/index.html</url>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -100,9 +103,31 @@
     
     
     <entry>
+      <title>myself</title>
+      <link href="/myself/index.html"/>
+      <url>/myself/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>留言板</title>
       <link href="/messageboard/index.html"/>
       <url>/messageboard/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
