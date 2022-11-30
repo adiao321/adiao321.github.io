@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>高中往事回忆</title>
+      <link href="/2022/11/30/%E9%AB%98%E4%B8%AD%E5%BE%80%E4%BA%8B%E5%9B%9E%E5%BF%86/"/>
+      <url>/2022/11/30/%E9%AB%98%E4%B8%AD%E5%BE%80%E4%BA%8B%E5%9B%9E%E5%BF%86/</url>
+      
+        <content type="html"><![CDATA[<p><img src="/2022/11/30/%E9%AB%98%E4%B8%AD%E5%BE%80%E4%BA%8B%E5%9B%9E%E5%BF%86/0000.jpg" alt="高中往事回忆"></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>浅谈各种排序</title>
       <link href="/2022/11/30/%E6%B5%85%E8%B0%88%E5%90%84%E7%A7%8D%E6%8E%92%E5%BA%8F/"/>
       <url>/2022/11/30/%E6%B5%85%E8%B0%88%E5%90%84%E7%A7%8D%E6%8E%92%E5%BA%8F/</url>
@@ -33,7 +46,7 @@
       <link href="/2022/11/29/%E6%B5%85%E8%B0%88%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"/>
       <url>/2022/11/29/%E6%B5%85%E8%B0%88%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/</url>
       
-        <content type="html"><![CDATA[<p>相信我们都在编程过程中遇见查找问题，而查找的方式有许多种，我们最常见的、也是使用次数最多的便是<em><strong>二分查找</strong></em>了，原理简单且不容易超时。<br>二分查找的思想很容易理解，但大多数人都是通过记模板来使用，这篇博客将二分法做一个大概的总结，以供记忆和复习。</p><h2 id="一、分享小故事"><a href="#一、分享小故事" class="headerlink" title="一、分享小故事"></a>一、分享小故事</h2><p>这里引用了CSDN中<a href="https://blog.csdn.net/qq_45978890/article/details/116094046?spm=1001.2014.3001.5502">Charon_cc</a>的一个很生动形象的例子：</p><hr><blockquote><p>有一天小明到图书馆借了 N 本书，出图书馆的时候，警报响了，于是保安把小明拦下，要检查一下哪本书没有登记出借。小明正准备把每一本书在报警器下过一下，以找出引发警报的书，但是保安露出不屑的眼神：你连二分查找都不会吗？于是保安把书分成两堆，让第一堆过一下报警器，报警器响；于是再把这堆书分成两堆…… 最终，检测了 logN 次之后，保安成功的找到了那本引起警报的书，露出了得意和嘲讽的笑容。于是小明背着剩下的书走了。 从此，图书馆丢了 N - 1 本书。</p></blockquote><hr><p>多读两遍我们就会发现<mark>二分查找法的前提<mark>：</p><h2 id="二、二分查找的前提"><a href="#二、二分查找的前提" class="headerlink" title="二、二分查找的前提"></a>二、二分查找的前提</h2><ul><li><strong>查找的目标只能有一个</strong></li><li><strong>查找的范围内元素是有序的</strong>（排序在C++里可以直接使用sort，而在C里可以使用冒泡排序等方法）</li></ul><p>为什么是这样的一个前提呢？我们首先应该知道<mark>二分查找的原理<mark>：</p><h2 id="三、二分查找的原理"><a href="#三、二分查找的原理" class="headerlink" title="三、二分查找的原理"></a>三、二分查找的原理</h2><blockquote><p>在一个已经从小到大排好的数组里，先把目标与数组中间值比较<br>* 若目标&gt;中间值，则接着找后半部分，前半部分舍弃。<br>* 若目标&lt;中间值，则接着找前半部分，后半部分舍弃。</p></blockquote><p>那有初学的朋友会问了：<em>数组元素数是偶数的话怎么取中间值？</em></p><p>其实不必纠结这个问题，因为每次都丢掉数组的一半的话，这个问题是一定会出现的。</p><p>虽说叫二分查找，但并不是说我们必须严格的取一半，只是取一半时舍弃掉的不合要求的元素最多，比较节约时间而已。<br>而由于我们使用<strong>int</strong>类型，每次取的就是最中间两个数中靠左的那个，这样一来无非是在搜索的范围里多加一个数而已，只要我们继续进行二分查找并找好边界值，就永远不会有元素被落下。</p><h2 id="四、二分查找的使用"><a href="#四、二分查找的使用" class="headerlink" title="四、二分查找的使用"></a>四、二分查找的使用</h2><p>这里只写我最常用的一种方式：<mark>[left,right]式<mark><br>使用int函数进行运算：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">int binarysearch(int arr[],int size,int target)</span><br><span class="line">&#123;</span><br><span class="line">    //size 可使用int size=sizeof(arr)/sizeof(arr[0])计算</span><br><span class="line"></span><br><span class="line">    int l=0,r=size-1;   //l=left,r=right,m=middle</span><br><span class="line">    while(l&lt;=r)&#123;</span><br><span class="line">        int m=l+(r-l)/2;    //防止直接相加导致溢出</span><br><span class="line">        if(arr[m]&gt;target)&#123;</span><br><span class="line">            r=m-1;</span><br><span class="line">        &#125;</span><br><span class="line">        else if(arr[m]&lt;target)&#123;</span><br><span class="line">            l=m+1;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">            return m;</span><br><span class="line">    &#125;</span><br><span class="line">    return -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="五、二分查找的性能"><a href="#五、二分查找的性能" class="headerlink" title="五、二分查找的性能"></a>五、二分查找的性能</h2><ul><li>时间复杂度：O(1)~O(log<sub>2</sub>n)</li><li>空间复杂度：O(1)~O(log<sub>2</sub>n)</li></ul>]]></content>
+        <content type="html"><![CDATA[<p>相信我们都在编程过程中遇见查找问题，而查找的方式有许多种，我们最常见的、也是使用次数最多的便是<em><strong>二分查找</strong></em>了，原理简单且不容易超时。<br>二分查找的思想很容易理解，但大多数人都是通过记模板来使用，这篇博客将二分法做一个大概的总结，以供记忆和复习。</p><h2 id="一、分享小故事"><a href="#一、分享小故事" class="headerlink" title="一、分享小故事"></a>一、分享小故事</h2><p>这里引用了CSDN中<a href="https://blog.csdn.net/qq_45978890/article/details/116094046?spm=1001.2014.3001.5502">Charon_cc</a>的一个很生动形象的例子：</p><hr><blockquote><p>有一天小明到图书馆借了 N 本书，出图书馆的时候，警报响了，于是保安把小明拦下，要检查一下哪本书没有登记出借。小明正准备把每一本书在报警器下过一下，以找出引发警报的书，但是保安露出不屑的眼神：你连二分查找都不会吗？于是保安把书分成两堆，让第一堆过一下报警器，报警器响；于是再把这堆书分成两堆…… 最终，检测了 logN 次之后，保安成功的找到了那本引起警报的书，露出了得意和嘲讽的笑容。于是小明背着剩下的书走了。 从此，图书馆丢了 N - 1 本书。</p></blockquote><hr><p>多读两遍我们就会发现<mark>二分查找法的前提<mark>：</mark></mark></p><h2 id="二、二分查找的前提"><a href="#二、二分查找的前提" class="headerlink" title="二、二分查找的前提"></a>二、二分查找的前提</h2><ul><li><strong>查找的目标只能有一个</strong></li><li><strong>查找的范围内元素是有序的</strong>（排序在C++里可以直接使用sort，而在C里可以使用冒泡排序等方法）</li></ul><p>为什么是这样的一个前提呢？我们首先应该知道<mark>二分查找的原理<mark>：</mark></mark></p><h2 id="三、二分查找的原理"><a href="#三、二分查找的原理" class="headerlink" title="三、二分查找的原理"></a>三、二分查找的原理</h2><blockquote><p>在一个已经从小到大排好的数组里，先把目标与数组中间值比较<br>* 若目标&gt;中间值，则接着找后半部分，前半部分舍弃。<br>* 若目标&lt;中间值，则接着找前半部分，后半部分舍弃。</p></blockquote><p>那有初学的朋友会问了：<em>数组元素数是偶数的话怎么取中间值？</em></p><p>其实不必纠结这个问题，因为每次都丢掉数组的一半的话，这个问题是一定会出现的。</p><p>虽说叫二分查找，但并不是说我们必须严格的取一半，只是取一半时舍弃掉的不合要求的元素最多，比较节约时间而已。<br>而由于我们使用<strong>int</strong>类型，每次取的就是最中间两个数中靠左的那个，这样一来无非是在搜索的范围里多加一个数而已，只要我们继续进行二分查找并找好边界值，就永远不会有元素被落下。</p><h2 id="四、二分查找的使用"><a href="#四、二分查找的使用" class="headerlink" title="四、二分查找的使用"></a>四、二分查找的使用</h2><p>这里只写我最常用的一种方式：<mark>[left,right]式<mark><br>使用int函数进行运算：</mark></mark></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">int binarysearch(int arr[],int size,int target)</span><br><span class="line">&#123;</span><br><span class="line">    //size 可使用int size=sizeof(arr)/sizeof(arr[0])计算</span><br><span class="line"></span><br><span class="line">    int l=0,r=size-1;   //l=left,r=right,m=middle</span><br><span class="line">    while(l&lt;=r)&#123;</span><br><span class="line">        int m=l+(r-l)/2;    //防止直接相加导致溢出</span><br><span class="line">        if(arr[m]&gt;target)&#123;</span><br><span class="line">            r=m-1;</span><br><span class="line">        &#125;</span><br><span class="line">        else if(arr[m]&lt;target)&#123;</span><br><span class="line">            l=m+1;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">            return m;</span><br><span class="line">    &#125;</span><br><span class="line">    return -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="五、二分查找的性能"><a href="#五、二分查找的性能" class="headerlink" title="五、二分查找的性能"></a>五、二分查找的性能</h2><ul><li>时间复杂度：O(1)~O(log<sub>2</sub>n)</li><li>空间复杂度：O(1)~O(log<sub>2</sub>n)</li></ul>]]></content>
       
       
       <categories>
@@ -82,20 +95,9 @@
     
     
     <entry>
-      <title>分类</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>留言板</title>
-      <link href="/messageboard/index.html"/>
-      <url>/messageboard/index.html</url>
+      <title>友链</title>
+      <link href="/link/index.html"/>
+      <url>/link/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -115,20 +117,9 @@
     
     
     <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>日志</title>
-      <link href="/timeline/index.html"/>
-      <url>/timeline/index.html</url>
+      <title>分类</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -148,9 +139,31 @@
     
     
     <entry>
-      <title>友链</title>
-      <link href="/link/index.html"/>
-      <url>/link/index.html</url>
+      <title>留言板</title>
+      <link href="/messageboard/index.html"/>
+      <url>/messageboard/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>日志</title>
+      <link href="/timeline/index.html"/>
+      <url>/timeline/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
