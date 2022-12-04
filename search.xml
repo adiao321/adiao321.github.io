@@ -4,6 +4,50 @@
   
     
     <entry>
+      <title>进制转换</title>
+      <link href="/2022/12/04/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/"/>
+      <url>/2022/12/04/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/</url>
+      
+        <content type="html"><![CDATA[<h1 id="C语言"><a href="#C语言" class="headerlink" title="C语言"></a>C语言</h1><h2 id="十进制转d进制-d-lt-10"><a href="#十进制转d进制-d-lt-10" class="headerlink" title="十进制转d进制(d&lt;10)"></a>十进制转d进制(d&lt;10)</h2><p>原理很简单，按照计算方法算出每一位后存入数组，倒序输出即可~</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">  int n,i=0,x,j,d;</span><br><span class="line">  int arr[1000];</span><br><span class="line">  scanf(&quot;%d%d&quot;,&amp;n,&amp;d);</span><br><span class="line">  if(n==0)</span><br><span class="line">    printf(&quot;0&quot;);</span><br><span class="line">  else&#123;</span><br><span class="line">  while(n&gt;0)&#123;        //想不起来的话把d设成2自己代入一遍</span><br><span class="line">    x=n%d;</span><br><span class="line">    n/=d;</span><br><span class="line">    arr[i]=x;</span><br><span class="line">    i++;</span><br><span class="line">  &#125;</span><br><span class="line">  for(j=i-1;j&gt;=0;j--)&#123;    //逆序输出</span><br><span class="line">    printf(&quot;%d&quot;,arr[j]);</span><br><span class="line">  &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="d进制转十进制（d-lt-10"><a href="#d进制转十进制（d-lt-10" class="headerlink" title="d进制转十进制（d&lt;10)"></a>d进制转十进制（d&lt;10)</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">  int n,x=1,num=0,d;</span><br><span class="line">  scanf(&quot;%d%d&quot;,&amp;n,&amp;d);</span><br><span class="line">  while(n&gt;0)&#123;</span><br><span class="line">    num+=(n%10)*x;    //拨出最后一位乘以位权</span><br><span class="line">    n/=10;    //舍弃最后一位</span><br><span class="line">    x*=d;    //位权增加</span><br><span class="line">  &#125;</span><br><span class="line">  printf(&quot;%d&quot;,num);</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="十进制转十六进制"><a href="#十进制转十六进制" class="headerlink" title="十进制转十六进制"></a>十进制转十六进制</h2><p>与前面的“十进制转d进制”差不多，只是用<em>字符数组</em>代替了<em>整型数组</em></p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">  int n,i=0,j;</span><br><span class="line">  char arr[1000],brr[20]=&#123;&quot;0123456789ABCDEF&quot;&#125;;</span><br><span class="line">  scanf(&quot;%d&quot;,&amp;n);</span><br><span class="line">  if(n==0)</span><br><span class="line">    printf(&quot;0&quot;);</span><br><span class="line">  else&#123;</span><br><span class="line">  while(n&gt;0)&#123;</span><br><span class="line">    arr[i]=brr[n%16];</span><br><span class="line">    n/=16;</span><br><span class="line">    i++;</span><br><span class="line">  &#125;</span><br><span class="line">  for(j=i-1;j&gt;=0;j--)&#123;</span><br><span class="line">    printf(&quot;%c&quot;,arr[j]);</span><br><span class="line">  &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h1><p>在查找资料的时候发现C艹自带进制转换的函数，顺便记录一下~</p><blockquote><p>oct 是八进制形式<br> dec 是十进制形式<br> hex 是十六进制形式（setiosflags(ios::uppercase)可转换为大写输出）<br>C语言没有专门的二进制转换，故只能规定位数输出二进制</p></blockquote><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;bits/stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int main() &#123;</span><br><span class="line">    int n;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    cout&lt;&lt;bitset&lt;8&gt;(n)&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;oct&lt;&lt;n&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;dec&lt;&lt;n&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;setiosflags(ios::uppercase)&lt;&lt;hex&lt;&lt;n&lt;&lt;endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> C语言 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>递归与递推</title>
+      <link href="/2022/12/03/%E9%80%92%E5%BD%92%E4%B8%8E%E9%80%92%E6%8E%A8/"/>
+      <url>/2022/12/03/%E9%80%92%E5%BD%92%E4%B8%8E%E9%80%92%E6%8E%A8/</url>
+      
+        <content type="html"><![CDATA[<p>递归与递推是编程问题中重要的思想，如何更好的理解？看完这篇文章你可能会有收获。</p><h1 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h1><h2 id="递归定义"><a href="#递归定义" class="headerlink" title="递归定义"></a>递归定义</h2><blockquote><p>递归，就是在运行的过程中不断调用自己本身。可以分为“递”和“归”两个过程，“递”得到每一个小步的结果，再通过“归”将每次运算的结果结合起来。最后得到答案。</p></blockquote><h2 id="递归优缺点"><a href="#递归优缺点" class="headerlink" title="递归优缺点"></a>递归优缺点</h2><ul><li>优点：代码简解易懂，思维方式符合我们思考的逻辑。</li><li>缺点：运行效率低，需要调用很多栈来储存返回点和局部量等，容易造成栈溢出。</li></ul><h1 id="递推"><a href="#递推" class="headerlink" title="递推"></a>递推</h1><h2 id="递推定义"><a href="#递推定义" class="headerlink" title="递推定义"></a>递推定义</h2><blockquote><p>递推，就是从问题的初始条件出发，通过观察得出某种关系式，通过这个关系式推出各项结果。</p></blockquote><h2 id="递推优缺点"><a href="#递推优缺点" class="headerlink" title="递推优缺点"></a>递推优缺点</h2><ul><li>优点：很好的发挥了计算机重复计算的优点，不会像递推一样占用过多的内存空间。</li><li>缺点：想象不到递推的关系式，从源头上直接gg（doge 。</li></ul><h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><h2 id="裴波那契数列"><a href="#裴波那契数列" class="headerlink" title="裴波那契数列"></a>裴波那契数列</h2><blockquote><p>有一对小兔子，从出生后第3个月起每个月都生一对兔子。小兔子长到第3个月后每个月又生一对兔子。按此规律，假设没有兔子死亡，第一个月有一对刚出生的小兔子，问第n个月有多少对兔子？</p></blockquote><p>在草稿纸上进行简单的演算，我们会发现:第一个月1对，第二个月1对，第三个月2对，第四个月3对，第五个月5对，第六个月8对，第七个月13对……<strong>从第三项开始，每个月的数量都是前两个月的和</strong></p><p>不难得出，<strong>当n&gt;=3时，本月兔子数量=上个月数量+上上个月数量</strong>。</p><p>递归、递推代码</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;math.h&gt;</span><br><span class="line"></span><br><span class="line">int digui(int n)    //递归</span><br><span class="line">&#123;</span><br><span class="line">    if(n==1||n==2)</span><br><span class="line">        return 1;</span><br><span class="line">    else</span><br><span class="line">        return (digui(n-1)+digui(n-2));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int ditui(int n)    //递推</span><br><span class="line">&#123;</span><br><span class="line">    int x=1,y=1,z;</span><br><span class="line">    if(n==1||n==2)</span><br><span class="line">        z=1;</span><br><span class="line">    else &#123;</span><br><span class="line">        for(int i=0;i&lt;n-2;i++)&#123;</span><br><span class="line">        z=x+y;</span><br><span class="line">        x=y;</span><br><span class="line">        y=z;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return z;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int n;</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;n);</span><br><span class="line">    printf(&quot;%d\n&quot;,digui(n));</span><br><span class="line">    printf(&quot;%d\n&quot;,ditui(n));</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> C语言 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>高中往事回忆</title>
       <link href="/2022/11/30/%E9%AB%98%E4%B8%AD%E5%BE%80%E4%BA%8B%E5%9B%9E%E5%BF%86/"/>
       <url>/2022/11/30/%E9%AB%98%E4%B8%AD%E5%BE%80%E4%BA%8B%E5%9B%9E%E5%BF%86/</url>
@@ -111,17 +155,6 @@
     
     
     <entry>
-      <title>留言板</title>
-      <link href="/messageboard/index.html"/>
-      <url>/messageboard/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>友链</title>
       <link href="/link/index.html"/>
       <url>/link/index.html</url>
@@ -133,9 +166,31 @@
     
     
     <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>分类</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>留言板</title>
+      <link href="/messageboard/index.html"/>
+      <url>/messageboard/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -166,20 +221,9 @@
     
     
     <entry>
-      <title>分类</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
