@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>22级天梯赛热身心得</title>
+      <link href="/2022/12/08/22%E7%BA%A7%E5%A4%A9%E6%A2%AF%E8%B5%9B%E7%83%AD%E8%BA%AB%E5%BF%83%E5%BE%97/"/>
+      <url>/2022/12/08/22%E7%BA%A7%E5%A4%A9%E6%A2%AF%E8%B5%9B%E7%83%AD%E8%BA%AB%E5%BF%83%E5%BE%97/</url>
+      
+        <content type="html"><![CDATA[<p>今天在打完热身赛补题时发现一处以前没注意到的地方，白白浪费了两个小时进行debug，这里记录一下：</p><ul><li>2-1 有理数均值</li></ul><blockquote><p>本题要求编写程序，计算N个有理数的平均值。<br>输入格式：输入第一行给出正整数N（≤100）；第二行中按照a1/b1 a2/b2 …的格式给出N个分数形式的有理数，其中分子和分母全是整形范围内的整数；如果是负数，则负号一定出现在最前面。<br>输出格式：在一行中按照a/b的格式输出N个有理数的平均值。注意必须是该有理数的最简分数形式，若分母为1，则只输出分子。</p></blockquote><p>输入样例1：<br>4<br>1/2 1/6 3/6 -5/10<br>输出样例1：<br>1/6<br>输入样例2：<br>2<br>4/3 2/3<br>输出样例2：<br>1</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;math.h&gt;</span><br><span class="line"></span><br><span class="line">int gcd(int x,int y);</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int n,fenzi=0,fenmu=1,up,down,i;</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;n);</span><br><span class="line">    for(i=0;i&lt;n;i++)&#123;</span><br><span class="line">        scanf(&quot;%d/%d&quot;,&amp;up,&amp;down);</span><br><span class="line">        if(up==0)</span><br><span class="line">            continue;</span><br><span class="line">        fenzi=up*fenmu+fenzi*down;</span><br><span class="line">        fenmu*=down;</span><br><span class="line">        if(i==n-1)</span><br><span class="line">            fenmu*=n;</span><br><span class="line">        int max_gongyue=gcd(fenzi,fenmu);</span><br><span class="line">        fenzi/=max_gongyue;</span><br><span class="line">        fenmu/=max_gongyue;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        /*fenzi/=gcd(fenzi,fenmu);</span><br><span class="line">        fenmu/=gcd(fenzi,fenmu);*/</span><br><span class="line">        //错误的是被省去的部分，原来是这样写的一直不对</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    if(fenzi==0)</span><br><span class="line">printf(&quot;0&quot;);</span><br><span class="line">else if(fenmu==1)</span><br><span class="line">        printf(&quot;%d&quot;,fenzi);</span><br><span class="line">else</span><br><span class="line">printf(&quot;%d/%d&quot;,fenzi,fenmu);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int gcd(int x,int y)</span><br><span class="line">&#123;</span><br><span class="line">    if(y==0)</span><br><span class="line">        return x;</span><br><span class="line">    else</span><br><span class="line">        return gcd(y,x%y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> C语言 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>进制转换</title>
       <link href="/2022/12/04/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/"/>
       <url>/2022/12/04/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/</url>
@@ -89,9 +108,9 @@
       
         <tags>
             
-            <tag> 排序 </tag>
-            
             <tag> 算法 </tag>
+            
+            <tag> 排序 </tag>
             
         </tags>
       
@@ -116,9 +135,9 @@
       
         <tags>
             
-            <tag> 算法 </tag>
-            
             <tag> 查找 </tag>
+            
+            <tag> 算法 </tag>
             
         </tags>
       
@@ -155,9 +174,9 @@
     
     
     <entry>
-      <title>友链</title>
-      <link href="/link/index.html"/>
-      <url>/link/index.html</url>
+      <title>分类</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -166,9 +185,9 @@
     
     
     <entry>
-      <title>分类</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
+      <title>友链</title>
+      <link href="/link/index.html"/>
+      <url>/link/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -210,9 +229,9 @@
     
     
     <entry>
-      <title>myself</title>
-      <link href="/myself/index.html"/>
-      <url>/myself/index.html</url>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -221,9 +240,9 @@
     
     
     <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>myself</title>
+      <link href="/myself/index.html"/>
+      <url>/myself/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
