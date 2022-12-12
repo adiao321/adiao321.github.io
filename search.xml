@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>22级天梯赛题解</title>
+      <link href="/2022/12/11/22%E7%BA%A7%E5%A4%A9%E6%A2%AF%E8%B5%9B%E9%A2%98%E8%A7%A3/"/>
+      <url>/2022/12/11/22%E7%BA%A7%E5%A4%A9%E6%A2%AF%E8%B5%9B%E9%A2%98%E8%A7%A3/</url>
+      
+        <content type="html"><![CDATA[<h1 id="基础题"><a href="#基础题" class="headerlink" title="基础题"></a>基础题</h1><h2 id="1-1-无所谓，我会出手"><a href="#1-1-无所谓，我会出手" class="headerlink" title="1-1 无所谓，我会出手"></a>1-1 无所谓，我会出手</h2><blockquote><p>请直接输出 ：“It doesn’t matter,I’ll do it.”（输出不含引号）。</p></blockquote><ul><li>直接输出即可。<pre class="line-numbers language-none"><code class="language-none">int main()&#123;    printf(&quot;It doesn&#39;t matter,I&#39;ll do it.&quot;);    return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li></ul><h2 id="1-2-数组总和"><a href="#1-2-数组总和" class="headerlink" title="1-2 数组总和"></a>1-2 数组总和</h2><blockquote><p>给出一个正整数 n 和一段长度为n的数组a1,a2…an ，请输出1×a1+2×a2+3×a3+4×a 4​+…+n×an的结果。</p></blockquote><p><em><strong>输入格式</strong></em><br>第一行为 整数 n（1&lt;=n&lt;=1e3)<br>第二行为n 个整数 ai（1&lt;=ai&lt;=1e9）</p><p><em><strong>输出格式</strong></em><br>输出一行一个正整数，代表题目要求的值。</p><p><strong>样例输入</strong><br>4<br>1 2 3 4<br><strong>样例输出</strong><br>30</p><ul><li>使用for循环，初始化i=1，每次相乘后储存到sum里。<pre class="line-numbers language-none"><code class="language-none">int main()&#123;    int n,i;    long long sum&#x3D;0,x;    scanf(&quot;%d&quot;,&amp;n);    for(i&#x3D;1;i&lt;&#x3D;n;i++)&#123;        scanf(&quot;%lld&quot;,&amp;x);        sum+&#x3D;x*i;    &#125;    printf(&quot;%lld&quot;,sum);    return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li></ul><h2 id="1-3-捡到一个矩形"><a href="#1-3-捡到一个矩形" class="headerlink" title="1-3 捡到一个矩形"></a>1-3 捡到一个矩形</h2><blockquote><p>这天，我捡到了一个二维坐标轴，坐标轴上有一个矩形，现在给出一个点的坐标，问这个坐标是否在矩形中。</p></blockquote><p><em><strong>输入格式</strong></em><br>输入第一行一个整数t，代表测试组数 (1&lt;=t&lt;=10)<br>接下来2×t行，每组测试用例第一行为四个整数，分别为正方形的左下角的坐标x1，y1和矩形的右上角 x2，y2<br>第二行为询问的点的坐标 x，y(−1e9&lt;=x,y,x1,x2,y1,y2&lt;=1e9)</p><p><em><strong>输出格式</strong></em><br>如果在矩形中或者在矩形的边界上，输出 YES；否则输出 NO。</p><p><strong>样例输入</strong><br>2<br>0 0 2 2<br>1 1<br>1 1 2 2<br>0 0<br><strong>样例输出</strong><br>YES<br>NO</p><pre class="line-numbers language-none"><code class="language-none">int main()&#123;    int n,i,x1,x2,y1,y2,x,y;    scanf(&quot;%d&quot;,&amp;n);    for(i&#x3D;0;i&lt;n;i++)&#123;        scanf(&quot;%d%d%d%d&quot;,&amp;x1,&amp;y1,&amp;x2,&amp;y2);        scanf(&quot;%d%d&quot;,&amp;x,&amp;y);        if(x&gt;&#x3D;x1&amp;&amp;x&lt;&#x3D;x2&amp;&amp;y&gt;&#x3D;y1&amp;&amp;y&lt;&#x3D;y2)            printf(&quot;YES\n&quot;);        else            printf(&quot;NO\n&quot;);    &#125;    return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="1-4-字符转换"><a href="#1-4-字符转换" class="headerlink" title="1-4 字符转换"></a>1-4 字符转换</h2><blockquote><p>现给你一种对字符的操作，使其变成该字符在字母表后的第x个位置，x为该字符在字母表中的位置。例如，对字符a进行操作，会将其变成a后的第一个字母，即b；对字符b进行操作，会将其变成b后的第二个字母，即d….以此类推。需要注意的是，该字母表是一个循环字母表，即字符z后的第一个字符是a，a后又是b，循环往复。现在给你一个字符串s，s 均由小写字母组成，1&lt;=∣s∣&lt;=1e5，请输出对字符串s的每一位字符进行操作后的结果。</p></blockquote><p><em><strong>输入格式</strong></em><br>一行输入一个字符串s，含义如题面所示</p><p><em><strong>输出格式</strong></em><br>输出一行一个字符串，代表对s每一位字符进行操作后的结果。</p><p><strong>样例输入</strong><br>upupup<br><strong>样例输出</strong><br>pfpfpf</p><pre class="line-numbers language-none"><code class="language-none">int main()&#123;    char arr[100005];    scanf(&quot;%s&quot;,arr);    for(int i&#x3D;0;arr[i]!&#x3D;&#39;\0&#39;;i++)&#123;        if(arr[i]-&#39;a&#39;+1&gt;13)            arr[i]-&#x3D;25-arr[i]+&#39;a&#39;;        else        arr[i]+&#x3D;arr[i]-&#39;a&#39;+1;    &#125;    for(int i&#x3D;0;arr[i]!&#x3D;&#39;\0&#39;;i++)&#123;        printf(&quot;%c&quot;,arr[i]);    &#125;    return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="1-5-捡到了一个成绩"><a href="#1-5-捡到了一个成绩" class="headerlink" title="1-5 捡到了一个成绩"></a>1-5 捡到了一个成绩</h2><blockquote><p>天梯赛过后，所有同学的成绩被打印在一张纸上。现在老师想要统计某班得分的均值，以及得分高于这个均值的同学们的分数之和，请你帮助老师计算出这两个值。</p></blockquote><p><em><strong>输入格式</strong></em><br>第一行输入一个正整数n，代表该班级的人数。(1&lt;=n&lt;=30)<br>第二行输入n个整数，代表第i名同学的得分x。(0&lt;=x&lt;=290)</p><p><em><strong>输出格式</strong></em><br>输出两行，第一行输出一个实数，代表得分的均值。(保留到小数点后三位)<br>第二行输出一个整数，代表得分高于该班级分数均值的同学们的分数之和。</p><p><strong>样例输入</strong><br>6<br>13 105 237 173 273 134<br><strong>样例输出</strong><br>155.833<br>683</p><pre class="line-numbers language-none"><code class="language-none">int main()&#123;    int n,sum&#x3D;0,sum2&#x3D;0,arr[10000];    scanf(&quot;%d&quot;,&amp;n);    for(int i&#x3D;0;i&lt;n;i++)&#123;        scanf(&quot;%d&quot;,&amp;arr[i]);        sum+&#x3D;arr[i];    &#125;    double aver&#x3D;sum*1.0&#x2F;n;    for(int i&#x3D;0;i&lt;n;i++)&#123;        if(arr[i]*1.0&gt;aver)            sum2+&#x3D;arr[i];    &#125;    printf(&quot;%.3lf\n%d&quot;,aver,sum2);    return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="1-6-炎爆"><a href="#1-6-炎爆" class="headerlink" title="1-6 炎爆"></a>1-6 炎爆</h2><blockquote><p>cys学姐非常喜欢Arknights这款游戏，而其中伊芙利特是她最引以为傲的干员之一。给你一个n×n的矩形a，矩形中的每一个位置都有一个敌人，其中a[x][y]代表矩形第x行，第y列上的敌人。假设伊芙利特部署在(x,y)的位置上，并且朝向右，那么伊芙利特会对(x,y),(x,y+1),(x,y+2)….(x,n)的所有敌人造成1点伤害。现在给你q次部署，每次部署都给出一个部署位置(x,y)，代表伊芙利特部署在矩形的第x行，第y列，再给出一个字符op，代表伊芙利特的朝向（U代表向上，R代表向右，D代表向下，L代表向左）。你能精确算出每个敌人受到的伤害吗？</p></blockquote><p><em><strong>输入格式</strong></em><br>第一行一个正整数n，代表矩形的大小(1&lt;=n&lt;=100)，初始情况下所有敌人受到的伤害为0。<br>第二行给出一个正整数q，代表伊芙利特的部署次数(1&lt;=q&lt;=50)。<br>接下来q行，每行给定一个数对(x,y)，1&lt;=x,y&lt;=n，代表伊芙利特的部署位置，和一个字符op，op∈{U,R,D,L}，代表伊芙利特的朝向。</p><p><em><strong>输出格式</strong></em><br>输出n行，每行n个整数，分别对应矩阵a中每个敌人受到的伤害。</p><p><strong>样例输入</strong><br>5<br>3<br>2 2 R<br>4 3 U<br>5 5 L<br><strong>样例输出</strong><br>0 0 1 0 0<br>0 1 2 1 1<br>0 0 1 0 0<br>0 0 1 0 0<br>1 1 1 1 1<br><img src="/2022/12/11/22%E7%BA%A7%E5%A4%A9%E6%A2%AF%E8%B5%9B%E9%A2%98%E8%A7%A3/0002.png" alt="题目图片"></p><pre class="line-numbers language-none"><code class="language-none">int main()&#123;    int n,x,numx,numy;    char dire;    scanf(&quot;%d&quot;,&amp;n);    int arr[n+1][n+1];    for(int i&#x3D;0;i&lt;n;i++)&#123;        for(int j&#x3D;0;j&lt;n;j++)&#123;            arr[i][j]&#x3D;0;        &#125;    &#125;    scanf(&quot;%d&quot;,&amp;x);    for(int i&#x3D;0;i&lt;x;i++)&#123;        scanf(&quot;%d%d %c&quot;,&amp;numx,&amp;numy,&amp;dire);        if(dire&#x3D;&#x3D;&#39;U&#39;)&#123;            for(int z&#x3D;0,j&#x3D;0;j&lt;numx;j++,z++)&#123;                arr[numx-1-z][numy-1]++;            &#125;        &#125;        else if(dire&#x3D;&#x3D;&#39;R&#39;)&#123;            for(int z&#x3D;0,j&#x3D;0;j&lt;n-numy+1;j++,z++)&#123;                arr[numx-1][numy-1+z]++;            &#125;        &#125;        else if(dire&#x3D;&#x3D;&#39;D&#39;)&#123;            for(int z&#x3D;0,j&#x3D;0;j&lt;n-numx+1;j++,z++)&#123;                arr[numx-1+z][numy-1]++;            &#125;        &#125;        else if(dire&#x3D;&#x3D;&#39;L&#39;)&#123;            for(int z&#x3D;0,j&#x3D;0;j&lt;numy;j++,z++)&#123;                arr[numx-1][numy-1-z]++;            &#125;        &#125;    &#125;    for(int i&#x3D;0;i&lt;n;i++)&#123;        for(int j&#x3D;0;j&lt;n;j++)&#123;            if(j&#x3D;&#x3D;0)                printf(&quot;%d&quot;,arr[i][j]);            else            printf(&quot; %d&quot;,arr[i][j]);            if(j&#x3D;&#x3D;n-1)                printf(&quot;\n&quot;);        &#125;    &#125;    return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="1-7-攻略迷宫"><a href="#1-7-攻略迷宫" class="headerlink" title="1-7 攻略迷宫"></a>1-7 攻略迷宫</h2><blockquote><p>小A准备挑战一个副本，他的角色拥有 x 点生命值，boss 每第 y 秒攻击一次，每次对角色造成1点伤害，当角色生命值为零时游戏结束，不会再受到攻击。现在给你一个时间段，假如小A从这个时间段开始时着手攻略副本，小A想知道他的角色在这段时间内会承受多少次攻击，以及最后一次被攻击的时间。</p></blockquote><p><em><strong>输入格式</strong></em><br>第一行两个整数 x 和 y(1&lt;=x,y&lt;=100) ，由空格隔开。<br>下面两行两个时间，格式为XX:XX:XX ，代表给定的时间段的开始和结束时间。<br>数据保证时间合法，且开始时间和结束时间在同一天</p><p><em><strong>输出格式</strong></em><br>输出共两行：<br>第一行为小A的角色承受boss攻击的次数<br>第二行一个时间，代表小A的角色最后一次遭受攻击的时间，格式为XX:XX:XX</p><p><strong>样例输入</strong><br>5 60<br>18:00:00<br>18:04:30<br><strong>样例输出</strong><br>4<br>18:04:00<br><strong>样例说明</strong><br>如样例，boss 每第 60 秒攻击一次，角色第一次受到攻击时 18：01：00，最后一次是18：04：00 。共承受 4 次攻击。</p><pre class="line-numbers language-none"><code class="language-none">int miao(int t11,int t22,int t33)&#123;    int miaouu&#x3D;t33+t22*60+t11*3600;    return miaouu;&#125;void biao(int ress)&#123;    int h&#x3D;0,m&#x3D;0,s&#x3D;0;    while(ress&gt;&#x3D;3600)&#123;         h++;         ress-&#x3D;3600;    &#125;    while(ress&gt;&#x3D;60)&#123;         m++;         ress-&#x3D;60;    &#125;        s&#x3D;ress;    printf(&quot;%02d:%02d:%02d&quot;,h,m,s);&#125;int main()&#123;    int x,y,t1,t2,t3,tt1,tt2,tt3,time1,time2,num&#x3D;0;    scanf(&quot;%d%d&quot;,&amp;x,&amp;y);    scanf(&quot;%d:%d:%d&quot;,&amp;t1,&amp;t2,&amp;t3);    scanf(&quot;%d:%d:%d&quot;,&amp;tt1,&amp;tt2,&amp;tt3);    time1&#x3D;miao(t1,t2,t3);    time2&#x3D;miao(tt1,tt2,tt3);    int time&#x3D;time2-time1;    while(time&gt;&#x3D;y&amp;&amp;x&gt;0)&#123;        num++;        time-&#x3D;y;        time1+&#x3D;y;        x--;    &#125;    printf(&quot;%d\n&quot;,num);    biao(time1);    return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="1-8-去掉重复的数据"><a href="#1-8-去掉重复的数据" class="headerlink" title="1-8 去掉重复的数据"></a>1-8 去掉重复的数据</h2><blockquote><p>在一大堆数据中找出重复的是一件经常要做的事情。现在，我们要处理许多整数，在这些整数中，可能存在重复的数据。你要写一个程序来做这件事情，读入数据，检查是否有重复的数据。如果有，去掉所有重复的数字。最后按照输入顺序输出没有重复数字的数据。所有重复的数字只保留第一次出现的那份。</p></blockquote><p><em><strong>输入格式:</strong></em><br>你的程序首先会读到一个正整数 n，1≤n≤100000。<br>然后是 n 个整数，这些整数的范围是 [1, 100000]。</p><p><em><strong>输出格式:</strong></em><br>在一行中按照输入顺序输出去除重复之后的数据。每两个数据之间有一个空格，行首尾不得有多余空格。</p><p><strong>输入样例:</strong><br>5<br>1 2 2 1 4<br><strong>输出样例:</strong><br>1 2 4</p><pre class="line-numbers language-none"><code class="language-none">int main()&#123;    int n,x,arr[100005]&#x3D;&#123;0&#125;,num&#x3D;1;    scanf(&quot;%d&quot;,&amp;n);    for(int i&#x3D;0;i&lt;n;i++)&#123;        scanf(&quot;%d&quot;,&amp;x);        if(arr[x]&#x3D;&#x3D;0&amp;&amp;num)&#123;            printf(&quot;%d&quot;,x);            num&#x3D;0;        &#125;        else if(arr[x]&#x3D;&#x3D;0)&#123;            printf(&quot; %d&quot;,x);        &#125;        arr[x]++;&#125;return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> C语言 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 竞赛 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>经典题目</title>
       <link href="/2022/12/09/%E7%BB%8F%E5%85%B8%E9%A2%98%E7%9B%AE/"/>
       <url>/2022/12/09/%E7%BB%8F%E5%85%B8%E9%A2%98%E7%9B%AE/</url>
@@ -133,9 +158,9 @@
       
         <tags>
             
-            <tag> 算法 </tag>
-            
             <tag> 排序 </tag>
+            
+            <tag> 算法 </tag>
             
         </tags>
       
@@ -160,9 +185,9 @@
       
         <tags>
             
-            <tag> 查找 </tag>
-            
             <tag> 算法 </tag>
+            
+            <tag> 查找 </tag>
             
         </tags>
       
@@ -199,17 +224,6 @@
     
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>myself</title>
       <link href="/myself/index.html"/>
       <url>/myself/index.html</url>
@@ -232,9 +246,9 @@
     
     
     <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>分类</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -254,9 +268,9 @@
     
     
     <entry>
-      <title>分类</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -268,6 +282,17 @@
       <title>留言板</title>
       <link href="/messageboard/index.html"/>
       <url>/messageboard/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
