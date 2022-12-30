@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>对结构体的理解</title>
+      <link href="/2022/12/29/%E5%AF%B9%E7%BB%93%E6%9E%84%E4%BD%93%E7%9A%84%E7%90%86%E8%A7%A3/"/>
+      <url>/2022/12/29/%E5%AF%B9%E7%BB%93%E6%9E%84%E4%BD%93%E7%9A%84%E7%90%86%E8%A7%A3/</url>
+      
+        <content type="html"><![CDATA[<p>在C语言中，数据类型被分为基础数据类型和复合数据类型。</p><p>对于基础数据类型我们都有了解，如int，char等，但复合数据类型又是什么情况呢？</p><p><strong>复合数据类型分为结构、联合、和枚举。这里我们只谈结构（structure）</strong></p><h1 id="结构体的声明和定义"><a href="#结构体的声明和定义" class="headerlink" title="结构体的声明和定义"></a>结构体的声明和定义</h1><p>struct  【结构体名称】{<br>    成员1；<br>    成员2；<br>    ……<br>} 结构体变量名；*//一定要加分号，这是一个声明的结束。*</p><p><strong>例如：声明一种水果的信息</strong></p><pre class="line-numbers language-none"><code class="language-none">struct fruits&#123;    char name[20];    double price;    double weight;&#125;a,b,c;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>这样我们就成功声明了变量a，b，c；</p><p><mark>注意，我们只是声明了a，b，c，并不能给它们赋值，因为对于计算机来说struct{}和int是一个意思，都只是一种类型声明，正如同手搓出一个框架一样。当然，此时struct也是不占用内存的。<mark></mark></mark></p><ul><li>我们也可以不加fruits，只声明a，b，c。但这样的结果是我们只能定义a，b，c，不能再定义别的变量。</li></ul><h1 id="结构体的使用"><a href="#结构体的使用" class="headerlink" title="结构体的使用"></a>结构体的使用</h1><p>说完了声明，我们接下来学学如何使用结构体。</p><p>与常见的声明一样，我们可以在定义结构体时就初始化，也可以先定义在使用的时候再初始化。</p><pre class="line-numbers language-none"><code class="language-none">struct fruits&#123;    char name[20];    double price;    double weight;&#125;a&#x3D;&#123;&quot;apple&quot;,5.8,1.0&#125;;int main()&#123;    struct fruits b&#x3D;&#123;&quot;banana&quot;,6.8,2.0&#125;;    return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>结构体的使用也有两种方式，一种是直接引用，另一种是使用指针：<br><strong>直接引用</strong><br>使用<em><strong>变量名.成员名</strong></em></p><pre class="line-numbers language-none"><code class="language-none">struct fruits&#123;    char name[20];    double price;    double weight;&#125;a&#x3D;&#123;&quot;apple&quot;, 5.8, 1.0&#125;;int main()&#123;    struct fruits b&#x3D;&#123;&quot;banana&quot;, 6.8, 2.0&#125;;    printf(&quot;%s %lf %lf&quot;,a.name,a.price,a.weight);    return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><strong>使用指针</strong><br>使用【-&gt;】</p><pre class="line-numbers language-none"><code class="language-none">struct fruits&#123;    char name[20];    double price;    double weight;&#125;a&#x3D;&#123;&quot;apple&quot;, 5.8, 1.0&#125;;int main()&#123;    struct fruits b&#x3D;&#123;&quot;banana&quot;, 6.8, 2.0&#125;;    struct fruits *p&#x3D;&amp;b;    printf(&quot;%s %lf %lf&quot;,p-&gt;name,p-&gt;price,p-&gt;weight);    return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> https://pic1.zhimg.com/80/v2-7691a11831b076f7f1a385a4c7620899_720w.webp?source=1940ef5c </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>22级天梯赛题解</title>
       <link href="/2022/12/11/22%E7%BA%A7%E5%A4%A9%E6%A2%AF%E8%B5%9B%E9%A2%98%E8%A7%A3/"/>
       <url>/2022/12/11/22%E7%BA%A7%E5%A4%A9%E6%A2%AF%E8%B5%9B%E9%A2%98%E8%A7%A3/</url>
@@ -224,20 +243,9 @@
     
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>分类</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
+      <title>日志</title>
+      <link href="/timeline/index.html"/>
+      <url>/timeline/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -268,31 +276,42 @@
     
     
     <entry>
-      <title>友链</title>
-      <link href="/link/index.html"/>
-      <url>/link/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>日志</title>
-      <link href="/timeline/index.html"/>
-      <url>/timeline/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>标签</title>
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>分类</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>友链</title>
+      <link href="/link/index.html"/>
+      <url>/link/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
