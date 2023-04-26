@@ -4,6 +4,63 @@
   
     
     <entry>
+      <title>python知识点</title>
+      <link href="/2023/03/09/python%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
+      <url>/2023/03/09/python%E7%9F%A5%E8%AF%86%E7%82%B9/</url>
+      
+        <content type="html"><![CDATA[<p>这里记录了一些初学Python代码时遇见的知识点。</p><h1 id="string函数"><a href="#string函数" class="headerlink" title="string函数"></a>string函数</h1><h2 id="string模块中记录了一些常用的属性"><a href="#string模块中记录了一些常用的属性" class="headerlink" title="string模块中记录了一些常用的属性"></a>string模块中记录了一些常用的属性</h2><h3 id="数字，字母等"><a href="#数字，字母等" class="headerlink" title="数字，字母等"></a>数字，字母等</h3><p><strong>ascii</strong></p><pre class="line-numbers language-none"><code class="language-none">import stringprint(string.ascii_letters) &#x2F;&#x2F;&#39;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;print(stirng.ascii_lowercase) &#x2F;&#x2F;&#39;abcdefghijklmnopqrstuvwxyz&#39;print(string.ascii_uppercase) &#x2F;&#x2F;&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;print(string.digits) &#x2F;&#x2F;&#39;0123456789&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="大小写转化"><a href="#大小写转化" class="headerlink" title="大小写转化"></a>大小写转化</h3><p>**upper()**可以将字符串变为大写，可单独使用，可也以放进print<br>**lower()**可以将字符串变为小写，可单独使用，可也以放进print</p><pre class="line-numbers language-none"><code class="language-none">print(s.upper()) &#x2F;&#x2F;注意只是生成新的字符串，并没有更改<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="大小写反转"><a href="#大小写反转" class="headerlink" title="大小写反转"></a>大小写反转</h3><p><strong>swapcase()</strong></p><pre class="line-numbers language-none"><code class="language-none">print(s.swapcase())<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="首字母大写"><a href="#首字母大写" class="headerlink" title="首字母大写"></a>首字母大写</h3><p>**title()**所有给的单词首字母大写，其余小写<br>**capitalize()**只大写整个字符串的第一个字母,其余小写</p><pre class="line-numbers language-none"><code class="language-none">import strings &#x3D; &quot;abcd,qwerTYU&quot;t &#x3D; &quot;abcd qwerTYU&quot;print(s.title())    &#x2F;&#x2F;Abcd,Qwertyuprint(s.capitalize())   &#x2F;&#x2F;Abcd,qwertyuprint(t.title())    &#x2F;&#x2F;Abcd Qwertyuprint(t.capitalize())   &#x2F;&#x2F;Abcd qwertyu<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="is判断函数"><a href="#is判断函数" class="headerlink" title="is判断函数"></a>is判断函数</h2><p>**isdecimal()**判断字符串是否全部为数字<br>**isalpha()**判断字符串是否全部为字母<br>**isalnum()**判断给定的字符串是否只含有数字与字母<br>**isupper()**判断给定的字符串是否全为大写<br>**islower()**判断给定的字符串是否全为小写<br>**istitle()**判断给定的字符串是否符合title()<br><strong>isspace()</strong>:判断给定的字符串是否为空白符（空格、换行、制表符）</p><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; \n为换行 是空白符 为Trueprint(&quot;\n&quot;.isspace())<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p><strong>isprintable()</strong>:判断给定的字符串是否为可打印字符（只有空格可以，换行、制表符都不可以）</p><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; \t为制表符 不可打印 为Falseprint(&quot;\t&quot;.isprintable())<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p><strong>isidentifier()</strong>:判断给定的字符串是否符合命名规则（只能是字母或下划线开头,且不能包含除数字、字母和下划线以外的任意字符</p><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; qe123 符合命名规则 为Trueprint(&quot;qe125&quot;.isidentifier())<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h2 id="字符串填充"><a href="#字符串填充" class="headerlink" title="字符串填充"></a>字符串填充</h2>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>牛客笔记2</title>
+      <link href="/2023/02/07/%E7%89%9B%E5%AE%A2%E7%AC%94%E8%AE%B02/"/>
+      <url>/2023/02/07/%E7%89%9B%E5%AE%A2%E7%AC%94%E8%AE%B02/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 练习 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>牛客笔记1</title>
+      <link href="/2023/02/01/%E7%89%9B%E5%AE%A2%E7%AC%94%E8%AE%B01/"/>
+      <url>/2023/02/01/%E7%89%9B%E5%AE%A2%E7%AC%94%E8%AE%B01/</url>
+      
+        <content type="html"><![CDATA[<h1 id="基础题1-World-Final-World-Cup-I-（模拟）"><a href="#基础题1-World-Final-World-Cup-I-（模拟）" class="headerlink" title="基础题1 World Final? World Cup! (I)（模拟）"></a>基础题1 World Final? World Cup! (I)（<em>模拟</em>）</h1><h2 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h2><p>众所周知，2022年是四年一度的世界杯年，那么当然要整点足球题。本题需要你模拟一次点球大战。</p><p>假设对战双方为A和B，则点球大战中双方会按照ABABABABAB方式来罚点球，即两队交替罚点球、各罚五次、A队先罚。点球有罚进和罚不进两种结果，罚中的一方加一分。</p><p>其判断胜负的规则为得分多者获胜，而若在罚完某一球后（无论是哪队罚的），当前双方比分已经使得无论之后的罚球结果如何都不会影响比赛的结果，则此时比赛结束。特别地，若直到10球踢完都没有分出胜负则再继续加踢更多的点球。</p><p>现在，给出接下来双方10个点球的结果，你需要判断点球大战会在踢完几球时结束，或指出10球内没有分出胜负</p><h3 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述:"></a>输入描述:</h3><p>输入第一行包含一个整数T (1≤T≤1024)，表示样例组数。</p><p>每组测试用例包括一个长度为10的字符串S，第i个字符表示第i个点球的结果，0表示罚不进，1表示罚进</p><h3 id="输出描述："><a href="#输出描述：" class="headerlink" title="输出描述："></a>输出描述：</h3><p>对每组测试用例，输出一个整数，表示点球大战会在第几回合结束，若10轮之内没有分出胜负，输出-1。</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>从1开始将每种情况列举出来，对于每种情况进行判断：剩下的10-i场比赛里，设A最高A1分，最低A2分，B最高B1分，最低B2分，判断（A1-B2)*(B1-A2)是否&lt;0 <strong>（前者代表A最好的情况能不能赢B，后者代表B最好的情况能不能赢A）</strong></p><pre class="line-numbers language-none"><code class="language-none">#include &lt;bits&#x2F;stdc++.h&gt;using namespace std;int main()&#123;int T;char s[11];scanf(&quot;%d&quot;,&amp;T);while(T--)&#123;        scanf(&quot;%s&quot;,s+1);   &#x2F;&#x2F;        int a&#x3D;0,b&#x3D;0,flag&#x3D;1;        for(int i&#x3D;1;i&lt;&#x3D;10;i++)&#123;            if(s[i]&#x3D;&#x3D;&#39;1&#39;)&#123;                if(i%2)                    a++;                else                    b++;            &#125;        int a1&#x3D;(10-i)&#x2F;2,b1&#x3D;(11-i)&#x2F;2;   &#x2F;&#x2F;b1的计算方式使b的情况不会被漏掉        if((a+a1-b)*(b+b1-a)&lt;0)&#123;            printf(&quot;%d\n&quot;,i);            flag&#x3D;0;            break;        &#125;        &#125;    if(flag)        printf(&quot;-1\n&quot;);&#125;return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h1 id="基础题2-本题主要考察了运气（数学）"><a href="#基础题2-本题主要考察了运气（数学）" class="headerlink" title="基础题2 本题主要考察了运气（数学）"></a>基础题2 本题主要考察了运气（<em>数学</em>）</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>《P–j— S-k–》是一款S-g-发行的音乐游戏，游戏中除了主打的-家虚拟歌姬角色外，还有大量人设饱满的原创角色。而知名算法竞赛选手J—-ly就是该游戏的玩家。现在，你想猜出J—-ly在该游戏中最喜欢的原创角色是谁。</p><p>该游戏中共有20名原创角色，分别属于5个团体，每个团体恰好4个人。为了猜出J—-ly最喜欢的角色，你可以向他提以下两类问题（J—-ly会如实回答）：</p><p>现在，你想知道，在选择最优的提问策略使提问数尽可能少的情况下，你的期望提问次数是多少次？本题要求输出该期望次数。</p><p>特别地，好心的出题人为了让这题有100%的通过率，把这题出成了选择题的形式，选项含义见输出描述部分。</p><p>下面给出一种可能的提问示例：</p><p>问题一：ta属于第3个团体吗？回答：不属于。</p><p>问题二：ta属于第1个团体吗？回答：不属于。</p><p>问题三：ta是第2个团体第2个人吗？回答：不是。</p><p>问题四：ta是第4个团体第3个人吗？回答：是。</p><p>此时，你通过四个问题，能100%确定J—-ly最喜欢的角色是第4个团体的第3个角色，提问次数为4。</p><h3 id="输入描述-1"><a href="#输入描述-1" class="headerlink" title="输入描述"></a>输入描述</h3><p>本题没有输入，直接输出你的答案。</p><h3 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述"></a>输出描述</h3><p>如题面所述，本题很好心，是个选择题，共有100个选项（最多99发罚时就可以保证通过此题辣），选项编号为1至100，第i个选项为3.45+0.05*i，如第一个选项为3.50，第十个选项为3.95。你需要选出与答案最接近的选项的编号（一个1至100的整数）。</p><h2 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h2><p>高中的期望问题</p><p>猜团时：共5个团，第①次猜中概率是0.2，第②次概率是0.2，第③次概率是0.2，第④次概率是0.4（第四次猜已经可以判断出第五次的结果了）。</p><p>猜人时：共四个人，第①次猜中概率是0.25，第②次概率是0.25，第③次概率是0.5。</p><p>最后将猜团和猜人的期望计算并相加：1 * 0.2 + 2 * 0.2 + 3 * 0.2 + 4 * 0.4 + 1 * 0.25 + 2 * 0.25 + 3 * 0.5=5.05，即32。</p><pre class="line-numbers language-none"><code class="language-none">#include &lt;stdio.h&gt;int main()&#123;    printf(&quot;32&quot;);    return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h1 id="基础题3-现在是，学术时间-I-（诈骗，思维，贪心）"><a href="#基础题3-现在是，学术时间-I-（诈骗，思维，贪心）" class="headerlink" title="基础题3 现在是，学术时间 (I)（诈骗，思维，贪心）"></a>基础题3 现在是，学术时间 (I)（<em>诈骗，思维，贪心</em>）</h1><h2 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h2><p>北京IT大学（BIT）计算机学院为了在下一轮学科评估中让计算机学科获得A+的评定结果，进行了如引进强大的老师、加强课程之类、提高授课质量等多方面的努力。而为了提高学科评估中，学术成果一项的得分，计算机学院的院长打算通过重新分配论文的方式使得学院里所有教授的H指数值之和尽可能大。</p><p>具体来说，H指数用于粗略的评估一位教授的学术水平。一位教授可以发表多篇论文，每篇论文有一个引用量。定义一位教授的H指数为使得”该教授发表的所有论文中，有至少H篇论文的引用量大于等于H”这一命题成立的最大的H。</p><p>现在，院长发现学院里的每位老师当前的发表文章数都为0，且恰好每人都有一篇写好的论文未发表，由于院长很懂学术界，他也可以准确的预知到每篇文章发表后的引用量。院长决定以最优的方式重新分配这些论文，他可以任意指定一篇论文由哪位教授发表。规定每篇论文只能被一位教授发表，一位教授可以发表多篇论文。</p><p>即所有教授的H指数之和最大。院长希望最大化$$\sum_{i=1}^{n}h_i$$,即所有教授的H指数和最大，请你帮院长计算出这一最大的值为多少。</p><h3 id="输入描述-2"><a href="#输入描述-2" class="headerlink" title="输入描述"></a>输入描述</h3><p>输入第一行为一个正整数T(1≤T≤10^5)，表示样例组数。</p><p>每组样例包括两行。</p><p>第一行是一个正整数n(1≤n≤10^5)，表示北京IT大学计算机学院的教授数量；第二行包括nnn个非负整数，第iii个数字ai(0≤ai≤109)表示第i位教授写好但未发表的文章在发表后会获得的引用量。</p><p>保证每组数据所有用例的n之和Σn≤5×10^5.</p><h3 id="输出描述-1"><a href="#输出描述-1" class="headerlink" title="输出描述"></a>输出描述</h3><p>对于每组样例，输出一个整数，表示$$\sum_{i=1}^{n}h_i$$的最大值</p><h2 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h2><p>什么都不做的话结果最佳，不进行重新分配。</p><pre class="line-numbers language-none"><code class="language-none">#include &lt;bits&#x2F;stdc++.h&gt;using namespace std;int main()&#123;int t,a,arr[100005];scanf(&quot;%d&quot;,&amp;t);while(t--)&#123;        scanf(&quot;%d&quot;,&amp;a);        int ans&#x3D;0;        for(int i&#x3D;0;i&lt;a;i++)&#123;            scanf(&quot;%d&quot;,&amp;arr[i]);            if(arr[i]&gt;0) ans++;        &#125;        printf(&quot;%d\n&quot;,ans);&#125;return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h1 id="基础题4：本题主要考察了DFS（诈骗，思维，贪心）"><a href="#基础题4：本题主要考察了DFS（诈骗，思维，贪心）" class="headerlink" title="基础题4：本题主要考察了DFS（诈骗，思维，贪心）"></a>基础题4：本题主要考察了DFS（<em>诈骗，思维，贪心</em>）</h1><h2 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h2><p>PTA的拼图由n∗n个大小为1∗1的拼图块组成，每个拼图块都是在正方形的1∗1拼图块基础上生成的，生成方法为：对于每一条边，可以选择不变、向里削出一个半圆形的缺口、向外补上一个半圆形的凸出三种操作之一。因此，一个拼图块可以由一个长度为444的字符串描述，四个字符分别表示上、右、下、左四条边进行的操作，上述三种操作依次记为0,1,2。</p><p>  例如，下图的左图为一个2∗2的拼图。而右图为左图中左上角的一块1∗1拼图的字符串描述，由于其上、右、下、左进行的操作分别为不变、凸出、缺口、不变，因此这块拼图对应的字符串为0210。</p><p>每块拼图还有一个制作成本p，正比与面积，而拼图中削去的缺口和补上的凸出面积又相同，因此对于一块削去了x个半圆、补上了y个半圆的1*1拼图，其制作成本为p=10-1+1=10.</p><p>现在，PTA会从所有拼图中随机隐藏一块，并打乱剩下的$n^{2}$​-1块拼图，告诉了你它们的形状对应的字符串表示（由于拼图上绘制了可供辨识的图案，因此给出的拼图形状都是各拼图块正面朝上、未经旋转的正确形状）。</p><p>PTA需要你完成这一拼图游戏，还原拼图原来的样子。你需要回答隐藏起来的那块拼图的制作成本来证明你成功完成了拼图。</p><h3 id="输入描述-3"><a href="#输入描述-3" class="headerlink" title="输入描述"></a>输入描述</h3><p>输入第一行是一个整数T(1≤T≤100)，表示测试用例组数。</p><p>对于每组测试用例：</p><p>第一行为一个正整数n(2≤n≤20)，表示拼图的大小。</p><p>接下来$n^{2}$-1行，每行一个长度为4的字符串，表示一块拼图正面朝上、未经旋转的形状。保证字符串中只含0,1,2三种字符。</p><p>输入数据保证$n^{2}$−1块拼图是从一个合法的n∗n拼图中按如题面所述的过程获得的。</p><h3 id="输出描述-2"><a href="#输出描述-2" class="headerlink" title="输出描述"></a>输出描述</h3><p>对每组样例输出一个整数，表示你在拼出拼图后所计算出的缺失拼图块的制作成本。</p><pre class="line-numbers language-none"><code class="language-none">#include &lt;bits&#x2F;stdc++.h&gt;using namespace std;int main()&#123;int t,a,ans&#x3D;10;string s;scanf(&quot;%d&quot;,&amp;t);while(t--)&#123;        scanf(&quot;%d&quot;,&amp;a);        ans&#x3D;10;        for(int i&#x3D;0;i&lt;a*a-1;i++)&#123;            cin&gt;&gt;s;            for(int j&#x3D;0;j&lt;4;j++)&#123;            if(s[j]&#x3D;&#x3D;&#39;0&#39;) continue;            else if(s[j]&#x3D;&#x3D;&#39;1&#39;) ans++;            else if(s[j]&#x3D;&#x3D;&#39;2&#39;) ans--;            &#125;        &#125;        printf(&quot;%d\n&quot;,ans);&#125;return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 练习 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>对结构体的理解</title>
       <link href="/2022/12/29/%E5%AF%B9%E7%BB%93%E6%9E%84%E4%BD%93%E7%9A%84%E7%90%86%E8%A7%A3/"/>
       <url>/2022/12/29/%E5%AF%B9%E7%BB%93%E6%9E%84%E4%BD%93%E7%9A%84%E7%90%86%E8%A7%A3/</url>
@@ -177,9 +234,9 @@
       
         <tags>
             
-            <tag> 算法 </tag>
-            
             <tag> 排序 </tag>
+            
+            <tag> 算法 </tag>
             
         </tags>
       
@@ -204,9 +261,9 @@
       
         <tags>
             
-            <tag> 查找 </tag>
-            
             <tag> 算法 </tag>
+            
+            <tag> 查找 </tag>
             
         </tags>
       
@@ -243,31 +300,9 @@
     
     
     <entry>
-      <title>日志</title>
-      <link href="/timeline/index.html"/>
-      <url>/timeline/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>留言板</title>
-      <link href="/messageboard/index.html"/>
-      <url>/messageboard/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>myself</title>
-      <link href="/myself/index.html"/>
-      <url>/myself/index.html</url>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -287,20 +322,9 @@
     
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>分类</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
+      <title>留言板</title>
+      <link href="/messageboard/index.html"/>
+      <url>/messageboard/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -312,6 +336,39 @@
       <title>友链</title>
       <link href="/link/index.html"/>
       <url>/link/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>myself</title>
+      <link href="/myself/index.html"/>
+      <url>/myself/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>日志</title>
+      <link href="/timeline/index.html"/>
+      <url>/timeline/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>分类</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       

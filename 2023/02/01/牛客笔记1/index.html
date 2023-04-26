@@ -1,0 +1,307 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>牛客笔记1 | 阿刁</title><meta name="author" content="阿刁"><meta name="copyright" content="阿刁"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="基础题1 World Final? World Cup! (I)（模拟）题目描述：众所周知，2022年是四年一度的世界杯年，那么当然要整点足球题。本题需要你模拟一次点球大战。 假设对战双方为A和B，则点球大战中双方会按照ABABABABAB方式来罚点球，即两队交替罚点球、各罚五次、A队先罚。点球有罚进和罚不进两种结果，罚中的一方加一分。 其判断胜负的规则为得分多者获胜，而若在罚完某一球后（无论是哪">
+<meta property="og:type" content="article">
+<meta property="og:title" content="牛客笔记1">
+<meta property="og:url" content="http://adiao321.github.io.com/2023/02/01/%E7%89%9B%E5%AE%A2%E7%AC%94%E8%AE%B01/index.html">
+<meta property="og:site_name" content="阿刁">
+<meta property="og:description" content="基础题1 World Final? World Cup! (I)（模拟）题目描述：众所周知，2022年是四年一度的世界杯年，那么当然要整点足球题。本题需要你模拟一次点球大战。 假设对战双方为A和B，则点球大战中双方会按照ABABABABAB方式来罚点球，即两队交替罚点球、各罚五次、A队先罚。点球有罚进和罚不进两种结果，罚中的一方加一分。 其判断胜负的规则为得分多者获胜，而若在罚完某一球后（无论是哪">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-b2b10364c745847811994a69c21d5532_720w.webp?source=1940ef5c">
+<meta property="article:published_time" content="2023-02-01T12:42:55.000Z">
+<meta property="article:modified_time" content="2023-02-05T12:45:13.769Z">
+<meta property="article:author" content="阿刁">
+<meta property="article:tag" content="练习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.zhimg.com/80/v2-b2b10364c745847811994a69c21d5532_720w.webp?source=1940ef5c"><link rel="shortcut icon" href="/img/avatar1.jpg"><link rel="canonical" href="http://adiao321.github.io.com/2023/02/01/%E7%89%9B%E5%AE%A2%E7%AC%94%E8%AE%B01/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-right"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '牛客笔记1',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-02-05 20:45:13'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/loading.gif" data-original="/img/avatar1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/timeline/"><i class="fa-fw fa fa-bell"></i><span> 日志</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 菜单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/%E5%85%B3%E4%BA%8E"><i class="fa-fw /about/"></i><span> 0</span></a></li><li><a class="site-page child" href="/myself"><i class="fa-fw /myself/"></i><span> 1</span></a></li><li><a class="site-page child" href="/butterfly%E4%B8%BB%E9%A2%98"><i class="fa-fw https://github.com/jerryc127/hexo-theme-butterfly/"></i><span> 2</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://pic1.zhimg.com/80/v2-b2b10364c745847811994a69c21d5532_720w.webp?source=1940ef5c')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">阿刁</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/timeline/"><i class="fa-fw fa fa-bell"></i><span> 日志</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 菜单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/%E5%85%B3%E4%BA%8E"><i class="fa-fw /about/"></i><span> 0</span></a></li><li><a class="site-page child" href="/myself"><i class="fa-fw /myself/"></i><span> 1</span></a></li><li><a class="site-page child" href="/butterfly%E4%B8%BB%E9%A2%98"><i class="fa-fw https://github.com/jerryc127/hexo-theme-butterfly/"></i><span> 2</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">牛客笔记1</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-01T12:42:55.000Z" title="发表于 2023-02-01 20:42:55">2023-02-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-02-05T12:45:13.769Z" title="更新于 2023-02-05 20:45:13">2023-02-05</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="牛客笔记1"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="基础题1-World-Final-World-Cup-I-（模拟）"><a href="#基础题1-World-Final-World-Cup-I-（模拟）" class="headerlink" title="基础题1 World Final? World Cup! (I)（模拟）"></a>基础题1 World Final? World Cup! (I)（<em>模拟</em>）</h1><h2 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h2><p>众所周知，2022年是四年一度的世界杯年，那么当然要整点足球题。本题需要你模拟一次点球大战。</p>
+<p>假设对战双方为A和B，则点球大战中双方会按照ABABABABAB方式来罚点球，即两队交替罚点球、各罚五次、A队先罚。点球有罚进和罚不进两种结果，罚中的一方加一分。</p>
+<p>其判断胜负的规则为得分多者获胜，而若在罚完某一球后（无论是哪队罚的），当前双方比分已经使得无论之后的罚球结果如何都不会影响比赛的结果，则此时比赛结束。特别地，若直到10球踢完都没有分出胜负则再继续加踢更多的点球。</p>
+<p>现在，给出接下来双方10个点球的结果，你需要判断点球大战会在踢完几球时结束，或指出10球内没有分出胜负</p>
+<h3 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述:"></a>输入描述:</h3><p>输入第一行包含一个整数T (1≤T≤1024)，表示样例组数。</p>
+<p>每组测试用例包括一个长度为10的字符串S，第i个字符表示第i个点球的结果，0表示罚不进，1表示罚进</p>
+<h3 id="输出描述："><a href="#输出描述：" class="headerlink" title="输出描述："></a>输出描述：</h3><p>对每组测试用例，输出一个整数，表示点球大战会在第几回合结束，若10轮之内没有分出胜负，输出-1。</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>从1开始将每种情况列举出来，对于每种情况进行判断：剩下的10-i场比赛里，设A最高A1分，最低A2分，B最高B1分，最低B2分，判断（A1-B2)*(B1-A2)是否&lt;0 <strong>（前者代表A最好的情况能不能赢B，后者代表B最好的情况能不能赢A）</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">#include &lt;bits&#x2F;stdc++.h&gt;
+using namespace std;
+
+int main()
+&#123;
+	int T;
+	char s[11];
+	scanf(&quot;%d&quot;,&amp;T);
+	while(T--)&#123;
+        scanf(&quot;%s&quot;,s+1);   &#x2F;&#x2F;
+        int a&#x3D;0,b&#x3D;0,flag&#x3D;1;
+        for(int i&#x3D;1;i&lt;&#x3D;10;i++)&#123;
+            if(s[i]&#x3D;&#x3D;&#39;1&#39;)&#123;
+                if(i%2)
+                    a++;
+                else
+                    b++;
+            &#125;
+        int a1&#x3D;(10-i)&#x2F;2,b1&#x3D;(11-i)&#x2F;2;   &#x2F;&#x2F;b1的计算方式使b的情况不会被漏掉
+        if((a+a1-b)*(b+b1-a)&lt;0)&#123;
+            printf(&quot;%d\n&quot;,i);
+            flag&#x3D;0;
+            break;
+        &#125;
+        &#125;
+    if(flag)
+        printf(&quot;-1\n&quot;);
+	&#125;
+	return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="基础题2-本题主要考察了运气（数学）"><a href="#基础题2-本题主要考察了运气（数学）" class="headerlink" title="基础题2 本题主要考察了运气（数学）"></a>基础题2 本题主要考察了运气（<em>数学</em>）</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>《P–j— S-k–》是一款S-g-发行的音乐游戏，游戏中除了主打的-家虚拟歌姬角色外，还有大量人设饱满的原创角色。而知名算法竞赛选手J—-ly就是该游戏的玩家。现在，你想猜出J—-ly在该游戏中最喜欢的原创角色是谁。</p>
+<p>该游戏中共有20名原创角色，分别属于5个团体，每个团体恰好4个人。为了猜出J—-ly最喜欢的角色，你可以向他提以下两类问题（J—-ly会如实回答）：</p>
+<p>现在，你想知道，在选择最优的提问策略使提问数尽可能少的情况下，你的期望提问次数是多少次？本题要求输出该期望次数。</p>
+<p>特别地，好心的出题人为了让这题有100%的通过率，把这题出成了选择题的形式，选项含义见输出描述部分。</p>
+<p>下面给出一种可能的提问示例：</p>
+<p>问题一：ta属于第3个团体吗？回答：不属于。</p>
+<p>问题二：ta属于第1个团体吗？回答：不属于。</p>
+<p>问题三：ta是第2个团体第2个人吗？回答：不是。</p>
+<p>问题四：ta是第4个团体第3个人吗？回答：是。</p>
+<p>此时，你通过四个问题，能100%确定J—-ly最喜欢的角色是第4个团体的第3个角色，提问次数为4。</p>
+<h3 id="输入描述-1"><a href="#输入描述-1" class="headerlink" title="输入描述"></a>输入描述</h3><p>本题没有输入，直接输出你的答案。</p>
+<h3 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述"></a>输出描述</h3><p>如题面所述，本题很好心，是个选择题，共有100个选项（最多99发罚时就可以保证通过此题辣），选项编号为1至100，第i个选项为3.45+0.05*i，如第一个选项为3.50，第十个选项为3.95。你需要选出与答案最接近的选项的编号（一个1至100的整数）。</p>
+<h2 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h2><p>高中的期望问题</p>
+<p>猜团时：共5个团，第①次猜中概率是0.2，第②次概率是0.2，第③次概率是0.2，第④次概率是0.4（第四次猜已经可以判断出第五次的结果了）。</p>
+<p>猜人时：共四个人，第①次猜中概率是0.25，第②次概率是0.25，第③次概率是0.5。</p>
+<p>最后将猜团和猜人的期望计算并相加：1 * 0.2 + 2 * 0.2 + 3 * 0.2 + 4 * 0.4 + 1 * 0.25 + 2 * 0.25 + 3 * 0.5=5.05，即32。</p>
+<pre class="line-numbers language-none"><code class="language-none">#include &lt;stdio.h&gt;
+
+int main()
+&#123;
+    printf(&quot;32&quot;);
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="基础题3-现在是，学术时间-I-（诈骗，思维，贪心）"><a href="#基础题3-现在是，学术时间-I-（诈骗，思维，贪心）" class="headerlink" title="基础题3 现在是，学术时间 (I)（诈骗，思维，贪心）"></a>基础题3 现在是，学术时间 (I)（<em>诈骗，思维，贪心</em>）</h1><h2 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h2><p>北京IT大学（BIT）计算机学院为了在下一轮学科评估中让计算机学科获得A+的评定结果，进行了如引进强大的老师、加强课程之类、提高授课质量等多方面的努力。而为了提高学科评估中，学术成果一项的得分，计算机学院的院长打算通过重新分配论文的方式使得学院里所有教授的H指数值之和尽可能大。</p>
+<p>具体来说，H指数用于粗略的评估一位教授的学术水平。一位教授可以发表多篇论文，每篇论文有一个引用量。定义一位教授的H指数为使得”该教授发表的所有论文中，有至少H篇论文的引用量大于等于H”这一命题成立的最大的H。</p>
+<p>现在，院长发现学院里的每位老师当前的发表文章数都为0，且恰好每人都有一篇写好的论文未发表，由于院长很懂学术界，他也可以准确的预知到每篇文章发表后的引用量。院长决定以最优的方式重新分配这些论文，他可以任意指定一篇论文由哪位教授发表。规定每篇论文只能被一位教授发表，一位教授可以发表多篇论文。</p>
+<p>即所有教授的H指数之和最大。院长希望最大化$$\sum_{i=1}^{n}h_i$$,即所有教授的H指数和最大，请你帮院长计算出这一最大的值为多少。</p>
+<h3 id="输入描述-2"><a href="#输入描述-2" class="headerlink" title="输入描述"></a>输入描述</h3><p>输入第一行为一个正整数T(1≤T≤10^5)，表示样例组数。</p>
+<p>每组样例包括两行。</p>
+<p>第一行是一个正整数n(1≤n≤10^5)，表示北京IT大学计算机学院的教授数量；第二行包括nnn个非负整数，第iii个数字ai(0≤ai≤109)表示第i位教授写好但未发表的文章在发表后会获得的引用量。</p>
+<p>保证每组数据所有用例的n之和Σn≤5×10^5.</p>
+<h3 id="输出描述-1"><a href="#输出描述-1" class="headerlink" title="输出描述"></a>输出描述</h3><p>对于每组样例，输出一个整数，表示$$\sum_{i=1}^{n}h_i$$的最大值</p>
+<h2 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h2><p>什么都不做的话结果最佳，不进行重新分配。</p>
+<pre class="line-numbers language-none"><code class="language-none">#include &lt;bits&#x2F;stdc++.h&gt;
+using namespace std;
+
+int main()
+&#123;
+	int t,a,arr[100005];
+	scanf(&quot;%d&quot;,&amp;t);
+	while(t--)&#123;
+        scanf(&quot;%d&quot;,&amp;a);
+        int ans&#x3D;0;
+        for(int i&#x3D;0;i&lt;a;i++)&#123;
+            scanf(&quot;%d&quot;,&amp;arr[i]);
+            if(arr[i]&gt;0) ans++;
+        &#125;
+        printf(&quot;%d\n&quot;,ans);
+	&#125;
+	return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="基础题4：本题主要考察了DFS（诈骗，思维，贪心）"><a href="#基础题4：本题主要考察了DFS（诈骗，思维，贪心）" class="headerlink" title="基础题4：本题主要考察了DFS（诈骗，思维，贪心）"></a>基础题4：本题主要考察了DFS（<em>诈骗，思维，贪心</em>）</h1><h2 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h2><p>PTA的拼图由n∗n个大小为1∗1的拼图块组成，每个拼图块都是在正方形的1∗1拼图块基础上生成的，生成方法为：对于每一条边，可以选择不变、向里削出一个半圆形的缺口、向外补上一个半圆形的凸出三种操作之一。因此，一个拼图块可以由一个长度为444的字符串描述，四个字符分别表示上、右、下、左四条边进行的操作，上述三种操作依次记为0,1,2。</p>
+<p>  例如，下图的左图为一个2∗2的拼图。而右图为左图中左上角的一块1∗1拼图的字符串描述，由于其上、右、下、左进行的操作分别为不变、凸出、缺口、不变，因此这块拼图对应的字符串为0210。</p>
+<p>每块拼图还有一个制作成本p，正比与面积，而拼图中削去的缺口和补上的凸出面积又相同，因此对于一块削去了x个半圆、补上了y个半圆的1*1拼图，其制作成本为p=10-1+1=10.</p>
+<p>现在，PTA会从所有拼图中随机隐藏一块，并打乱剩下的$n^{2}$​-1块拼图，告诉了你它们的形状对应的字符串表示（由于拼图上绘制了可供辨识的图案，因此给出的拼图形状都是各拼图块正面朝上、未经旋转的正确形状）。</p>
+<p>PTA需要你完成这一拼图游戏，还原拼图原来的样子。你需要回答隐藏起来的那块拼图的制作成本来证明你成功完成了拼图。</p>
+<h3 id="输入描述-3"><a href="#输入描述-3" class="headerlink" title="输入描述"></a>输入描述</h3><p>输入第一行是一个整数T(1≤T≤100)，表示测试用例组数。</p>
+<p>对于每组测试用例：</p>
+<p>第一行为一个正整数n(2≤n≤20)，表示拼图的大小。</p>
+<p>接下来$n^{2}$-1行，每行一个长度为4的字符串，表示一块拼图正面朝上、未经旋转的形状。保证字符串中只含0,1,2三种字符。</p>
+<p>输入数据保证$n^{2}$−1块拼图是从一个合法的n∗n拼图中按如题面所述的过程获得的。</p>
+<h3 id="输出描述-2"><a href="#输出描述-2" class="headerlink" title="输出描述"></a>输出描述</h3><p>对每组样例输出一个整数，表示你在拼出拼图后所计算出的缺失拼图块的制作成本。</p>
+<pre class="line-numbers language-none"><code class="language-none">#include &lt;bits&#x2F;stdc++.h&gt;
+using namespace std;
+
+int main()
+&#123;
+	int t,a,ans&#x3D;10;
+	string s;
+	scanf(&quot;%d&quot;,&amp;t);
+	while(t--)&#123;
+        scanf(&quot;%d&quot;,&amp;a);
+        ans&#x3D;10;
+        for(int i&#x3D;0;i&lt;a*a-1;i++)&#123;
+            cin&gt;&gt;s;
+            for(int j&#x3D;0;j&lt;4;j++)&#123;
+            if(s[j]&#x3D;&#x3D;&#39;0&#39;) continue;
+            else if(s[j]&#x3D;&#x3D;&#39;1&#39;) ans++;
+            else if(s[j]&#x3D;&#x3D;&#39;2&#39;) ans--;
+            &#125;
+        &#125;
+        printf(&quot;%d\n&quot;,ans);
+	&#125;
+	return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://adiao321.github.io.com">阿刁</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://adiao321.github.io.com/2023/02/01/%E7%89%9B%E5%AE%A2%E7%AC%94%E8%AE%B01/">http://adiao321.github.io.com/2023/02/01/%E7%89%9B%E5%AE%A2%E7%AC%94%E8%AE%B01/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://adiao321.github.io.com" target="_blank">阿刁</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BB%83%E4%B9%A0/">练习</a></div><div class="post_share"><div class="social-share" data-image="https://pic1.zhimg.com/80/v2-b2b10364c745847811994a69c21d5532_720w.webp?source=1940ef5c" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/02/07/%E7%89%9B%E5%AE%A2%E7%AC%94%E8%AE%B02/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/loading.gif" data-original="https://pica.zhimg.com/80/v2-b442793f521ca651ca2afe7a312a29ef_720w.webp?source=1940ef5c" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">牛客笔记2</div></div></a></div><div class="next-post pull-right"><a href="/2022/12/29/%E5%AF%B9%E7%BB%93%E6%9E%84%E4%BD%93%E7%9A%84%E7%90%86%E8%A7%A3/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/loading.gif" data-original="https://pic4.zhimg.com/v2-3dd823a635051eed8005b771ad85cd9b_r.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">对结构体的理解</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/02/07/%E7%89%9B%E5%AE%A2%E7%AC%94%E8%AE%B02/" title="牛客笔记2"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/loading.gif" data-original="https://pica.zhimg.com/80/v2-b442793f521ca651ca2afe7a312a29ef_720w.webp?source=1940ef5c" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-07</div><div class="title">牛客笔记2</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/loading.gif" data-original="/img/avatar1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">阿刁</div><div class="author-info__description">为往圣继绝学，为万世开太平</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">QQ：2056079548<br>wechat：nyf716716<br>还在学习的学生一枚~<br>有不足之处欢迎指出~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E9%A2%981-World-Final-World-Cup-I-%EF%BC%88%E6%A8%A1%E6%8B%9F%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">基础题1 World Final? World Cup! (I)（模拟）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.1.1.</span> <span class="toc-text">输入描述:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%8F%8F%E8%BF%B0%EF%BC%9A"><span class="toc-number">1.1.2.</span> <span class="toc-text">输出描述：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-number">1.2.</span> <span class="toc-text">思路</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E9%A2%982-%E6%9C%AC%E9%A2%98%E4%B8%BB%E8%A6%81%E8%80%83%E5%AF%9F%E4%BA%86%E8%BF%90%E6%B0%94%EF%BC%88%E6%95%B0%E5%AD%A6%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">基础题2 本题主要考察了运气（数学）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="toc-number">2.1.</span> <span class="toc-text">题目描述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%8F%8F%E8%BF%B0-1"><span class="toc-number">2.1.1.</span> <span class="toc-text">输入描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%8F%8F%E8%BF%B0"><span class="toc-number">2.1.2.</span> <span class="toc-text">输出描述</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="toc-number">2.2.</span> <span class="toc-text">思路</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E9%A2%983-%E7%8E%B0%E5%9C%A8%E6%98%AF%EF%BC%8C%E5%AD%A6%E6%9C%AF%E6%97%B6%E9%97%B4-I-%EF%BC%88%E8%AF%88%E9%AA%97%EF%BC%8C%E6%80%9D%E7%BB%B4%EF%BC%8C%E8%B4%AA%E5%BF%83%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">基础题3 现在是，学术时间 (I)（诈骗，思维，贪心）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-1"><span class="toc-number">3.1.</span> <span class="toc-text">题目描述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%8F%8F%E8%BF%B0-2"><span class="toc-number">3.1.1.</span> <span class="toc-text">输入描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%8F%8F%E8%BF%B0-1"><span class="toc-number">3.1.2.</span> <span class="toc-text">输出描述</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="toc-number">3.2.</span> <span class="toc-text">思路</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E9%A2%984%EF%BC%9A%E6%9C%AC%E9%A2%98%E4%B8%BB%E8%A6%81%E8%80%83%E5%AF%9F%E4%BA%86DFS%EF%BC%88%E8%AF%88%E9%AA%97%EF%BC%8C%E6%80%9D%E7%BB%B4%EF%BC%8C%E8%B4%AA%E5%BF%83%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">基础题4：本题主要考察了DFS（诈骗，思维，贪心）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-2"><span class="toc-number">4.1.</span> <span class="toc-text">题目描述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%8F%8F%E8%BF%B0-3"><span class="toc-number">4.1.1.</span> <span class="toc-text">输入描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%8F%8F%E8%BF%B0-2"><span class="toc-number">4.1.2.</span> <span class="toc-text">输出描述</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/03/09/python%E7%9F%A5%E8%AF%86%E7%82%B9/" title="python知识点"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/loading.gif" data-original="https://pica.zhimg.com/80/v2-3b83e03ec8352b504e7a3dab903a9c66_720w.webp?source=1940ef5c" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="python知识点"/></a><div class="content"><a class="title" href="/2023/03/09/python%E7%9F%A5%E8%AF%86%E7%82%B9/" title="python知识点">python知识点</a><time datetime="2023-03-08T23:52:07.000Z" title="发表于 2023-03-09 07:52:07">2023-03-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/07/%E7%89%9B%E5%AE%A2%E7%AC%94%E8%AE%B02/" title="牛客笔记2"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/loading.gif" data-original="https://pica.zhimg.com/80/v2-b442793f521ca651ca2afe7a312a29ef_720w.webp?source=1940ef5c" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="牛客笔记2"/></a><div class="content"><a class="title" href="/2023/02/07/%E7%89%9B%E5%AE%A2%E7%AC%94%E8%AE%B02/" title="牛客笔记2">牛客笔记2</a><time datetime="2023-02-07T08:49:45.000Z" title="发表于 2023-02-07 16:49:45">2023-02-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/01/%E7%89%9B%E5%AE%A2%E7%AC%94%E8%AE%B01/" title="牛客笔记1"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/loading.gif" data-original="https://pic1.zhimg.com/80/v2-b2b10364c745847811994a69c21d5532_720w.webp?source=1940ef5c" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="牛客笔记1"/></a><div class="content"><a class="title" href="/2023/02/01/%E7%89%9B%E5%AE%A2%E7%AC%94%E8%AE%B01/" title="牛客笔记1">牛客笔记1</a><time datetime="2023-02-01T12:42:55.000Z" title="发表于 2023-02-01 20:42:55">2023-02-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/29/%E5%AF%B9%E7%BB%93%E6%9E%84%E4%BD%93%E7%9A%84%E7%90%86%E8%A7%A3/" title="对结构体的理解"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/loading.gif" data-original="https://pic4.zhimg.com/v2-3dd823a635051eed8005b771ad85cd9b_r.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="对结构体的理解"/></a><div class="content"><a class="title" href="/2022/12/29/%E5%AF%B9%E7%BB%93%E6%9E%84%E4%BD%93%E7%9A%84%E7%90%86%E8%A7%A3/" title="对结构体的理解">对结构体的理解</a><time datetime="2022-12-29T13:24:32.000Z" title="发表于 2022-12-29 21:24:32">2022-12-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/11/22%E7%BA%A7%E5%A4%A9%E6%A2%AF%E8%B5%9B%E9%A2%98%E8%A7%A3/" title="22级天梯赛题解"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/loading.gif" data-original="https://picx.zhimg.com/80/v2-240f2e71c37b622d4de5c41db2cb5e5c_720w.webp?source=1940ef5c" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="22级天梯赛题解"/></a><div class="content"><a class="title" href="/2022/12/11/22%E7%BA%A7%E5%A4%A9%E6%A2%AF%E8%B5%9B%E9%A2%98%E8%A7%A3/" title="22级天梯赛题解">22级天梯赛题解</a><time datetime="2022-12-11T08:51:25.000Z" title="发表于 2022-12-11 16:51:25">2022-12-11</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://pic1.zhimg.com/80/v2-b2b10364c745847811994a69c21d5532_720w.webp?source=1940ef5c')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By 阿刁</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="50" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: true,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>
