@@ -4,25 +4,6 @@
   
     
     <entry>
-      <title>泰迪杯2019年B题</title>
-      <link href="/2023/07/06/%E6%B3%B0%E8%BF%AA%E6%9D%AF2019%E5%B9%B4B%E9%A2%98/"/>
-      <url>/2023/07/06/%E6%B3%B0%E8%BF%AA%E6%9D%AF2019%E5%B9%B4B%E9%A2%98/</url>
-      
-        <content type="html"><![CDATA[<h1 id="1-1"><a href="#1-1" class="headerlink" title="1.1"></a>1.1</h1><p>使用pandas库中的read_csv()函数读取三个CSV文件，并把它们赋值给data1、data2、data3</p><pre class="line-numbers language-none"><code class="language-none">import numpy as npimport pandas as pdimport osdata1 &#x3D; pd.read_csv(&quot;data1.csv&quot;, encoding&#x3D;&quot;gbk&quot;)data2 &#x3D; pd.read_csv(&quot;data2.csv&quot;, encoding&#x3D;&quot;gbk&quot;)data3 &#x3D; pd.read_csv(&quot;data3.csv&quot;, encoding&#x3D;&quot;gbk&quot;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>使用pandas库中的columns()修改”data1”dataframe的列名为中文，再使用pandas库中的dtypes来显示每一列的数据类型。</p><pre class="line-numbers language-none"><code class="language-none">data1.columns &#x3D; [&#39;序号&#39;, &#39;校园卡号&#39;, &#39;性别&#39;, &#39;专业名称&#39;, &#39;门禁卡号&#39;]data1.dtypes<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 泰迪杯 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Python笔记——2</title>
       <link href="/2023/07/03/Python%E7%AC%94%E8%AE%B0_2/"/>
       <url>/2023/07/03/Python%E7%AC%94%E8%AE%B0_2/</url>
