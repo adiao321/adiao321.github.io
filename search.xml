@@ -4,23 +4,73 @@
   
     
     <entry>
-      <title>第九节文字生成</title>
-      <link href="/2026/01/31/%E7%AC%AC%E4%B9%9D%E8%8A%82%E6%96%87%E5%AD%97%E7%94%9F%E6%88%90/"/>
-      <url>/2026/01/31/%E7%AC%AC%E4%B9%9D%E8%8A%82%E6%96%87%E5%AD%97%E7%94%9F%E6%88%90/</url>
+      <title>机试知识1</title>
+      <link href="/2026/02/04/%E6%9C%BA%E8%AF%951/"/>
+      <url>/2026/02/04/%E6%9C%BA%E8%AF%951/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h1 id="输入输出技巧"><a href="#输入输出技巧" class="headerlink" title="输入输出技巧"></a>输入输出技巧</h1><h2 id="scanf输入解析"><a href="#scanf输入解析" class="headerlink" title="scanf输入解析"></a>scanf输入解析</h2><p>可以在输入是直接获取格式</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> num1,num2;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;&amp;d-&amp;d&quot;</span>,&amp;num1,&amp;num2);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d-%d&quot;</span>,num1,num2);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="scanf和get的区别"><a href="#scanf和get的区别" class="headerlink" title="scanf和get的区别"></a>scanf和get的区别</h2><p>get遇见空格不会停止读入</p><h2 id="getchar和putchar"><a href="#getchar和putchar" class="headerlink" title="getchar和putchar"></a>getchar和putchar</h2><p>获取单个字符和输出单个字符，使用在scanf和get用于消除回车的影响</p><h2 id="输入进制转换"><a href="#输入进制转换" class="headerlink" title="输入进制转换"></a>输入进制转换</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> a  = <span class="number">10</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%x\n&quot;</span>,a); #小写十六进制</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%X\n&quot;</span>,a);#大写十六进制</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%o\n&quot;</span>,a);#八进制</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="输出加前导零"><a href="#输出加前导零" class="headerlink" title="输出加前导零"></a>输出加前导零</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> a  = <span class="number">10</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%04d\n&quot;</span>,a);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="保留小数"><a href="#保留小数" class="headerlink" title="保留小数"></a>保留小数</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">double</span> a  = <span class="number">10</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%.2lf\n&quot;</span>,a);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>若想有小数时才输出小数，没小数的话输出整数</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%g</span><br></pre></td></tr></table></figure><h2 id="longlong的使用"><a href="#longlong的使用" class="headerlink" title="longlong的使用"></a>longlong的使用</h2><p>如果超出int（-1e9<del>1e9）即<strong>10 0000 0000</strong>（10 亿），就能使用longlong（-1e18</del>1e18）</p><h1 id="头文件技巧"><a href="#头文件技巧" class="headerlink" title="头文件技巧"></a>头文件技巧</h1><p>万能头文件</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;bits/stdc++.h&gt;</span><br></pre></td></tr></table></figure><h1 id="数组使用技巧"><a href="#数组使用技巧" class="headerlink" title="数组使用技巧"></a>数组使用技巧</h1><p>输入数组时少用%c，而是用%s，因为%s不会读取换行符</p><p>要注意三点</p><ul><li>数组要定义成全局的</li><li>读取的时候不要用%c，会读入回车，要使用%s</li></ul><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//数组最好是全局变量</span></span><br><span class="line"><span class="type">char</span> arr[<span class="number">10</span>][<span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> n=<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="comment">//一行一行的读取矩阵</span></span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,arr[i]<span class="number">+1</span>);</span><br><span class="line">        <span class="comment">//不要像下面一样，因为这样会把/n也读进去</span></span><br><span class="line"><span class="comment">/*         for(int j=1;j&lt;=n;j++)&#123;</span></span><br><span class="line"><span class="comment"> *             scanf(&quot;%c&quot;,&amp;arr[i][j]);</span></span><br><span class="line"><span class="comment"> *         &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//输出就无所谓了</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,arr[i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
           
-          <category> 深度学习 </category>
+          <category> 机试知识 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Bert </tag>
+            <tag> 机试 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>第十节看懂生成实战</title>
+      <link href="/2026/02/02/%E7%AC%AC%E5%8D%81%E8%8A%82%E7%9C%8B%E6%87%82%E7%94%9F%E6%88%90%E5%AE%9E%E6%88%98/"/>
+      <url>/2026/02/02/%E7%AC%AC%E5%8D%81%E8%8A%82%E7%9C%8B%E6%87%82%E7%94%9F%E6%88%90%E5%AE%9E%E6%88%98/</url>
+      
+        <content type="html"><![CDATA[<p><img src="/images/37.jpg" alt="7b6f3e6add57c0d2f2fcf112b9aeb9fa"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习项目 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 生成任务 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>第九节文字生成</title>
+      <link href="/2026/01/31/%E7%AC%AC%E4%B9%9D%E8%8A%82%E6%96%87%E5%AD%97%E7%94%9F%E6%88%90/"/>
+      <url>/2026/01/31/%E7%AC%AC%E4%B9%9D%E8%8A%82%E6%96%87%E5%AD%97%E7%94%9F%E6%88%90/</url>
+      
+        <content type="html"><![CDATA[<p><img src="/images/35.jpg" alt="a24b7f0c0a8da7dfb3a6b559f9b90d73"></p><p><img src="/images/36.jpg" alt="bc3d570db443427af83b371f0aebaf55"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习项目 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 生成任务 </tag>
             
         </tags>
       
@@ -33,7 +83,7 @@
       <link href="/2026/01/16/%E9%94%99%E8%AF%AF%E6%80%BB%E7%BB%93/"/>
       <url>/2026/01/16/%E9%94%99%E8%AF%AF%E6%80%BB%E7%BB%93/</url>
       
-        <content type="html"><![CDATA[<h2 id="Django无法定位到index-html模板文件，或模板相关配置不完整"><a href="#Django无法定位到index-html模板文件，或模板相关配置不完整" class="headerlink" title="Django无法定位到index.html模板文件，或模板相关配置不完整"></a>Django无法定位到<code>index.html</code>模板文件，或模板相关配置不完整</h2><p>配置<code>settings.py</code>中的模板路径出错，应该</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import os  # 若已导入可忽略</span><br><span class="line"># E:\django_xiangmu\py_web_try\py_web_try\settings.py</span><br><span class="line">TEMPLATES = [</span><br><span class="line">    &#123;</span><br><span class="line">        &#x27;BACKEND&#x27;: &#x27;django.template.backends.django.DjangoTemplates&#x27;,</span><br><span class="line">        &#x27;DIRS&#x27;: [os.path.join(BASE_DIR, &#x27;templates&#x27;)], # 这里需要配置模板目录路径</span><br><span class="line">        &#x27;APP_DIRS&#x27;: True,  # 开启后会自动查找各应用下的templates目录</span><br><span class="line">        &#x27;OPTIONS&#x27;: &#123;</span><br><span class="line">            &#x27;context_processors&#x27;: [</span><br><span class="line">                &#x27;django.template.context_processors.debug&#x27;,</span><br><span class="line">                &#x27;django.template.context_processors.request&#x27;,</span><br><span class="line">                &#x27;django.contrib.auth.context_processors.auth&#x27;,</span><br><span class="line">                &#x27;django.contrib.messages.context_processors.messages&#x27;,</span><br><span class="line">            ],</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure><p>说明：<code>BASE_DIR</code>是 Django 在<code>settings.py</code>中默认定义的变量，指向项目根目录（包含<code>manage.py</code>的目录），<code>os.path.join(BASE_DIR, &#39;templates&#39;)</code>会自动拼接为<code>E:\django_xiangmu\py_web_try\templates</code>。</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="Django无法定位到index-html模板文件，或模板相关配置不完整"><a href="#Django无法定位到index-html模板文件，或模板相关配置不完整" class="headerlink" title="Django无法定位到index.html模板文件，或模板相关配置不完整"></a>Django无法定位到<code>index.html</code>模板文件，或模板相关配置不完整</h2><p>配置<code>settings.py</code>中的模板路径出错，应该</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import os  # 若已导入可忽略</span><br><span class="line"># E:\django_xiangmu\py_web_try\py_web_try\settings.py</span><br><span class="line">TEMPLATES = [</span><br><span class="line">    &#123;</span><br><span class="line">        &#x27;BACKEND&#x27;: &#x27;django.template.backends.django.DjangoTemplates&#x27;,</span><br><span class="line">        &#x27;DIRS&#x27;: [os.path.join(BASE_DIR, &#x27;templates&#x27;)], # 这里需要配置模板目录路径</span><br><span class="line">        &#x27;APP_DIRS&#x27;: True,  # 开启后会自动查找各应用下的templates目录</span><br><span class="line">        &#x27;OPTIONS&#x27;: &#123;</span><br><span class="line">            &#x27;context_processors&#x27;: [</span><br><span class="line">                &#x27;django.template.context_processors.debug&#x27;,</span><br><span class="line">                &#x27;django.template.context_processors.request&#x27;,</span><br><span class="line">                &#x27;django.contrib.auth.context_processors.auth&#x27;,</span><br><span class="line">                &#x27;django.contrib.messages.context_processors.messages&#x27;,</span><br><span class="line">            ],</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure><p>说明：<code>BASE_DIR</code>是 Django 在<code>settings.py</code>中默认定义的变量，指向项目根目录（包含<code>manage.py</code>的目录），<code>os.path.join(BASE_DIR, &#39;templates&#39;)</code>会自动拼接为<code>E:\django_xiangmu\py_web_try\templates</code>。</p><h2 id="安装torch时总是默认安装CPU版本"><a href="#安装torch时总是默认安装CPU版本" class="headerlink" title="安装torch时总是默认安装CPU版本"></a>安装torch时总是默认安装CPU版本</h2><p>不要用 <code>pip install torch</code>（默认装 CPU 版）</p><p>在终端输入nvidia-smi查看cuda版本，再用ai查询对应的torch版本</p><p>我的cuda是13.0，故先卸载原有torchpip uninstall torch torchvision torchaudio -y，再使用pip3 install torch torchvision torchaudio –index-url <a href="https://download.pytorch.org/whl/cu121">https://download.pytorch.org/whl/cu121</a></p>]]></content>
       
       
       <categories>
@@ -204,7 +254,7 @@
     
     
     <entry>
-      <title>第六节特征提取与无监督学习</title>
+      <title>第七节自注意力机制</title>
       <link href="/2026/01/03/%E7%AC%AC%E4%B8%83%E8%8A%82%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/"/>
       <url>/2026/01/03/%E7%AC%AC%E4%B8%83%E8%8A%82%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/</url>
       
@@ -213,7 +263,7 @@
       
       <categories>
           
-          <category> 深度学习 </category>
+          <category> 深度学习项目 </category>
           
       </categories>
       
@@ -221,31 +271,6 @@
         <tags>
             
             <tag> 自注意力 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>第六节特征提取与无监督学习</title>
-      <link href="/2026/01/03/%E7%AC%AC%E5%85%AB%E8%8A%82Bert%E5%AE%9E%E6%88%98/"/>
-      <url>/2026/01/03/%E7%AC%AC%E5%85%AB%E8%8A%82Bert%E5%AE%9E%E6%88%98/</url>
-      
-        <content type="html"><![CDATA[<h2 id="对于输入需要分词"><a href="#对于输入需要分词" class="headerlink" title="对于输入需要分词"></a>对于输入需要分词</h2><p>输入的序列前面需要加上cls，，后面需要加上seq。</p><p>在这个基础上如果凑不够input的值，，则会填充两个padding。</p><p><img src="/images/33.png" alt="image-20260114145213715"></p><h2 id="Bert的参数"><a href="#Bert的参数" class="headerlink" title="Bert的参数"></a>Bert的参数</h2><p><img src="/images/34.png" alt="image-20260114145256379"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 深度学习 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Bert </tag>
             
         </tags>
       
@@ -263,7 +288,7 @@
       
       <categories>
           
-          <category> 深度学习 </category>
+          <category> 深度学习项目 </category>
           
       </categories>
       
@@ -279,16 +304,41 @@
     
     
     <entry>
-      <title>第六节特征提取与无监督学习</title>
-      <link href="/2026/01/03/%E7%AC%AC%E5%85%AD%E8%8A%82%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E4%B8%8E%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/"/>
-      <url>/2026/01/03/%E7%AC%AC%E5%85%AD%E8%8A%82%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E4%B8%8E%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/</url>
+      <title>第八节Bert实战</title>
+      <link href="/2026/01/03/%E7%AC%AC%E5%85%AB%E8%8A%82Bert%E5%AE%9E%E6%88%98/"/>
+      <url>/2026/01/03/%E7%AC%AC%E5%85%AB%E8%8A%82Bert%E5%AE%9E%E6%88%98/</url>
       
-        <content type="html"><![CDATA[<h2 id="核心问题"><a href="#核心问题" class="headerlink" title="核心问题"></a>核心问题</h2><p>模型的训练需要梯度，梯度从loss中得到，所以怎么获得pred和y之间的loss就是关键。</p><h2 id="无监督学习的方法"><a href="#无监督学习的方法" class="headerlink" title="无监督学习的方法"></a>无监督学习的方法</h2><p>机器学习：PCA（主成分分析）、聚类</p><p>深度学习：生成对抗网络、自监督学习</p><h2 id="对比学习"><a href="#对比学习" class="headerlink" title="对比学习"></a>对比学习</h2><p>把自己和自己的增广图像作为一对</p><h2 id="对抗生成网络"><a href="#对抗生成网络" class="headerlink" title="对抗生成网络"></a>对抗生成网络</h2><p><img src="/images/19.png" alt="abb1572406c2ad900c1eee16317f879e"></p><h2 id="生成式自监督"><a href="#生成式自监督" class="headerlink" title="生成式自监督"></a>生成式自监督</h2><p><img src="/images/20.jpg" alt="d7aa87d4aaa66435abd758a407a0df31"></p><p><img src="/images/21.jpg" alt="ac169127097919543f83ea09e91e2770"></p><p><img src="/images/22.jpg" alt="22"></p>]]></content>
+        <content type="html"><![CDATA[<h2 id="对于输入需要分词"><a href="#对于输入需要分词" class="headerlink" title="对于输入需要分词"></a>对于输入需要分词</h2><p>输入的序列前面需要加上cls，，后面需要加上seq。</p><p>在这个基础上如果凑不够input的值，，则会填充两个padding。</p><p>输入被分成三部分</p><p><img src="/images/33.png" alt="image-20260114145213715"></p><h1 id="Bert的参数"><a href="#Bert的参数" class="headerlink" title="Bert的参数"></a>Bert的参数</h1><p><img src="/images/34.png" alt="image-20260114145256379"></p><h2 id="768在Bert中有什么特殊含义？为什么特征都是768的？"><a href="#768在Bert中有什么特殊含义？为什么特征都是768的？" class="headerlink" title="768在Bert中有什么特殊含义？为什么特征都是768的？"></a>768在Bert中有什么特殊含义？为什么特征都是768的？</h2><p>相当于一个约定俗成的值，因为这是Bert-base版本（折中了参数量和效率）中，每个 token（词 &#x2F; 字）经过 Embedding 层和 Transformer 层后，输出的向量维度是 768 维。那为什么是768？BERT-base 的 Transformer 层有<code>12个注意力头（num_attention_heads=12）</code>，而注意力机制要求<code>hidden_size</code>必须能被注意力头数整除（方便将 768 维向量均分给到 12 个头）：768÷12&#x3D;64。每个注意力头负责处理 64 维的子向量，这是 Transformer 注意力机制的核心要求（均分维度保证计算效率）。</p><h2 id="embedding层的三个输入分别是什么"><a href="#embedding层的三个输入分别是什么" class="headerlink" title="embedding层的三个输入分别是什么"></a>embedding层的三个输入分别是什么</h2><p>21128是指中文词表有21128种</p><p>2是指segment——embedding只有01两种，所以是2</p><p>512是指模型的最大长度为512，在这个范围之内选择一个适合你数据集的长度（如果句子比较短可以选32，比较长可以选128等）</p><h2 id="Bertlayers里面有什么"><a href="#Bertlayers里面有什么" class="headerlink" title="Bertlayers里面有什么"></a>Bertlayers里面有什么</h2><p>bertlayers里面有很多selfattension层，进入的时候是768维，被分成三部分QKV进入multi-head，add&amp;norm中还有一个dense层（768*768）用来特征的进一步提取。</p><p>另外，这些乘式前面都会乘上batchsize</p><h2 id="forward层中，第一步是分词器，那这三个是干啥的"><a href="#forward层中，第一步是分词器，那这三个是干啥的" class="headerlink" title="forward层中，第一步是分词器，那这三个是干啥的"></a>forward层中，第一步是分词器，那这三个是干啥的</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">input = self.tokenizer(text, return_tensors=&quot;pt&quot;, truncation=True, padding=&quot;max_length&quot;, max_length=128)</span><br><span class="line">input_ids = input[&quot;input_ids&quot;].to(self.device)</span><br><span class="line">token_type_ids = input[&#x27;token_type_ids&#x27;].to(self.device)</span><br><span class="line">attention_mask = input[&#x27;attention_mask&#x27;].to(self.device)</span><br></pre></td></tr></table></figure><h4 id="1-input-ids"><a href="#1-input-ids" class="headerlink" title="(1) input_ids"></a>(1) input_ids</h4><ul><li><p><strong>含义</strong>：文本经过分词后，每个 token（词 &#x2F; 子词）对应的<strong>数字编码</strong>（词典 ID）。模型的核心输入，本质是把 “文字” 映射成 “数字”，让模型能计算。</p></li><li><p>通俗例子：</p><p>比如文本是 “我爱编程”，tokenizer 分词后可能得到 </p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#x27;我&#x27;, &#x27;爱&#x27;, &#x27;编&#x27;, &#x27;程&#x27;]</span><br></pre></td></tr></table></figure><p>，对应的词典 ID 可能是 </p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[2769, 4263, 7746, 6241]</span><br></pre></td></tr></table></figure><p>，这就是 </p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">input_ids</span><br></pre></td></tr></table></figure><p> 的值。</p></li><li><p><strong>代码中作用</strong>：<code>input_ids.to(self.device)</code> 是把这个张量放到指定设备（CPU&#x2F;GPU）上，供模型计算。</p></li></ul><h4 id="2-token-type-ids"><a href="#2-token-type-ids" class="headerlink" title="(2) token_type_ids"></a>(2) token_type_ids</h4><ul><li><p>含义：</p><p>用于区分文本中的不同段落 &#x2F; 句子（主要用于成对文本任务，比如问答、句子匹配）。</p><ul><li>通常：第一句的 token 标记为 <code>0</code>，第二句的 token 标记为 <code>1</code>；如果只有单句，所有 token 的 <code>token_type_ids</code> 都是 <code>0</code>。如果三句，00001111000000</li></ul></li><li><p>通俗例子：</p><p>文本是 “问题：什么是编程？回答：编程是写代码”，分词后：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#x27;问&#x27;,&#x27;题&#x27;,&#x27;：&#x27;,&#x27;什&#x27;,&#x27;么&#x27;,&#x27;是&#x27;,&#x27;编&#x27;,&#x27;程&#x27;,&#x27;？&#x27;,&#x27;答&#x27;,&#x27;案&#x27;,&#x27;：&#x27;,&#x27;编&#x27;,&#x27;程&#x27;,&#x27;是&#x27;,&#x27;写&#x27;,&#x27;代&#x27;,&#x27;码&#x27;]</span><br></pre></td></tr></table></figure><p>对应的 </p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">token_type_ids</span><br></pre></td></tr></table></figure><p> 可能是：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1]</span><br></pre></td></tr></table></figure></li><li><p><strong>代码中作用</strong>：模型通过这个标识区分不同句子，处理跨句依赖（比如 BERT 的 Next Sentence Prediction 任务）；如果是单句任务（如文本分类），这个值其实不影响结果，但 tokenizer 仍会返回，所以需要传入模型。</p></li></ul><h4 id="3-attention-mask"><a href="#3-attention-mask" class="headerlink" title="(3) attention_mask"></a>(3) attention_mask</h4><ul><li><p>含义</p><p>：用于标记哪些 token 是真实有效的，哪些是填充（padding） 的，避免模型关注填充的无效 token。</p><ul><li><code>1</code> 表示有效 token（真实文本），<code>0</code> 表示填充的 token。</li></ul></li><li><p>通俗例子：</p><p>你代码中设置了 </p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">max_length=128</span><br></pre></td></tr></table></figure><p>，如果文本分词后只有 10 个 token，那么剩下的 118 个位置会被填充，此时：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">attention_mask = [1,1,...,1,0,0,...,0]</span><br></pre></td></tr></table></figure><p>（前 10 个是 1，后 118 个是 0）。</p></li><li><p><strong>代码中作用</strong>：模型的注意力机制（Attention）会根据这个掩码，只计算 <code>1</code> 对应的 token，忽略 <code>0</code> 对应的填充部分，保证计算结果的准确性。</p></li></ul><h1 id="调试阶段"><a href="#调试阶段" class="headerlink" title="调试阶段"></a>调试阶段</h1><p>在model文件中的input &#x3D; self.tokenizer(text, return_tensors&#x3D;”pt”, truncation&#x3D;True, padding&#x3D;”max_length”, max_length&#x3D;128)打上断点？？？？？？？？</p><p> 转到model文件的BertModel，转到用法，发现初始化里面是三层：embedding、encoder、Pooler层</p><p>点进去embedding层，在if input_ids is not None:打上断点，F9执行到此处。</p><p>会发现embedding里面是word_embeddings、position_embeddings、token_type_embeddings</p>]]></content>
       
       
       <categories>
           
-          <category> 深度学习 </category>
+          <category> 深度学习项目 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Bert </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>第六节特征提取与无监督学习</title>
+      <link href="/2026/01/03/%E7%AC%AC%E5%85%AD%E8%8A%82%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E4%B8%8E%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/"/>
+      <url>/2026/01/03/%E7%AC%AC%E5%85%AD%E8%8A%82%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E4%B8%8E%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/</url>
+      
+        <content type="html"><![CDATA[<h2 id="核心问题"><a href="#核心问题" class="headerlink" title="核心问题"></a>核心问题</h2><p>模型的训练需要梯度，梯度从loss中得到，所以怎么获得pred和y之间的loss就是关键。</p><h2 id="无监督学习的方法"><a href="#无监督学习的方法" class="headerlink" title="无监督学习的方法"></a>无监督学习的方法</h2><p>机器学习：PCA（主成分分析）、聚类</p><p>深度学习：生成对抗网络、自监督学习</p><h2 id="对比学习"><a href="#对比学习" class="headerlink" title="对比学习"></a>对比学习</h2><p>把自己和自己的增广图像作为一对</p><h2 id="对抗生成网络"><a href="#对抗生成网络" class="headerlink" title="对抗生成网络"></a>对抗生成网络</h2><p><img src="/images/19.jpg" alt="abb1572406c2ad900c1eee16317f879e"></p><h2 id="生成式自监督"><a href="#生成式自监督" class="headerlink" title="生成式自监督"></a>生成式自监督</h2><p><img src="/images/20.jpg" alt="d7aa87d4aaa66435abd758a407a0df31"></p><p><img src="/images/21.jpg" alt="ac169127097919543f83ea09e91e2770"></p><p><img src="/images/22.jpg" alt="22"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习项目 </category>
           
       </categories>
       
@@ -363,7 +413,7 @@
       
       <categories>
           
-          <category> 深度学习 </category>
+          <category> 深度学习项目 </category>
           
       </categories>
       
@@ -413,7 +463,7 @@
       
       <categories>
           
-          <category> 深度学习 </category>
+          <category> 深度学习项目 </category>
           
       </categories>
       
