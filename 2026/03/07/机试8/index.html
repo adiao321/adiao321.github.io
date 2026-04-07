@@ -1,0 +1,434 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>机试8-动态规划 | 线粒体donut</title><meta name="author" content="线粒体donut"><meta name="copyright" content="线粒体donut"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="最大字段和（与a[i]有关这个有点意思。 核心思路（Kadane 算法）：“边走边选”想象你从第一个数开始，逐个往后走，每走到一个数，只做两个选择：  选：把当前数加入 “之前选的那段”，继续累加； 不选：扔掉之前选的所有数，从当前数重新开始。  如果原来的dp[i-1]加上当前的a[i]得到的结果，结果还没有当前的a[i]大，那就从当前的开始选（用来解决正负的问题）  每次选完后，记录一下 “当">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机试8-动态规划">
+<meta property="og:url" content="http://example.com/2026/03/07/%E6%9C%BA%E8%AF%958/index.html">
+<meta property="og:site_name" content="线粒体donut">
+<meta property="og:description" content="最大字段和（与a[i]有关这个有点意思。 核心思路（Kadane 算法）：“边走边选”想象你从第一个数开始，逐个往后走，每走到一个数，只做两个选择：  选：把当前数加入 “之前选的那段”，继续累加； 不选：扔掉之前选的所有数，从当前数重新开始。  如果原来的dp[i-1]加上当前的a[i]得到的结果，结果还没有当前的a[i]大，那就从当前的开始选（用来解决正负的问题）  每次选完后，记录一下 “当">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/picture.jpg">
+<meta property="article:published_time" content="2026-03-07T10:51:02.000Z">
+<meta property="article:modified_time" content="2026-04-07T12:21:30.743Z">
+<meta property="article:author" content="线粒体donut">
+<meta property="article:tag" content="机试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/picture.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "机试8-动态规划",
+  "url": "http://example.com/2026/03/07/%E6%9C%BA%E8%AF%958/",
+  "image": "http://example.com/img/picture.jpg",
+  "datePublished": "2026-03-07T10:51:02.000Z",
+  "dateModified": "2026-04-07T12:21:30.743Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "线粒体donut",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/picture.jpg"><link rel="canonical" href="http://example.com/2026/03/07/%E6%9C%BA%E8%AF%958/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '机试8-动态规划',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/picture.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-comments-o"></i><span> 分享</span></a></li><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">线粒体donut</span></a><a class="nav-page-title" href="/"><span class="site-name">机试8-动态规划</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-comments-o"></i><span> 分享</span></a></li><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">机试8-动态规划</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-03-07T10:51:02.000Z" title="发表于 2026-03-07 18:51:02">2026-03-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-04-07T12:21:30.743Z" title="更新于 2026-04-07 20:21:30">2026-04-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E8%AF%95%E7%9F%A5%E8%AF%86/">机试知识</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">4.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>18分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="最大字段和（与a-i-有关"><a href="#最大字段和（与a-i-有关" class="headerlink" title="最大字段和（与a[i]有关"></a>最大字段和（与a[i]有关</h2><p>这个有点意思。</p>
+<h4 id="核心思路（Kadane-算法）：“边走边选”"><a href="#核心思路（Kadane-算法）：“边走边选”" class="headerlink" title="核心思路（Kadane 算法）：“边走边选”"></a>核心思路（Kadane 算法）：“边走边选”</h4><p>想象你从第一个数开始，逐个往后走，每走到一个数，只做两个选择：</p>
+<ul>
+<li>选：把当前数加入 “之前选的那段”，继续累加；</li>
+<li>不选：扔掉之前选的所有数，从当前数重新开始。</li>
+</ul>
+<p>如果原来的dp[i-1]加上当前的a[i]得到的结果，结果还没有当前的a[i]大，那就从当前的开始选（用来解决正负的问题）</p>
+<ul>
+<li>每次选完后，记录一下 “当前能凑出的最大和”，最后全局最大的那个就是答案。</li>
+</ul>
+<h4 id="代码里的关键变量（对应思路）"><a href="#代码里的关键变量（对应思路）" class="headerlink" title="代码里的关键变量（对应思路）"></a>代码里的关键变量（对应思路）</h4><ul>
+<li><code>a[i]</code>：存储原始的数字数组；</li>
+<li><code>dp[i]</code>：表示 “以第 i 个数结尾的连续子数组的最大和”（比如<code>dp[3]</code>就是以第 4 个数结尾的最大和）；</li>
+<li><code>max_sum</code>：记录遍历过程中所有<code>dp[i]</code>的最大值（最终答案）</li>
+</ul>
+<h3 id="二、通俗解释代码的执行步骤"><a href="#二、通俗解释代码的执行步骤" class="headerlink" title="二、通俗解释代码的执行步骤"></a>二、通俗解释代码的执行步骤</h3><p>以测试用例 <code>5 -2 1 -3 4 -1</code> 为例（n&#x3D;5，数组是<code>[-2,1,-3,4,-1]</code>），一步步看代码怎么跑：</p>
+<h4 id="步骤-1：初始化"><a href="#步骤-1：初始化" class="headerlink" title="步骤 1：初始化"></a>步骤 1：初始化</h4><ul>
+<li>读取 n&#x3D;5，读取数组<code>a = [-2,1,-3,4,-1]</code>；</li>
+<li><code>dp[0] = a[0] = -2</code>（第一个数结尾的子数组只能是它自己）；</li>
+<li><code>max_sum = -2</code>（初始最大和就是第一个数）。</li>
+</ul>
+<h4 id="步骤-2：遍历第-2-个数（i-1，a-1-1）"><a href="#步骤-2：遍历第-2-个数（i-1，a-1-1）" class="headerlink" title="步骤 2：遍历第 2 个数（i&#x3D;1，a [1]&#x3D;1）"></a>步骤 2：遍历第 2 个数（i&#x3D;1，a [1]&#x3D;1）</h4><ul>
+<li><p>做选择：</p>
+</li>
+<li><ul>
+<li>选：<code>dp[0]+a[1] = -2+1 = -1</code>；</li>
+<li>不选：直接取<code>a[1] = 1</code>；</li>
+<li>选大的那个 → <code>dp[1] = max(-1,1) = 1</code>；</li>
+</ul>
+</li>
+<li><p>更新<code>max_sum</code>：1 &gt; -2 → <code>max_sum = 1</code>。</p>
+</li>
+</ul>
+<h4 id="步骤-3：遍历第-3-个数（i-2，a-2-3）"><a href="#步骤-3：遍历第-3-个数（i-2，a-2-3）" class="headerlink" title="步骤 3：遍历第 3 个数（i&#x3D;2，a [2]&#x3D;-3）"></a>步骤 3：遍历第 3 个数（i&#x3D;2，a [2]&#x3D;-3）</h4><ul>
+<li><p>做选择：</p>
+</li>
+<li><ul>
+<li>选：<code>dp[1]+a[2] = 1+(-3) = -2</code>；</li>
+<li>不选：直接取<code>a[2] = -3</code>；</li>
+<li>选大的 → <code>dp[2] = max(-2,-3) = -2</code>；</li>
+</ul>
+</li>
+<li><p>更新<code>max_sum</code>：-2 &lt; 1 → <code>max_sum</code>还是 1。</p>
+</li>
+</ul>
+<h4 id="步骤-4：遍历第-4-个数（i-3，a-3-4）"><a href="#步骤-4：遍历第-4-个数（i-3，a-3-4）" class="headerlink" title="步骤 4：遍历第 4 个数（i&#x3D;3，a [3]&#x3D;4）"></a>步骤 4：遍历第 4 个数（i&#x3D;3，a [3]&#x3D;4）</h4><ul>
+<li><p>做选择：</p>
+</li>
+<li><ul>
+<li>选：<code>dp[2]+a[3] = -2+4 = 2</code>；</li>
+<li>不选：直接取<code>a[3] = 4</code>；</li>
+<li>选大的 → <code>dp[3] = max(2,4) = 4</code>；</li>
+</ul>
+</li>
+<li><p>更新<code>max_sum</code>：4 &gt; 1 → <code>max_sum = 4</code>。</p>
+</li>
+</ul>
+<h4 id="步骤-5：遍历第-5-个数（i-4，a-4-1）"><a href="#步骤-5：遍历第-5-个数（i-4，a-4-1）" class="headerlink" title="步骤 5：遍历第 5 个数（i&#x3D;4，a [4]&#x3D;-1）"></a>步骤 5：遍历第 5 个数（i&#x3D;4，a [4]&#x3D;-1）</h4><ul>
+<li><p>做选择：</p>
+</li>
+<li><ul>
+<li>选：<code>dp[3]+a[4] = 4+(-1) = 3</code>；</li>
+<li>不选：直接取<code>a[4] = -1</code>；</li>
+<li>选大的 → <code>dp[4] = max(3,-1) = 3</code>；</li>
+</ul>
+</li>
+<li><p>更新<code>max_sum</code>：3 &lt; 4 → <code>max_sum</code>还是 4。</p>
+</li>
+</ul>
+<h4 id="步骤-6：输出结果"><a href="#步骤-6：输出结果" class="headerlink" title="步骤 6：输出结果"></a>步骤 6：输出结果</h4><p>最终<code>max_sum=4</code>，就是答案（对应子数组<code>[4]</code>）。</p>
+<h3 id="五、核心逻辑一句话总结"><a href="#五、核心逻辑一句话总结" class="headerlink" title="五、核心逻辑一句话总结"></a>五、核心逻辑一句话总结</h3><p> 二选一（延续前序子数组 &#x2F; 重新开始）  </p>
+<p>每走到一个数，就判断 “带着前面的数一起算” 和 “重新开始算” 哪个更划算，选划算的那个，同时记录过程中出现过的最大值，就是最终答案。</p>
+<h3 id="六、补充：代码为什么能跑快？"><a href="#六、补充：代码为什么能跑快？" class="headerlink" title="六、补充：代码为什么能跑快？"></a>六、补充：代码为什么能跑快？</h3><p>整个过程只遍历数组一次，时间是 O (n)（n 个数走 n 步），不管数组多长，都能很快算出结果，这也是 Kadane 算法的核心优势（比暴力枚举所有子数组的 O (n²) 快得多）。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">long</span> <span class="type">long</span> dp[<span class="number">10000001</span>];</span><br><span class="line"><span class="type">long</span> <span class="type">long</span> a[<span class="number">10000001</span>];</span><br><span class="line"><span class="type">long</span> <span class="type">long</span> maxx;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="keyword">while</span>(cin&gt;&gt;n)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            cin&gt;&gt;a[i];</span><br><span class="line">        &#125;</span><br><span class="line">        dp[<span class="number">0</span>]=a[<span class="number">0</span>];</span><br><span class="line">        maxx=a[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="comment">//加入新的值之后，相比原来是否减小了？</span></span><br><span class="line">            dp[i]=<span class="built_in">max</span>(dp[i<span class="number">-1</span>]+a[i],a[i]);</span><br><span class="line">            <span class="comment">//就算是全负数，这句也能记录下最大的负数</span></span><br><span class="line">            <span class="keyword">if</span>(dp[i]&gt;maxx)&#123;</span><br><span class="line">                maxx=dp[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cout&lt;&lt;maxx&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="字符串区间翻转问题"><a href="#字符串区间翻转问题" class="headerlink" title="字符串区间翻转问题"></a>字符串区间翻转问题</h1><p>原字符串 1 的个数+收益数组的最大子数组和</p>
+<p>输入样例：<code>4</code>，<code>1001</code></p>
+<ul>
+<li>原字符串 1 的个数：<code>count_1 = 2</code>（第 1 位和第 4 位是 1）。</li>
+<li>收益数组（最大字段和）：<code>[-1, 1, 1, -1]</code>。</li>
+<li>Kadane 算法求最大子数组和：子数组 <code>[1,1]</code>（对应原字符串第 2、3 位），收益为 2。</li>
+<li>最终结果：<code>2 + 2 = 4</code>，与样例输出一致。</li>
+</ul>
+<h1 id="最长递增子序列数量-求和、最长连续递增子序列、最长连续子串且求出这一串元素（与dp-i-有关"><a href="#最长递增子序列数量-求和、最长连续递增子序列、最长连续子串且求出这一串元素（与dp-i-有关" class="headerlink" title="最长递增子序列数量&#x2F;求和、最长连续递增子序列、最长连续子串且求出这一串元素（与dp[i]有关"></a>最长递增子序列数量&#x2F;求和、最长连续递增子序列、最长连续子串且求出这一串元素（与dp[i]有关</h1><p>不连续递增⼦序列的跟前0-i 个状态有关，连续递增的⼦序列只跟前⼀个状态有关</p>
+<p><img src="/images/38.jpg" alt="img"></p>
+<p>一般都会问数量，但如果让你把具体是哪些数组成了这个最长子序列&#x2F;最长子串，要使用start和end记录开始和结束的下表</p>
+<p>dp含义：以dpi结尾的序列，最长的子序列是多少</p>
+<p>递推式：dpi&#x3D;max(dpj+1,dpi)；</p>
+<p>初始化：dp0&#x3D;1</p>
+<p>遍历顺序：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">    dp[i]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;i;j++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(dp[j]&lt;dp[i])&#123;</span><br><span class="line">            dp[i]=<span class="built_in">max</span>(dp[j]<span class="number">+1</span>,dp[i])</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;bits/stdc++.h&gt;</span></span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> main ()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">int</span> nums[<span class="number">10</span>]=&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">    <span class="built_in">int</span> dp[<span class="number">10</span>];</span><br><span class="line">    dp[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">0</span>;i&lt;<span class="number">6</span>;i++)&#123;</span><br><span class="line">        //数量初始化</span><br><span class="line">        dp[i]=<span class="number">1</span>;</span><br><span class="line">        //求和初始化</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            dp[i] = a[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> j=<span class="number">0</span>;j&lt;i;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[j]&lt;nums[i])&#123;</span><br><span class="line">                //数量</span><br><span class="line">                dp[i]=<span class="built_in">max</span>(dp[j]+<span class="number">1</span>,dp[i]);</span><br><span class="line">                //求和</span><br><span class="line">                dp[i]=<span class="built_in">max</span>(dp[j]+nums[i],dp[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">int</span> result=dp[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">0</span>;i&lt;<span class="number">6</span>;i++)&#123;</span><br><span class="line">        result=<span class="built_in">max</span>(result,dp[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="那么这一串元素要怎么求呢"><a href="#那么这一串元素要怎么求呢" class="headerlink" title="那么这一串元素要怎么求呢"></a>那么这一串元素要怎么求呢</h2><p>对于开头，我们必须使用一个start数组，vector<int> start(k+1);并初始化start[0] &#x3D; 0;</p>
+<p><img src="/images/39.jpeg" alt="img"></p>
+<h1 id="最长公共子序列数量、最长公共子序列输出"><a href="#最长公共子序列数量、最长公共子序列输出" class="headerlink" title="最长公共子序列数量、最长公共子序列输出"></a>最长公共子序列数量、最长公共子序列输出</h1><p>一定注意数组初始化的问题，尤其是开数组的时候，要么用vector&lt;int<vector>&gt; dp(a+1,vector<int>(b+1,0).要么直接开一个超大的静态数组，然后memset(dp,0,sizeof(dp))</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> dp[<span class="number">5</span>][<span class="number">5</span>] = &#123;<span class="number">0</span>&#125;; // 合法！C++支持：第一个元素置<span class="number">0</span>，其余元素默认初始化为<span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> l1=<span class="number">3</span>, l2=<span class="number">4</span>;</span><br><span class="line"><span class="built_in">int</span> dp[l2+<span class="number">1</span>][l1+<span class="number">1</span>] = &#123;<span class="number">0</span>&#125;; // 非法！C++标准不允许，且编译器扩展支持时也仅能初始化第一个元素，其余是随机垃圾值</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/40.jpeg" alt="img"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;bits/stdc++.h&gt;</span></span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> main ()</span><br><span class="line">&#123;</span><br><span class="line">    string s1,s2;</span><br><span class="line">    //用空格隔开的话就直接cin，如果需要读入空格采用getline</span><br><span class="line">    <span class="keyword">while</span>(cin&gt;&gt;s1&gt;&gt;s2)&#123;</span><br><span class="line">        <span class="built_in">int</span> l1=s1.size(),l2=s2.size();</span><br><span class="line">        //这里使用l1+<span class="number">1</span>是因为最外面还有一圈<span class="number">0</span>，只开l1的话不够用</span><br><span class="line">        vector&lt;vector&lt;<span class="built_in">int</span>&gt;&gt; dp(l1 + <span class="number">1</span>, vector&lt;<span class="built_in">int</span>&gt;(l2 + <span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">1</span>;i&lt;=l1;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="built_in">int</span> j=<span class="number">1</span>;j&lt;=l2;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(s1[i-<span class="number">1</span>]==s2[j-<span class="number">1</span>])&#123;</span><br><span class="line">                    dp[i][j]=dp[i-<span class="number">1</span>][j-<span class="number">1</span>]+<span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    //这里不用加<span class="number">1</span></span><br><span class="line">                    dp[i][j]=<span class="built_in">max</span>(dp[i][j-<span class="number">1</span>],dp[i-<span class="number">1</span>][j]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cout&lt;&lt;dp[l1][l2]&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="最长子序列输出1730"><a href="#最长子序列输出1730" class="headerlink" title="最长子序列输出1730"></a>最长子序列输出1730</h2><p>这就是最长和连续最长的区别&#x2F;&#x2F; 如果字符不匹配，当前连续长度重置为0</p>
+<p>思路是记录下end_index，获得字符串长度m后，m-end__index既是开头，然后使用substr截取出来输出</p>
+<p>这里有一点要注意，如果是输出最后一个的话，则比较的条件变成&gt;&#x3D;，这样即使是一样的也会取到最后一个</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;bits/stdc++.h&gt;</span></span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> main ()</span><br><span class="line">&#123;</span><br><span class="line">    string s1,s2;</span><br><span class="line">    <span class="keyword">while</span>(cin&gt;&gt;s1&gt;&gt;s2)&#123;</span><br><span class="line">        <span class="built_in">int</span> l1=s1.size(),l2=s2.size();</span><br><span class="line">        vector&lt;vector&lt;<span class="built_in">int</span>&gt;&gt; dp(l1 + <span class="number">1</span>, vector&lt;<span class="built_in">int</span>&gt;(l2 + <span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line">        <span class="built_in">int</span> max_len =<span class="number">0</span>;</span><br><span class="line">        <span class="built_in">int</span> end_idx=-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">1</span>;i&lt;=l1;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="built_in">int</span> j=<span class="number">1</span>;j&lt;=l2;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(s1[i-<span class="number">1</span>]==s2[j-<span class="number">1</span>])&#123;</span><br><span class="line">                    dp[i][j]=dp[i-<span class="number">1</span>][j-<span class="number">1</span>]+<span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">if</span>(dp[i][j]&gt;=max_len)&#123;</span><br><span class="line">                        max_len=dp[i][j];</span><br><span class="line">                        end_idx=i;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                // 如果字符不匹配，当前连续长度重置为<span class="number">0</span></span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    dp[i][j] = <span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; max_len &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">if</span>(max_len&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="built_in">int</span> start=end_idx-max_len;</span><br><span class="line">            string re=s1.substr(start,max_len);</span><br><span class="line">            cout&lt;&lt;re&lt;&lt;endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="最长连续重复子数组"><a href="#最长连续重复子数组" class="headerlink" title="最长连续重复子数组"></a>最长连续重复子数组</h1><p><img src="/images/41.png" alt="img"></p>
+<h1 id="整数拆分"><a href="#整数拆分" class="headerlink" title="整数拆分"></a>整数拆分</h1><p>dp含义：乘积最大为多少</p>
+<p>递推式：dp[i]&#x3D;max(dp[i],max(j*(i-j),j*dp[i-j]))</p>
+<p>由于动态数组初始化全部为零，初始dp[i]&#x3D;0，外层max判断是否要更新为最新值</p>
+<p>max(j*(i-j),j*dp[i-j])，前者为不拆，后者为拆</p>
+<p>初始化：dp0&#x3D;0,dp1&#x3D;0(题目给的范围里这两个没意义)，dp[2]&#x3D;1</p>
+<p>遍历顺序：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=i/<span class="number">2</span>;j++)&#123;</span><br><span class="line">        递推式</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="简单01背包问题"><a href="#简单01背包问题" class="headerlink" title="简单01背包问题"></a>简单01背包问题</h1><p>即<strong>dp[i][j]</strong> <strong>表示从下标为</strong>**[0-i]<strong><strong>的物品⾥任意取，放进容量为</strong></strong>j**<strong>的背</strong> </p>
+<p><strong>包，价值总和最⼤是多少</strong>。</p>
+<ol>
+<li>确定dp数组以及下标的含义<br>对于背包问题，有⼀种写法， 是使⽤⼆维数组，即dp[i][j] 表示从下标为[0-i]的物品⾥任意取，放进容量为j的背<br>包，价值总和最⼤是多少。<br>只看这个⼆维数组的定义，⼤家⼀定会有点懵，看下⾯这个图：<br>要时刻记着这个dp数组的含义，下⾯的⼀些步骤都围绕这dp数组的含义进⾏的，如果哪⾥看懵了，就来回顾⼀下i<br>代表什么，j⼜代表什么。</li>
+<li>确定递推公式<br>再回顾⼀下dp[i][j]的含义：从下标为[0-i]的物品⾥任意取，放进容量为j的背包，价值总和最⼤是多少。<br>那么可以有两个⽅向推出来dp[i][j]，<br>不放物品i：由dp[i - 1][j]推出，即背包容量为j，⾥⾯不放物品i的最⼤价值，此时dp[i][j]就是dp[i - 1][j]。(其<br>实就是当物品i的重量⼤于背包j的重量时，物品i⽆法放进背包中，所以背包内的价值依然和前⾯相同。)<br>放物品i：由dp[i - 1][j - weight[i]]推出，dp[i - 1][j - weight[i]] 为背包容量为j - weight[i]的时候不放物品i的最<br>⼤价值，那么dp[i - 1][j - weight[i]] + value[i] （物品i的价值），就是背包放物品i得到的最⼤价值<br>所以递归公式： dp[i][j] &#x3D; max(dp[i - 1][j], dp[i - 1][j - weight[i]] + value[i]);</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span>  <span class="comment">// max函数需要的头文件</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span>    <span class="comment">// memset需要的头文件</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义数组（保持你原有的维度）</span></span><br><span class="line"><span class="type">int</span> dp[<span class="number">21</span>][<span class="number">1010</span>];  <span class="comment">// dp[i][j]：前i个物品装j容量的最大价值</span></span><br><span class="line"><span class="type">int</span> w[<span class="number">21</span>], c[<span class="number">21</span>];  <span class="comment">// w[i]：价值，c[i]：体积</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> N,V;</span><br><span class="line">    cin&gt;&gt;N&gt;&gt;V;  <span class="comment">// 输入：物品数量N，背包总容量V</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 输入物品的价值(w[i])和体积(c[i])</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=N;++i)&#123;</span><br><span class="line">        cin&gt;&gt;w[i]&gt;&gt;c[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ========== 新增：第一行（第一个物品）初始化逻辑 ==========</span></span><br><span class="line">    <span class="comment">// 第一个物品是i=1，遍历容量j从c[1]到V，初始化为第一个物品的价值w[1]</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j = c[<span class="number">1</span>]; j &lt;= V; j++)&#123;</span><br><span class="line">        dp[<span class="number">1</span>][j] = w[<span class="number">1</span>];  <span class="comment">// 只有第一个物品时，能装下则价值为w[1]，装不下则保持默认0</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// ==========================================================</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 遍历剩余物品（从第2个开始，i从2到N）</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;=N;++i)&#123;          <span class="comment">// 注意：i从2开始（第一个物品已初始化）</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;=V;++j)&#123;      <span class="comment">// 遍历背包的所有可能容量（从0到V）</span></span><br><span class="line">            <span class="comment">//放得下，但要考虑选不选</span></span><br><span class="line">            <span class="keyword">if</span>(j&gt;=c[i])&#123;            <span class="comment">// 能装下第i个物品</span></span><br><span class="line">                dp[i][j] = <span class="built_in">max</span>(dp[i<span class="number">-1</span>][j-c[i]] + w[i], dp[i<span class="number">-1</span>][j]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;                   <span class="comment">// 装不下第i个物品</span></span><br><span class="line">                dp[i][j] = dp[i<span class="number">-1</span>][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    cout&lt;&lt;dp[N][V]&lt;&lt;endl;  <span class="comment">// 输出前N个物品装入容量V的最大价值</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="1086采药"><a href="#1086采药" class="headerlink" title="1086采药"></a>1086采药</h2><p>此类题一定要让数组从1开始，不然会有很多麻烦</p>
+<p>想一想数组第一行初始化的时候要让i等于多少？</p>
+<p>遍历的时候ij的范围是多少？比较的时候j要不要加等于号？</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> t,m;</span><br><span class="line">    <span class="keyword">while</span>(cin&gt;&gt;t&gt;&gt;m)&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">att</span><span class="params">(m<span class="number">+1</span>)</span></span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">amm</span><span class="params">(m<span class="number">+1</span>)</span></span>;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">dp</span>(m + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(t + <span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">            cin&gt;&gt;att[i]&gt;&gt;amm[i];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=att[<span class="number">1</span>];i&lt;=t;i++)&#123;</span><br><span class="line">            dp[<span class="number">1</span>][i]=amm[<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;=m;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;=t;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(j&gt;=att[i])&#123;</span><br><span class="line">                    dp[i][j]=<span class="built_in">max</span>(dp[i][j],<span class="built_in">max</span>(dp[i<span class="number">-1</span>][j],dp[i<span class="number">-1</span>][j-att[i]]+amm[i]));</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    dp[i][j]=dp[i<span class="number">-1</span>][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        cout&lt;&lt;dp[m][t]&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="完全背包"><a href="#完全背包" class="headerlink" title="完全背包"></a>完全背包</h1><p>与01背包的区别是不用初始化</p>
+<p>而且如果选则加入的话，递推式变成 dp[i][j]&#x3D;max(dp[i][j],max(dp[i-1][j],dp[i][j-att[i]]+amm[i]));原因是01背包选完i后只能从i-1开始选，而完全背包选完i后仍然可以选择i</p>
+<p>初始化时，vector&lt;vector<int>&gt;代表是开一个二维数组，里面的每个一维数组也是vector<int>类型。有n+1行，每行是一个vector<int>类型,长度为w+1，初始化为0</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> n,w;</span><br><span class="line">    <span class="keyword">while</span>(cin&gt;&gt;n&gt;&gt;w)&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">att</span><span class="params">(n<span class="number">+1</span>)</span></span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">amm</span><span class="params">(n<span class="number">+1</span>)</span></span>;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">dp</span>(n + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(w + <span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            cin&gt;&gt;att[i]&gt;&gt;amm[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;=w;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(j&gt;=att[i])&#123;</span><br><span class="line">                    dp[i][j]=<span class="built_in">max</span>(dp[i][j],<span class="built_in">max</span>(dp[i<span class="number">-1</span>][j],dp[i][j-att[i]]+amm[i]));</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    dp[i][j]=dp[i<span class="number">-1</span>][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        cout&lt;&lt;dp[n][w]&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="字符串编辑距离"><a href="#字符串编辑距离" class="headerlink" title="字符串编辑距离"></a>字符串编辑距离</h1><h1 id="回溯算法"><a href="#回溯算法" class="headerlink" title="回溯算法"></a>回溯算法</h1><p>模版</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">backtracking</span><span class="params">(参数)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 1. 终止条件：走到决策树的叶子节点，找到一组有效解</span></span><br><span class="line">    <span class="keyword">if</span> (终止条件) &#123;</span><br><span class="line">        存放结果;  <span class="comment">// 将当前有效路径存入结果集</span></span><br><span class="line">        <span class="keyword">return</span>;    <span class="comment">// 回溯，回到上一层继续尝试其他选择</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 遍历本层的所有可选元素（决策树的当前层分支）</span></span><br><span class="line">    <span class="keyword">for</span> (选择：本层集合中元素（树中节点孩子的数量就是集合的大小）) &#123;</span><br><span class="line">        处理节点;  <span class="comment">// 做出选择：将当前元素加入路径</span></span><br><span class="line">        <span class="built_in">backtracking</span>(路径，选择列表); <span class="comment">// 递归：深入下一层，继续选择</span></span><br><span class="line">        回溯，撤销处理结果; <span class="comment">// 撤销选择：回到当前层，尝试下一个元素</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="计算组合数（1234里面挑两个）-回溯，用了对数组push-back）"><a href="#计算组合数（1234里面挑两个）-回溯，用了对数组push-back）" class="headerlink" title="计算组合数（1234里面挑两个）(回溯，用了对数组push_back）"></a>计算组合数（1234里面挑两个）(回溯，用了对数组push_back）</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; result;  <span class="comment">// 存储所有符合条件的组合</span></span><br><span class="line">vector&lt;<span class="type">int</span>&gt; path;            <span class="comment">// 存储当前路径的组合</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 回溯函数：n-总数，k-选取个数，s_idx-当前起始索引（从1开始）</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">backt</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> k, <span class="type">int</span> s_idx)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 终止条件：当前组合长度等于k，保存结果并返回</span></span><br><span class="line">    <span class="keyword">if</span> (path.<span class="built_in">size</span>() == k) &#123;</span><br><span class="line">        result.<span class="built_in">push_back</span>(path);</span><br><span class="line">        <span class="keyword">return</span>;  <span class="comment">// 必须return，避免后续无效循环</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 剪枝优化：i的上限可缩小为n - (k - path.size()) + 1，减少循环次数</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = s_idx; i &lt;= n; i++) &#123;  <span class="comment">// 终止条件改为i&lt;=n，包含数字n</span></span><br><span class="line">        path.<span class="built_in">push_back</span>(i);             <span class="comment">// 将当前数字加入路径</span></span><br><span class="line">        <span class="built_in">backt</span>(n, k, i + <span class="number">1</span>);            <span class="comment">// 递归：起始索引+1，避免重复</span></span><br><span class="line">        path.<span class="built_in">pop_back</span>();               <span class="comment">// 回溯：撤销当前选择</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = <span class="number">4</span>, k = <span class="number">2</span>;  <span class="comment">// 从1~4中选2个数字的组合</span></span><br><span class="line">    <span class="built_in">backt</span>(n, k, <span class="number">1</span>);    <span class="comment">// 起始索引从1开始（对应数字1）</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 遍历输出所有组合</span></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;所有&quot;</span> &lt;&lt; k &lt;&lt; <span class="string">&quot;个数的组合：&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; vec : result) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> num : vec) &#123;</span><br><span class="line">            cout &lt;&lt; num &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="合并石子"><a href="#合并石子" class="headerlink" title="合并石子"></a>合并石子</h1><p><img src="/images/42.png" alt="img"></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> a[<span class="number">1001</span>],dp[<span class="number">1001</span>][<span class="number">1001</span>],sum[<span class="number">1001</span>];</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        cin&gt;&gt;a[i];</span><br><span class="line">        sum[i]+=sum[i<span class="number">-1</span>]+a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//枚举区间长度</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> len=<span class="number">2</span>;len&lt;=n;len++)&#123;</span><br><span class="line">        <span class="comment">//枚举起点</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n-len<span class="number">+1</span>;i++)&#123;</span><br><span class="line">            <span class="comment">//终点</span></span><br><span class="line">            <span class="type">int</span> j=i+len<span class="number">-1</span>;</span><br><span class="line">            dp[i][j]=<span class="number">1e8</span>;</span><br><span class="line">            <span class="comment">//区间dp</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> k=i;k&lt;j;k++)&#123;</span><br><span class="line">                dp[i][j]=<span class="built_in">min</span>(dp[i][j],dp[i][k]+dp[k<span class="number">+1</span>][j]+sum[j]-sum[i<span class="number">-1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;dp[<span class="number">1</span>][n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/43.png" alt="img"></p>
+<h1 id="字符串编辑距离-1"><a href="#字符串编辑距离-1" class="headerlink" title="字符串编辑距离"></a>字符串编辑距离</h1><p><strong>问题描述：给定两个字符串A和B，求字符串A至少经过多少步字符操作变成字符串B。</strong></p>
+<p><strong>我们先以一个例子分析，比如eat变成tea。对于第一个字符，e !&#x3D; a，所以要想让这两个字符相等，有三种可以选择的办法</strong></p>
+<ul>
+<li>修改字符，将e直接变成a，需要走1步。</li>
+<li>插入字符，在e的前面插入a，也需要走1步。</li>
+<li>删除字符，将e删除，然后比较后面的与a，也需要走1步。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">原理：</span><br><span class="line">给出一个初始化矩阵，逐位比较两个字符串，待修改的矩阵对应为行，被比较的矩阵对应位列</span><br><span class="line">若字符串对应的位相同，则让该矩阵位直接让这一位的矩阵的等于左上对角的值</span><br><span class="line">否则，有三种情况，分别是：</span><br><span class="line">①：等于上面矩阵位加一</span><br><span class="line">②：等于左上角矩阵位加一</span><br><span class="line">③：等于左边矩阵位加一</span><br><span class="line">最后该矩阵位取上面三种情况中最小的一中。</span><br><span class="line">最右下角的一位保存的就是字符串编辑距离</span><br></pre></td></tr></table></figure>
+
+
+
+<p>初始化如下所示：因为相当于把字符串全部删除所需要的步数</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>d</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr>
+<td>a</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>c</td>
+<td>2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>d</td>
+<td>3</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>更新过程：</p>
+<p>相等：抄左上角的</p>
+<p>不相等：min(左边加一，上面加一，左上角加一)</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>d</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr>
+<td>a</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>c</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>d</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td></td>
+</tr>
+</tbody></table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">线粒体donut</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/03/07/%E6%9C%BA%E8%AF%958/">http://example.com/2026/03/07/%E6%9C%BA%E8%AF%958/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">线粒体donut</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%9C%BA%E8%AF%95/">机试</a></div><div class="post-share"><div class="social-share" data-image="/img/picture.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/03/12/%E5%A4%8D%E8%AF%95%E9%A1%B9%E7%9B%AE%E4%B8%80/" title="复试项目一"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">复试项目一</div></div><div class="info-2"><div class="info-item-1"> 基于半监督学习的交通标志识别 (Python&#x2F;PyTorch) 线性和微调迁移学习： 借用大佬的模型，让我们的模型一开始就具有特征提取的能力，最后换一下探测头（即最后分多少类），这样效果会比用自己的模型好很多。 线性探测和微调是迁移学习的两种核心策略，核心区别是：  线性探测：只训练模型最后一层分类头，冻结所有卷积层，即特征提取层（权重不更新）； 微调：解冻全部 &#x2F; 部分特征提取层，小学习率（1e-4）让整个模型（特征层 + 分类头）一起训练更新。  resnet做了什么改善？第一，使用残差连接，解决梯度消失 梯度消失和梯度爆炸是要解决的问题，梯度爆炸可以通过relu或sigmoid解决，但梯度消失不容易解决。 由于梯度回传本身就是一个求导的过程。 resNet令out &#x3D; f(x) + x，它缓解梯度消失的关键不是让导数大于 1，而是给梯度回传增加了一条 “直达路径”：反向传播时，损失对输入的梯度由两部分组成 —— 卷积层学习的残差项梯度，加上直接传递的梯度（这一项系数是 1，无衰减）； 哪怕深层卷积层的梯度逐渐衰减，梯度仍能通过 “+1” 的直...</div></div></div></a><a class="pagination-related" href="/2026/03/05/%E6%9C%BA%E8%AF%953/" title="机试3"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">机试3</div></div><div class="info-2"><div class="info-item-1">同模余定理公式(a+b)%c&#x3D;(a%c+b%c)%c;(a-b)%c&#x3D;(a%c-b%c)%c;(ab)%c&#x3D;(a%cb%c)%c; 大数取模另一类考点就是对大数进行取模对于大数的求余，联想到进制转换时的方法，得到举例如下，设大数m&#x3D;1234,模n就等于((((1×10)%n+2%n)%n×10%n+3%n)%n*10%n+4%n)%n 最大公约数&#x2F;&#x2F; 先除后乘避免溢出，__gcd参数需为同类型（均为long long）    a &#x2F; __gcd(a, b) * b; n个数的最小公倍数123456789101112131415161718192021222324252627#include &lt;bits/stdc++.h&gt;using namespace std;long long lcm_n(vector&lt;int&gt; &amp;a)&#123;    long long result=a[0];    for(int i=1;i&lt;a.size();i++)&#123;        /...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/04/07/%E6%9C%BA%E8%AF%95%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" title="机试文件操作"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-04-07</div><div class="info-item-2">机试文件操作</div></div><div class="info-2"><div class="info-item-1">ofstream写入文件 123456789101112131415161718192021222324252627282930#include&lt;bits/stdc++.h&gt;  // 记忆点1：万能头包含了文件操作的fstream，若单独写需加 #include &lt;fstream&gt;using namespace std;int main() &#123;    // 1. 定义文件名（路径）    string f_name=&quot;text.txt&quot;;  // 记忆点2：路径分2种    // ✅ 相对路径：&quot;text.txt&quot; → 保存在程序运行的「当前文件夹」（最常用，好记）    // ✅ 绝对路径：Windows下要写 &quot;G:\\C++\\try2\\text.txt&quot;（\要写两个，因为\是转义符），或 &quot;G:/C++/try2/text.txt&quot;（/不用转义，更简单）        // 2. 创建写文件对象 + 关联文件（打开文件）    ofstream fout(f...</div></div></div></a><a class="pagination-related" href="/2026/04/07/%E6%9C%BA%E8%AF%95%E9%93%BE%E8%A1%A8%E9%97%AE%E9%A2%98/" title="机试链表问题"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-04-07</div><div class="info-item-2">机试链表问题</div></div><div class="info-2"><div class="info-item-1">建立链表并升序排列 12345678910111213141516171819202122232425262728293031323334#include &lt;bits/stdc++.h&gt;using namespace std;struct node&#123;    int elem;    struct node* next;&#125;;int main ()&#123;    int n=5,num;    node* head=new node();    head-&gt;next=NULL;    while(n--)&#123;        cin&gt;&gt;num;        node* p=head-&gt;next;        node* q=head;        while(p!=NULL&amp;&amp;p-&gt;elem&lt;num)&#123;            q=p;            p=p-&gt;next;        &#125;        node* s=new node();      ...</div></div></div></a><a class="pagination-related" href="/2026/04/07/%E6%9C%BA%E8%AF%95%E6%A0%91%E5%92%8C%E5%9B%BE/" title="机试树和图"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-04-07</div><div class="info-item-2">机试树和图</div></div><div class="info-2"><div class="info-item-1">并查集 123456789101112131415161718192021222324252627282930313233343536373839#include&lt;bits/stdc++.h&gt;using namespace std;const int maxn=1005;int fa[maxn];int f(int x)&#123;    if(x==fa[x])&#123;        return x;    &#125;    fa[x]=f(fa[x]);    return fa[x];&#125;int main() &#123;    int n,m;    while(cin&gt;&gt;n)&#123;        if(n==0)&#123;            break;        &#125;        cin&gt;&gt;m;        for(int i=1;i&lt;=n;i++)&#123;            fa[i]=i;        &#125;        int sum=0;        fo...</div></div></div></a><a class="pagination-related" href="/2026/03/05/%E6%9C%BA%E8%AF%953/" title="机试3"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-05</div><div class="info-item-2">机试3</div></div><div class="info-2"><div class="info-item-1">同模余定理公式(a+b)%c&#x3D;(a%c+b%c)%c;(a-b)%c&#x3D;(a%c-b%c)%c;(ab)%c&#x3D;(a%cb%c)%c; 大数取模另一类考点就是对大数进行取模对于大数的求余，联想到进制转换时的方法，得到举例如下，设大数m&#x3D;1234,模n就等于((((1×10)%n+2%n)%n×10%n+3%n)%n*10%n+4%n)%n 最大公约数&#x2F;&#x2F; 先除后乘避免溢出，__gcd参数需为同类型（均为long long）    a &#x2F; __gcd(a, b) * b; n个数的最小公倍数123456789101112131415161718192021222324252627#include &lt;bits/stdc++.h&gt;using namespace std;long long lcm_n(vector&lt;int&gt; &amp;a)&#123;    long long result=a[0];    for(int i=1;i&lt;a.size();i++)&#123;        /...</div></div></div></a><a class="pagination-related" href="/2026/02/04/%E6%9C%BA%E8%AF%951/" title="机试知识1"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-04</div><div class="info-item-2">机试知识1</div></div><div class="info-2"><div class="info-item-1">输入输出技巧scanf输入解析可以在输入是直接获取格式 123456789101112#include &lt;iostream&gt;using namespace std;int main()&#123;    int num1,num2;    scanf(&quot;&amp;d-&amp;d&quot;,&amp;num1,&amp;num2);    printf(&quot;%d-%d&quot;,num1,num2);    return 0;&#125;  scanf和get的区别get遇见空格不会停止读入 getchar和putchar获取单个字符和输出单个字符，使用在scanf和get用于消除回车的影响 输入进制转换12345678910int main()&#123;    int a  = 10;    printf(&quot;%x\n&quot;,a); 	#小写十六进制    printf(&quot;%X\n&quot;,a);	#大写十六进制    printf(&quot;%o\n&quot;,a);	#八进制    return 0;&#1...</div></div></div></a><a class="pagination-related" href="/2026/04/07/%E6%9C%BA%E8%AF%95%E9%AB%98%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/" title="机试高精度问题"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-04-07</div><div class="info-item-2">机试高精度问题</div></div><div class="info-2"><div class="info-item-1">高精度问题 string&amp;insert(size_t pos, size_t count,char ch); 表格    参数 代码中的值 具体含义    pos 0 插入位置：从字符串 b 的第 0 个位置（开头） 开始插入   count a.length() - b.length() 插入数量：需要补充的 ‘0’ 的个数（等于 a 和 b 的长度差）   ch &#39;0&#39; 插入字符：要插入的是字符 ‘0’（不是数字 0）   1234567891011121314151617181920212223242526272829303132#include &lt;bits/stdc++.h&gt;using namespace std;string add(string a,string b)&#123;    //让a成为长串    if(a.length()&lt;b.length()) a.swap(b);    //初始化result字符串为数值0    string result(a.length(),0);    //b前面补零，在哪里插？插几个...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/picture.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">线粒体donut</div><div class="author-info-description">逆转时间的公式是珍惜当下</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>后发而先至</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这家伙不懒，但依旧什么都没有留下</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%A4%A7%E5%AD%97%E6%AE%B5%E5%92%8C%EF%BC%88%E4%B8%8Ea-i-%E6%9C%89%E5%85%B3"><span class="toc-number">1.</span> <span class="toc-text">最大字段和（与a[i]有关</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E8%B7%AF%EF%BC%88Kadane-%E7%AE%97%E6%B3%95%EF%BC%89%EF%BC%9A%E2%80%9C%E8%BE%B9%E8%B5%B0%E8%BE%B9%E9%80%89%E2%80%9D"><span class="toc-number">1.1.</span> <span class="toc-text">核心思路（Kadane 算法）：“边走边选”</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E9%87%8C%E7%9A%84%E5%85%B3%E9%94%AE%E5%8F%98%E9%87%8F%EF%BC%88%E5%AF%B9%E5%BA%94%E6%80%9D%E8%B7%AF%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">代码里的关键变量（对应思路）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E9%80%9A%E4%BF%97%E8%A7%A3%E9%87%8A%E4%BB%A3%E7%A0%81%E7%9A%84%E6%89%A7%E8%A1%8C%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.3.</span> <span class="toc-text">二、通俗解释代码的执行步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-1%EF%BC%9A%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">1.3.1.</span> <span class="toc-text">步骤 1：初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-2%EF%BC%9A%E9%81%8D%E5%8E%86%E7%AC%AC-2-%E4%B8%AA%E6%95%B0%EF%BC%88i-1%EF%BC%8Ca-1-1%EF%BC%89"><span class="toc-number">1.3.2.</span> <span class="toc-text">步骤 2：遍历第 2 个数（i&#x3D;1，a [1]&#x3D;1）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-3%EF%BC%9A%E9%81%8D%E5%8E%86%E7%AC%AC-3-%E4%B8%AA%E6%95%B0%EF%BC%88i-2%EF%BC%8Ca-2-3%EF%BC%89"><span class="toc-number">1.3.3.</span> <span class="toc-text">步骤 3：遍历第 3 个数（i&#x3D;2，a [2]&#x3D;-3）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-4%EF%BC%9A%E9%81%8D%E5%8E%86%E7%AC%AC-4-%E4%B8%AA%E6%95%B0%EF%BC%88i-3%EF%BC%8Ca-3-4%EF%BC%89"><span class="toc-number">1.3.4.</span> <span class="toc-text">步骤 4：遍历第 4 个数（i&#x3D;3，a [3]&#x3D;4）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-5%EF%BC%9A%E9%81%8D%E5%8E%86%E7%AC%AC-5-%E4%B8%AA%E6%95%B0%EF%BC%88i-4%EF%BC%8Ca-4-1%EF%BC%89"><span class="toc-number">1.3.5.</span> <span class="toc-text">步骤 5：遍历第 5 个数（i&#x3D;4，a [4]&#x3D;-1）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-6%EF%BC%9A%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C"><span class="toc-number">1.3.6.</span> <span class="toc-text">步骤 6：输出结果</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%A0%B8%E5%BF%83%E9%80%BB%E8%BE%91%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%80%BB%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">五、核心逻辑一句话总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E8%A1%A5%E5%85%85%EF%BC%9A%E4%BB%A3%E7%A0%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%83%BD%E8%B7%91%E5%BF%AB%EF%BC%9F"><span class="toc-number">1.5.</span> <span class="toc-text">六、补充：代码为什么能跑快？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%BA%E9%97%B4%E7%BF%BB%E8%BD%AC%E9%97%AE%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">字符串区间翻转问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97%E6%95%B0%E9%87%8F-%E6%B1%82%E5%92%8C%E3%80%81%E6%9C%80%E9%95%BF%E8%BF%9E%E7%BB%AD%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97%E3%80%81%E6%9C%80%E9%95%BF%E8%BF%9E%E7%BB%AD%E5%AD%90%E4%B8%B2%E4%B8%94%E6%B1%82%E5%87%BA%E8%BF%99%E4%B8%80%E4%B8%B2%E5%85%83%E7%B4%A0%EF%BC%88%E4%B8%8Edp-i-%E6%9C%89%E5%85%B3"><span class="toc-number">3.</span> <span class="toc-text">最长递增子序列数量&#x2F;求和、最长连续递增子序列、最长连续子串且求出这一串元素（与dp[i]有关</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%82%A3%E4%B9%88%E8%BF%99%E4%B8%80%E4%B8%B2%E5%85%83%E7%B4%A0%E8%A6%81%E6%80%8E%E4%B9%88%E6%B1%82%E5%91%A2"><span class="toc-number">3.1.</span> <span class="toc-text">那么这一串元素要怎么求呢</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97%E6%95%B0%E9%87%8F%E3%80%81%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97%E8%BE%93%E5%87%BA"><span class="toc-number">4.</span> <span class="toc-text">最长公共子序列数量、最长公共子序列输出</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E9%95%BF%E5%AD%90%E5%BA%8F%E5%88%97%E8%BE%93%E5%87%BA1730"><span class="toc-number">4.1.</span> <span class="toc-text">最长子序列输出1730</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%80%E9%95%BF%E8%BF%9E%E7%BB%AD%E9%87%8D%E5%A4%8D%E5%AD%90%E6%95%B0%E7%BB%84"><span class="toc-number">5.</span> <span class="toc-text">最长连续重复子数组</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E6%8B%86%E5%88%86"><span class="toc-number">6.</span> <span class="toc-text">整数拆分</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%80%E5%8D%9501%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98"><span class="toc-number">7.</span> <span class="toc-text">简单01背包问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1086%E9%87%87%E8%8D%AF"><span class="toc-number">7.1.</span> <span class="toc-text">1086采药</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85"><span class="toc-number">8.</span> <span class="toc-text">完全背包</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB"><span class="toc-number">9.</span> <span class="toc-text">字符串编辑距离</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95"><span class="toc-number">10.</span> <span class="toc-text">回溯算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E7%BB%84%E5%90%88%E6%95%B0%EF%BC%881234%E9%87%8C%E9%9D%A2%E6%8C%91%E4%B8%A4%E4%B8%AA%EF%BC%89-%E5%9B%9E%E6%BA%AF%EF%BC%8C%E7%94%A8%E4%BA%86%E5%AF%B9%E6%95%B0%E7%BB%84push-back%EF%BC%89"><span class="toc-number">11.</span> <span class="toc-text">计算组合数（1234里面挑两个）(回溯，用了对数组push_back）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E7%9F%B3%E5%AD%90"><span class="toc-number">12.</span> <span class="toc-text">合并石子</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB-1"><span class="toc-number">13.</span> <span class="toc-text">字符串编辑距离</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/07/%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87%E5%88%9D%E6%AD%A5%E9%97%AE%E9%A2%98/" title="毕业论文初步问题">毕业论文初步问题</a><time datetime="2026-04-07T12:46:35.000Z" title="发表于 2026-04-07 20:46:35">2026-04-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/07/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E6%AF%94%E8%B5%9B%E6%80%9D%E8%B7%AF/" title="数学建模比赛思路">数学建模比赛思路</a><time datetime="2026-04-07T12:45:14.000Z" title="发表于 2026-04-07 20:45:14">2026-04-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/07/%E5%A4%8D%E8%AF%95%E9%A1%B9%E7%9B%AE%E4%BA%8C/" title="复试项目二">复试项目二</a><time datetime="2026-04-07T12:42:19.000Z" title="发表于 2026-04-07 20:42:19">2026-04-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/07/%E6%9C%BA%E8%AF%95%E6%A0%91%E5%92%8C%E5%9B%BE/" title="机试树和图">机试树和图</a><time datetime="2026-04-07T12:38:13.000Z" title="发表于 2026-04-07 20:38:13">2026-04-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/07/%E6%9C%BA%E8%AF%95%E6%90%9C%E7%B4%A2%E9%97%AE%E9%A2%98/" title="机试搜索问题">机试搜索问题</a><time datetime="2026-04-07T12:35:38.000Z" title="发表于 2026-04-07 20:35:38">2026-04-07</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 线粒体donut</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章ing..." type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.3"></script></div></div></body></html>

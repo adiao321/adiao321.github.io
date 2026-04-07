@@ -1,0 +1,263 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>第七节自注意力机制 | 线粒体donut</title><meta name="author" content="线粒体donut"><meta name="copyright" content="线粒体donut"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="常见的输入每个词对应一个编码，中文中对应差不多两万多个编码  这就组成了RNNRNN需要考虑前后关系，故需要一个从头穿到尾的传家宝–记忆单元 但其弊端是，如果想要的信息之间距离过远，，RNN就会在传家宝里放一些没有帮助的东西。故引出了LSTM LSTM 但缺点是太慢了，还是需要一个一个读入。故引出了自注意力 自注意力  这样就解决了前两个模型需要查看每一个字导致时间过长的问题。自注意力是完全并行的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第七节自注意力机制">
+<meta property="og:url" content="http://example.com/2026/01/03/%E7%AC%AC%E4%B8%83%E8%8A%82%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/index.html">
+<meta property="og:site_name" content="线粒体donut">
+<meta property="og:description" content="常见的输入每个词对应一个编码，中文中对应差不多两万多个编码  这就组成了RNNRNN需要考虑前后关系，故需要一个从头穿到尾的传家宝–记忆单元 但其弊端是，如果想要的信息之间距离过远，，RNN就会在传家宝里放一些没有帮助的东西。故引出了LSTM LSTM 但缺点是太慢了，还是需要一个一个读入。故引出了自注意力 自注意力  这样就解决了前两个模型需要查看每一个字导致时间过长的问题。自注意力是完全并行的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/picture.jpg">
+<meta property="article:published_time" content="2026-01-03T13:00:40.000Z">
+<meta property="article:modified_time" content="2026-03-11T04:20:00.708Z">
+<meta property="article:author" content="线粒体donut">
+<meta property="article:tag" content="自注意力">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/picture.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "第七节自注意力机制",
+  "url": "http://example.com/2026/01/03/%E7%AC%AC%E4%B8%83%E8%8A%82%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/",
+  "image": "http://example.com/img/picture.jpg",
+  "datePublished": "2026-01-03T13:00:40.000Z",
+  "dateModified": "2026-03-11T04:20:00.708Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "线粒体donut",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/picture.jpg"><link rel="canonical" href="http://example.com/2026/01/03/%E7%AC%AC%E4%B8%83%E8%8A%82%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '第七节自注意力机制',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/picture.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-comments-o"></i><span> 分享</span></a></li><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">线粒体donut</span></a><a class="nav-page-title" href="/"><span class="site-name">第七节自注意力机制</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-comments-o"></i><span> 分享</span></a></li><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">第七节自注意力机制</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-01-03T13:00:40.000Z" title="发表于 2026-01-03 21:00:40">2026-01-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-11T04:20:00.708Z" title="更新于 2026-03-11 12:20:00">2026-03-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E9%A1%B9%E7%9B%AE/">深度学习项目</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="常见的输入"><a href="#常见的输入" class="headerlink" title="常见的输入"></a>常见的输入</h2><p>每个词对应一个编码，中文中对应差不多两万多个编码</p>
+<p><img src="/images/23.png" alt="image-20260114110526329"></p>
+<h2 id="这就组成了RNN"><a href="#这就组成了RNN" class="headerlink" title="这就组成了RNN"></a>这就组成了RNN</h2><p>RNN需要考虑前后关系，故需要一个从头穿到尾的传家宝–记忆单元</p>
+<p>但其弊端是，如果想要的信息之间距离过远，，RNN就会在传家宝里放一些没有帮助的东西。故引出了LSTM</p>
+<h2 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h2><p><img src="/images/24.png" alt="image-20260114111711839"></p>
+<p>但缺点是太慢了，还是需要一个一个读入。故引出了自注意力</p>
+<h2 id="自注意力"><a href="#自注意力" class="headerlink" title="自注意力"></a>自注意力</h2><p><img src="/images/25.png" alt="image-20260114111915235"></p>
+<p><img src="/images/26.png" alt="image-20260114111946861"></p>
+<p>这样就解决了前两个模型需要查看每一个字导致时间过长的问题。自注意力是完全并行的！</p>
+<p>而且自注意力在qkv处理过程中维度不变</p>
+<p><img src="/images/27.png" alt="image-20260114112509862"></p>
+<h3 id="自注意力机制在干嘛？"><a href="#自注意力机制在干嘛？" class="headerlink" title="自注意力机制在干嘛？"></a>自注意力机制在干嘛？</h3><p>自注意机制就是让句子里的每个词，都去 “看” 句子里的其他词，然后把有用的信息 “拿回来”，帮助自己变得更聪明。</p>
+<h3 id="QKV是干嘛的？"><a href="#QKV是干嘛的？" class="headerlink" title="QKV是干嘛的？"></a>QKV是干嘛的？</h3><p>“他告诉小明，他明天要去北京。”</p>
+<p>Q（Query）：<strong>我要找谁</strong>？我想知道什么？我这个词在寻找和我相关的词时，用什么特征去匹配？是一个 “搜索条件”、一个 “问题”、一个 “需求描述”</p>
+<p>比如 “他” 的 Q 可能是：“我是一个代词，我需要找到一个人来指代。”</p>
+<p>K（Key）：<strong>我是谁</strong>？我能提供什么信息？我这个词能提供什么信息？别人可以用什么方式找到我？是一个 “标签”、一个 “索引”、一个 “联系方式”</p>
+<p>比如 “小明” 的 K 可能是：“我是一个人名，我可以被代词指代。”</p>
+<p>V（Value）：我真正的内容是什么？我这个词真正的内容是什么？你找到我后，你能拿到什么信息？</p>
+<p>比如 “小明” 的 V 就是：“一个具体的人，名字叫小明。”</p>
+<h3 id="用一个生活例子把整个流程串起来"><a href="#用一个生活例子把整个流程串起来" class="headerlink" title="用一个生活例子把整个流程串起来"></a>用一个生活例子把整个流程串起来</h3><p>想象你在公司里找人合作一个项目。</p>
+<p>你（当前词）有一个 Q：</p>
+<p>“我需要一个懂 AI 的人。”</p>
+<p>公司里每个人都有一个 K：</p>
+<ul>
+<li>小明：K &#x3D; “我懂 AI”</li>
+<li>小红：K &#x3D; “我懂设计”</li>
+<li>小刚：K &#x3D; “我懂 AI”</li>
+</ul>
+<p>你用你的 Q 去对比所有人的 K：</p>
+<ul>
+<li>小明匹配度高</li>
+<li>小刚匹配度高</li>
+<li>小红匹配度低</li>
+</ul>
+<p>然后你把他们的 V 拿过来：</p>
+<ul>
+<li>小明的 V &#x3D; “AI 工程师，会深度学习”</li>
+<li>小刚的 V &#x3D; “AI 研究员，会大模型”</li>
+</ul>
+<p>最后你得到一个综合后的自己：</p>
+<p>“我现在知道我应该找小明和小刚合作。”</p>
+<p>这就是自注意机制。</p>
+<h3 id="为什么一定要分成-Q、K、V？"><a href="#为什么一定要分成-Q、K、V？" class="headerlink" title="为什么一定要分成 Q、K、V？"></a>为什么一定要分成 Q、K、V？</h3><p>因为要把 “搜索条件” 和 “被搜索的标签” 和 “实际内容” 分开，这样：</p>
+<ul>
+<li>Q 可以专注于 “我要找什么”</li>
+<li>K 可以专注于 “我能被怎么找到”</li>
+<li>V 可以专注于 “我能提供什么”</li>
+</ul>
+<p>这种分离让模型表达能力更强，也更灵活。</p>
+<p>如果只用一个向量，就像让一个人同时当：</p>
+<ul>
+<li>求职者</li>
+<li>面试官</li>
+<li>简历内容</li>
+</ul>
+<p>会非常混乱。</p>
+<p>最后再加上位置信息</p>
+<p><img src="/images/28.png" alt="image-20260114143325970"></p>
+<h2 id="有两种方法获得特征"><a href="#有两种方法获得特征" class="headerlink" title="有两种方法获得特征"></a>有两种方法获得特征</h2><p><img src="/images/29.png" alt="image-20260114144153694"></p>
+<h2 id="BERT的输入比transformer多一层"><a href="#BERT的输入比transformer多一层" class="headerlink" title="BERT的输入比transformer多一层"></a>BERT的输入比transformer多一层</h2><p><img src="/images/30.png" alt="image-20260114144325485"></p>
+<h2 id="Bert的输出pooler有很多种方式，但一般都是第一种"><a href="#Bert的输出pooler有很多种方式，但一般都是第一种" class="headerlink" title="Bert的输出pooler有很多种方式，但一般都是第一种"></a>Bert的输出pooler有很多种方式，但一般都是第一种</h2><p>[CLS] 是 BERT 预训练阶段专为「句子全局语义」设计的 token，有先天的任务对齐优势；</p>
+<p>[CLS] 效果稳定、提取成本低，适配绝大多数下游任务（分类 &#x2F; 识别 &#x2F; 匹配等）；</p>
+<p><img src="/images/31.png" alt="image-20260114144533487"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="/images/32.png" alt="image-20260114144618553"></p>
+<h3 id="一、多层感知机（MLP）：最基础的-“深度学习积木”"><a href="#一、多层感知机（MLP）：最基础的-“深度学习积木”" class="headerlink" title="一、多层感知机（MLP）：最基础的 “深度学习积木”"></a>一、多层感知机（MLP）：最基础的 “深度学习积木”</h3><h4 id="1-核心定义"><a href="#1-核心定义" class="headerlink" title="1. 核心定义"></a>1. 核心定义</h4><p>多层感知机（Multi-Layer Perceptron，MLP）也叫<strong>全连接神经网络</strong>，是由<strong>输入层、至少一层隐藏层、输出层</strong>组成的简单深度学习模型，每层的神经元都和下一层所有神经元 “全连接”，且<strong>隐藏层会用激活函数</strong>（如 ReLU）引入非线性，让模型能学习复杂规律。</p>
+<h4 id="2-通俗比喻"><a href="#2-通俗比喻" class="headerlink" title="2. 通俗比喻"></a>2. 通俗比喻</h4><p>可以把 MLP 理解成 “流水线式的信息处理器”：</p>
+<ul>
+<li>输入层：收集原始信息（比如文本的词向量、图片的像素值）；</li>
+<li>隐藏层：对信息做层层加工（比如从 “交通标志的颜色 + 形状” 中提取 “红灯 &#x2F; 绿灯” 的特征）；</li>
+<li>输出层：给出最终结果（比如判断这是 “禁止通行” 标志，或文本的情感是 “正面”）。</li>
+</ul>
+<h4 id="3-关键特点-与-BERT-的关联"><a href="#3-关键特点-与-BERT-的关联" class="headerlink" title="3. 关键特点 &amp; 与 BERT 的关联"></a>3. 关键特点 &amp; 与 BERT 的关联</h4><ul>
+<li>结构简单但通用性强：是深度学习的基础，几乎所有复杂模型（包括 Transformer&#x2F;BERT）都包含 MLP 组件；</li>
+<li>BERT 中的 MLP：<strong>BERT 的 Transformer 编码器每一层里</strong>，都有一个 “前馈神经网络（FFN）”，这个 FFN 本质就是<strong>两层 MLP</strong>（第一层线性变换 + ReLU 激活，第二层线性变换），作用是对自注意力层输出的特征做进一步的非线性变换；</li>
+<li>下游任务中的 MLP：BERT 做文本分类时，[CLS] token 的输出通常会接一个简单的 MLP（比如 “线性层 + Softmax”），完成从语义特征到分类结果的转换。</li>
+</ul>
+<h3 id="二、MLM（Masked-Language-Model）：BERT-的-“完形填空”-训练法"><a href="#二、MLM（Masked-Language-Model）：BERT-的-“完形填空”-训练法" class="headerlink" title="二、MLM（Masked Language Model）：BERT 的 “完形填空” 训练法"></a>二、MLM（Masked Language Model）：BERT 的 “完形填空” 训练法</h3><h4 id="1-核心定义-1"><a href="#1-核心定义-1" class="headerlink" title="1. 核心定义"></a>1. 核心定义</h4><p>MLM（掩码语言模型）是 BERT 预训练的<strong>核心任务之一</strong>，核心逻辑是：随机 “遮挡” 文本中的部分词（token），让模型根据上下文预测被遮挡的词是什么，以此让模型学习文本的上下文语义关联。</p>
+<h4 id="2-通俗比喻-1"><a href="#2-通俗比喻-1" class="headerlink" title="2. 通俗比喻"></a>2. 通俗比喻</h4><p>就像我们做英语 &#x2F; 语文的 “完形填空”：</p>
+<blockquote>
+<p>原句：今天的天气真不错</p>
+<p>掩码后：今天的 [MASK] 气真不错</p>
+<p>模型需要预测 [MASK] 的位置应该填 “天”—— 这就是 MLM 的核心目标。</p>
+</blockquote>
+<h4 id="3-BERT-中-MLM-的具体做法（关键细节）"><a href="#3-BERT-中-MLM-的具体做法（关键细节）" class="headerlink" title="3. BERT 中 MLM 的具体做法（关键细节）"></a>3. BERT 中 MLM 的具体做法（关键细节）</h4><p>为了让模型真正学习语义而非 “作弊”，BERT 的 MLM 做了特殊设计：</p>
+<ol>
+<li><p>随机选择文本中 15% 的 token 进行处理：</p>
+<ul>
+<li>80% 的概率替换成特殊符号<code>[MASK]</code>（比如 “天气”→“[MASK] 气”）；</li>
+<li>10% 的概率替换成随机的其他 token（比如 “天气”→“汽车”）；</li>
+<li>10% 的概率保留原 token（比如 “天气” 还是 “天气”）；</li>
+</ul>
+</li>
+<li><p>模型基于上下文预测这些被处理的 token，通过预测误差更新参数，最终学会 “结合上下文理解语义”。</p>
+</li>
+</ol>
+<h4 id="4-核心作用"><a href="#4-核心作用" class="headerlink" title="4. 核心作用"></a>4. 核心作用</h4><p>MLM 是 BERT 具备 “双向上下文理解能力” 的关键 —— 因为要预测被掩码的词，模型必须同时看左边和右边的文本（比如预测 “[MASK] 气”，既要看 “今天的”，也要看 “真不错”），这也是 BERT 区别于 GPT（只能单向看前文）的核心特征。</p>
+<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><ol>
+<li><strong>多层感知机（MLP）</strong> 是基础的全连接神经网络结构，是 BERT 内部 Transformer 层、下游分类任务的核心组件，负责特征的非线性变换和分类；</li>
+<li><strong>MLM（掩码语言模型）</strong> 是 BERT 的预训练任务，通过 “完形填空” 让模型学习双向上下文语义，是 BERT 具备强语言理解能力的核心原因；</li>
+<li>两者的核心区别：MLP 是 “模型结构”，MLM 是 “训练任务”，前者是 “工具”，后者是 “使用工具的方法”。</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">线粒体donut</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/01/03/%E7%AC%AC%E4%B8%83%E8%8A%82%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/">http://example.com/2026/01/03/%E7%AC%AC%E4%B8%83%E8%8A%82%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">线粒体donut</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B/">自注意力</a></div><div class="post-share"><div class="social-share" data-image="/img/picture.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/01/03/%E7%AC%AC%E4%BA%94%E8%8A%82%E5%88%86%E7%B1%BB%E4%BB%BB%E5%8A%A1_%E9%A3%9F%E7%89%A9%E8%AF%86%E5%88%AB%E5%AE%9E%E6%88%98/" title="第五节分类任务_食物识别实战"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">第五节分类任务_食物识别实战</div></div><div class="info-2"><div class="info-item-1">随机种子123456789101112def seed_everything(seed):    torch.manual_seed(seed)    torch.cuda.manual_seed(seed)    torch.cuda.manual_seed_all(seed)    torch.backends.cudnn.benchmark = False    torch.backends.cudnn.deterministic = True    random.seed(seed)    np.random.seed(seed)    os.environ[&#x27;PYTHONHASHSEED&#x27;] = str(seed)###############################################seed_everything(0)###############################################  数据部分在引用路径时，\被识别成转义字符怎么办？在前面加r 12path = r&quot;C:\Users\a&...</div></div></div></a><a class="pagination-related" href="/2026/01/03/conda%E6%93%8D%E4%BD%9C/" title="conda操作"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">conda操作</div></div><div class="info-2"><div class="info-item-1">基本操作首先的首先，这个不是在cmd里运行的，而是在Anaconda Prompt 创建虚拟环境在终端输入（注意”python&#x3D;”没有空格） 1conda create -n 环境名称 python=想要的版本  激活虚拟环境1conda activate 环境名称  删除虚拟环境1conda env remove -n 环境名称 --all  或者直接在E:\Anaconda_new\envs里删除更快 查看所有系统环境1conda env list    pychram中使用创建好了怎么配置？右下角添加解释器，Conda环境，现有环境，解释器右边的三个点，E:\Anaconda_new\envs\环境名称\python.exe     ||     E:\conda_envs\bysj\python.exe 读论文怎么配置？方法一（常用）PyCharm底部终端，cd到项目根目录，pip install -r requirements.txt 方法二用Anaconda的prompt，cd到项目根目录，pip install -r requirements.txt C盘...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/picture.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">线粒体donut</div><div class="author-info-description">逆转时间的公式是珍惜当下</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>后发而先至</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这家伙不懒，但依旧什么都没有留下</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E8%BE%93%E5%85%A5"><span class="toc-number">1.</span> <span class="toc-text">常见的输入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%99%E5%B0%B1%E7%BB%84%E6%88%90%E4%BA%86RNN"><span class="toc-number">2.</span> <span class="toc-text">这就组成了RNN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LSTM"><span class="toc-number">3.</span> <span class="toc-text">LSTM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B"><span class="toc-number">4.</span> <span class="toc-text">自注意力</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E5%9C%A8%E5%B9%B2%E5%98%9B%EF%BC%9F"><span class="toc-number">4.1.</span> <span class="toc-text">自注意力机制在干嘛？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#QKV%E6%98%AF%E5%B9%B2%E5%98%9B%E7%9A%84%EF%BC%9F"><span class="toc-number">4.2.</span> <span class="toc-text">QKV是干嘛的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E4%B8%80%E4%B8%AA%E7%94%9F%E6%B4%BB%E4%BE%8B%E5%AD%90%E6%8A%8A%E6%95%B4%E4%B8%AA%E6%B5%81%E7%A8%8B%E4%B8%B2%E8%B5%B7%E6%9D%A5"><span class="toc-number">4.3.</span> <span class="toc-text">用一个生活例子把整个流程串起来</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%80%E5%AE%9A%E8%A6%81%E5%88%86%E6%88%90-Q%E3%80%81K%E3%80%81V%EF%BC%9F"><span class="toc-number">4.4.</span> <span class="toc-text">为什么一定要分成 Q、K、V？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%B3%95%E8%8E%B7%E5%BE%97%E7%89%B9%E5%BE%81"><span class="toc-number">5.</span> <span class="toc-text">有两种方法获得特征</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BERT%E7%9A%84%E8%BE%93%E5%85%A5%E6%AF%94transformer%E5%A4%9A%E4%B8%80%E5%B1%82"><span class="toc-number">6.</span> <span class="toc-text">BERT的输入比transformer多一层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bert%E7%9A%84%E8%BE%93%E5%87%BApooler%E6%9C%89%E5%BE%88%E5%A4%9A%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%8C%E4%BD%86%E4%B8%80%E8%88%AC%E9%83%BD%E6%98%AF%E7%AC%AC%E4%B8%80%E7%A7%8D"><span class="toc-number">7.</span> <span class="toc-text">Bert的输出pooler有很多种方式，但一般都是第一种</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">8.</span> <span class="toc-text">总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA%EF%BC%88MLP%EF%BC%89%EF%BC%9A%E6%9C%80%E5%9F%BA%E7%A1%80%E7%9A%84-%E2%80%9C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%A7%AF%E6%9C%A8%E2%80%9D"><span class="toc-number">8.1.</span> <span class="toc-text">一、多层感知机（MLP）：最基础的 “深度学习积木”</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%A0%B8%E5%BF%83%E5%AE%9A%E4%B9%89"><span class="toc-number">8.1.1.</span> <span class="toc-text">1. 核心定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%80%9A%E4%BF%97%E6%AF%94%E5%96%BB"><span class="toc-number">8.1.2.</span> <span class="toc-text">2. 通俗比喻</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%85%B3%E9%94%AE%E7%89%B9%E7%82%B9-%E4%B8%8E-BERT-%E7%9A%84%E5%85%B3%E8%81%94"><span class="toc-number">8.1.3.</span> <span class="toc-text">3. 关键特点 &amp; 与 BERT 的关联</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81MLM%EF%BC%88Masked-Language-Model%EF%BC%89%EF%BC%9ABERT-%E7%9A%84-%E2%80%9C%E5%AE%8C%E5%BD%A2%E5%A1%AB%E7%A9%BA%E2%80%9D-%E8%AE%AD%E7%BB%83%E6%B3%95"><span class="toc-number">8.2.</span> <span class="toc-text">二、MLM（Masked Language Model）：BERT 的 “完形填空” 训练法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%A0%B8%E5%BF%83%E5%AE%9A%E4%B9%89-1"><span class="toc-number">8.2.1.</span> <span class="toc-text">1. 核心定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%80%9A%E4%BF%97%E6%AF%94%E5%96%BB-1"><span class="toc-number">8.2.2.</span> <span class="toc-text">2. 通俗比喻</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-BERT-%E4%B8%AD-MLM-%E7%9A%84%E5%85%B7%E4%BD%93%E5%81%9A%E6%B3%95%EF%BC%88%E5%85%B3%E9%94%AE%E7%BB%86%E8%8A%82%EF%BC%89"><span class="toc-number">8.2.3.</span> <span class="toc-text">3. BERT 中 MLM 的具体做法（关键细节）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%A0%B8%E5%BF%83%E4%BD%9C%E7%94%A8"><span class="toc-number">8.2.4.</span> <span class="toc-text">4. 核心作用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-1"><span class="toc-number">8.3.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/07/%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87%E5%88%9D%E6%AD%A5%E9%97%AE%E9%A2%98/" title="毕业论文初步问题">毕业论文初步问题</a><time datetime="2026-04-07T12:46:35.000Z" title="发表于 2026-04-07 20:46:35">2026-04-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/07/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E6%AF%94%E8%B5%9B%E6%80%9D%E8%B7%AF/" title="数学建模比赛思路">数学建模比赛思路</a><time datetime="2026-04-07T12:45:14.000Z" title="发表于 2026-04-07 20:45:14">2026-04-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/07/%E5%A4%8D%E8%AF%95%E9%A1%B9%E7%9B%AE%E4%BA%8C/" title="复试项目二">复试项目二</a><time datetime="2026-04-07T12:42:19.000Z" title="发表于 2026-04-07 20:42:19">2026-04-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/07/%E6%9C%BA%E8%AF%95%E6%A0%91%E5%92%8C%E5%9B%BE/" title="机试树和图">机试树和图</a><time datetime="2026-04-07T12:38:13.000Z" title="发表于 2026-04-07 20:38:13">2026-04-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/07/%E6%9C%BA%E8%AF%95%E6%90%9C%E7%B4%A2%E9%97%AE%E9%A2%98/" title="机试搜索问题">机试搜索问题</a><time datetime="2026-04-07T12:35:38.000Z" title="发表于 2026-04-07 20:35:38">2026-04-07</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 线粒体donut</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章ing..." type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.3"></script></div></div></body></html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>第八节Bert实战 | 线粒体donut</title><meta name="author" content="线粒体donut"><meta name="copyright" content="线粒体donut"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="对于输入需要分词输入的序列前面需要加上cls，，后面需要加上seq。 在这个基础上如果凑不够input的值，，则会填充两个padding。 输入被分成三部分  Bert的参数 768在Bert中有什么特殊含义？为什么特征都是768的？相当于一个约定俗成的值，因为这是Bert-base版本（折中了参数量和效率）中，每个 token（词 &#x2F; 字）经过 Embedding 层和 Transfo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第八节Bert实战">
+<meta property="og:url" content="http://example.com/2026/01/03/%E7%AC%AC%E5%85%AB%E8%8A%82Bert%E5%AE%9E%E6%88%98/index.html">
+<meta property="og:site_name" content="线粒体donut">
+<meta property="og:description" content="对于输入需要分词输入的序列前面需要加上cls，，后面需要加上seq。 在这个基础上如果凑不够input的值，，则会填充两个padding。 输入被分成三部分  Bert的参数 768在Bert中有什么特殊含义？为什么特征都是768的？相当于一个约定俗成的值，因为这是Bert-base版本（折中了参数量和效率）中，每个 token（词 &#x2F; 字）经过 Embedding 层和 Transfo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/picture.jpg">
+<meta property="article:published_time" content="2026-01-03T13:00:40.000Z">
+<meta property="article:modified_time" content="2026-03-11T04:16:32.395Z">
+<meta property="article:author" content="线粒体donut">
+<meta property="article:tag" content="Bert">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/picture.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "第八节Bert实战",
+  "url": "http://example.com/2026/01/03/%E7%AC%AC%E5%85%AB%E8%8A%82Bert%E5%AE%9E%E6%88%98/",
+  "image": "http://example.com/img/picture.jpg",
+  "datePublished": "2026-01-03T13:00:40.000Z",
+  "dateModified": "2026-03-11T04:16:32.395Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "线粒体donut",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/picture.jpg"><link rel="canonical" href="http://example.com/2026/01/03/%E7%AC%AC%E5%85%AB%E8%8A%82Bert%E5%AE%9E%E6%88%98/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '第八节Bert实战',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/picture.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-comments-o"></i><span> 分享</span></a></li><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">线粒体donut</span></a><a class="nav-page-title" href="/"><span class="site-name">第八节Bert实战</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-comments-o"></i><span> 分享</span></a></li><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">第八节Bert实战</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-01-03T13:00:40.000Z" title="发表于 2026-01-03 21:00:40">2026-01-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-11T04:16:32.395Z" title="更新于 2026-03-11 12:16:32">2026-03-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E9%A1%B9%E7%9B%AE/">深度学习项目</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="对于输入需要分词"><a href="#对于输入需要分词" class="headerlink" title="对于输入需要分词"></a>对于输入需要分词</h2><p>输入的序列前面需要加上cls，，后面需要加上seq。</p>
+<p>在这个基础上如果凑不够input的值，，则会填充两个padding。</p>
+<p>输入被分成三部分</p>
+<p><img src="/images/33.png" alt="image-20260114145213715"></p>
+<h1 id="Bert的参数"><a href="#Bert的参数" class="headerlink" title="Bert的参数"></a>Bert的参数</h1><p><img src="/images/34.png" alt="image-20260114145256379"></p>
+<h2 id="768在Bert中有什么特殊含义？为什么特征都是768的？"><a href="#768在Bert中有什么特殊含义？为什么特征都是768的？" class="headerlink" title="768在Bert中有什么特殊含义？为什么特征都是768的？"></a>768在Bert中有什么特殊含义？为什么特征都是768的？</h2><p>相当于一个约定俗成的值，因为这是Bert-base版本（折中了参数量和效率）中，每个 token（词 &#x2F; 字）经过 Embedding 层和 Transformer 层后，输出的向量维度是 768 维。那为什么是768？BERT-base 的 Transformer 层有<code>12个注意力头（num_attention_heads=12）</code>，而注意力机制要求<code>hidden_size</code>必须能被注意力头数整除（方便将 768 维向量均分给到 12 个头）：768÷12&#x3D;64。每个注意力头负责处理 64 维的子向量，这是 Transformer 注意力机制的核心要求（均分维度保证计算效率）。</p>
+<h2 id="embedding层的三个输入分别是什么"><a href="#embedding层的三个输入分别是什么" class="headerlink" title="embedding层的三个输入分别是什么"></a>embedding层的三个输入分别是什么</h2><p>21128是指中文词表有21128种</p>
+<p>2是指segment——embedding只有01两种，所以是2</p>
+<p>512是指模型的最大长度为512，在这个范围之内选择一个适合你数据集的长度（如果句子比较短可以选32，比较长可以选128等）</p>
+<h2 id="Bertlayers里面有什么"><a href="#Bertlayers里面有什么" class="headerlink" title="Bertlayers里面有什么"></a>Bertlayers里面有什么</h2><p>bertlayers里面有很多selfattension层，进入的时候是768维，被分成三部分QKV进入multi-head，add&amp;norm中还有一个dense层（768*768）用来特征的进一步提取。</p>
+<p>另外，这些乘式前面都会乘上batchsize</p>
+<h2 id="forward层中，第一步是分词器，那这三个是干啥的"><a href="#forward层中，第一步是分词器，那这三个是干啥的" class="headerlink" title="forward层中，第一步是分词器，那这三个是干啥的"></a>forward层中，第一步是分词器，那这三个是干啥的</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">input = self.tokenizer(text, return_tensors=&quot;pt&quot;, truncation=True, padding=&quot;max_length&quot;, max_length=128)</span><br><span class="line">input_ids = input[&quot;input_ids&quot;].to(self.device)</span><br><span class="line">token_type_ids = input[&#x27;token_type_ids&#x27;].to(self.device)</span><br><span class="line">attention_mask = input[&#x27;attention_mask&#x27;].to(self.device)</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-input-ids"><a href="#1-input-ids" class="headerlink" title="(1) input_ids"></a>(1) input_ids</h4><ul>
+<li><p><strong>含义</strong>：文本经过分词后，每个 token（词 &#x2F; 子词）对应的<strong>数字编码</strong>（词典 ID）。模型的核心输入，本质是把 “文字” 映射成 “数字”，让模型能计算。</p>
+</li>
+<li><p>通俗例子：</p>
+<p>比如文本是 “我爱编程”，tokenizer 分词后可能得到 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#x27;我&#x27;, &#x27;爱&#x27;, &#x27;编&#x27;, &#x27;程&#x27;]</span><br></pre></td></tr></table></figure>
+
+<p>，对应的词典 ID 可能是 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[2769, 4263, 7746, 6241]</span><br></pre></td></tr></table></figure>
+
+<p>，这就是 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">input_ids</span><br></pre></td></tr></table></figure>
+
+<p> 的值。</p>
+</li>
+<li><p><strong>代码中作用</strong>：<code>input_ids.to(self.device)</code> 是把这个张量放到指定设备（CPU&#x2F;GPU）上，供模型计算。</p>
+</li>
+</ul>
+<h4 id="2-token-type-ids"><a href="#2-token-type-ids" class="headerlink" title="(2) token_type_ids"></a>(2) token_type_ids</h4><ul>
+<li><p>含义：</p>
+<p>用于区分文本中的不同段落 &#x2F; 句子（主要用于成对文本任务，比如问答、句子匹配）。</p>
+<ul>
+<li>通常：第一句的 token 标记为 <code>0</code>，第二句的 token 标记为 <code>1</code>；如果只有单句，所有 token 的 <code>token_type_ids</code> 都是 <code>0</code>。如果三句，00001111000000</li>
+</ul>
+</li>
+<li><p>通俗例子：</p>
+<p>文本是 “问题：什么是编程？回答：编程是写代码”，分词后：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#x27;问&#x27;,&#x27;题&#x27;,&#x27;：&#x27;,&#x27;什&#x27;,&#x27;么&#x27;,&#x27;是&#x27;,&#x27;编&#x27;,&#x27;程&#x27;,&#x27;？&#x27;,&#x27;答&#x27;,&#x27;案&#x27;,&#x27;：&#x27;,&#x27;编&#x27;,&#x27;程&#x27;,&#x27;是&#x27;,&#x27;写&#x27;,&#x27;代&#x27;,&#x27;码&#x27;]</span><br></pre></td></tr></table></figure>
+
+<p>对应的 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">token_type_ids</span><br></pre></td></tr></table></figure>
+
+<p> 可能是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>代码中作用</strong>：模型通过这个标识区分不同句子，处理跨句依赖（比如 BERT 的 Next Sentence Prediction 任务）；如果是单句任务（如文本分类），这个值其实不影响结果，但 tokenizer 仍会返回，所以需要传入模型。</p>
+</li>
+</ul>
+<h4 id="3-attention-mask"><a href="#3-attention-mask" class="headerlink" title="(3) attention_mask"></a>(3) attention_mask</h4><ul>
+<li><p>含义</p>
+<p>：用于标记哪些 token 是真实有效的，哪些是填充（padding） 的，避免模型关注填充的无效 token。</p>
+<ul>
+<li><code>1</code> 表示有效 token（真实文本），<code>0</code> 表示填充的 token。</li>
+</ul>
+</li>
+<li><p>通俗例子：</p>
+<p>你代码中设置了 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">max_length=128</span><br></pre></td></tr></table></figure>
+
+<p>，如果文本分词后只有 10 个 token，那么剩下的 118 个位置会被填充，此时：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">attention_mask = [1,1,...,1,0,0,...,0]</span><br></pre></td></tr></table></figure>
+
+<p>（前 10 个是 1，后 118 个是 0）。</p>
+</li>
+<li><p><strong>代码中作用</strong>：模型的注意力机制（Attention）会根据这个掩码，只计算 <code>1</code> 对应的 token，忽略 <code>0</code> 对应的填充部分，保证计算结果的准确性。</p>
+</li>
+</ul>
+<h1 id="调试阶段"><a href="#调试阶段" class="headerlink" title="调试阶段"></a>调试阶段</h1><p>在model文件中的input &#x3D; self.tokenizer(text, return_tensors&#x3D;”pt”, truncation&#x3D;True, padding&#x3D;”max_length”, max_length&#x3D;128)打上断点？？？？？？？？</p>
+<p> 转到model文件的BertModel，转到用法，发现初始化里面是三层：embedding、encoder、Pooler层</p>
+<p>点进去embedding层，在if input_ids is not None:打上断点，F9执行到此处。</p>
+<p>会发现embedding里面是word_embeddings、position_embeddings、token_type_embeddings</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">线粒体donut</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/01/03/%E7%AC%AC%E5%85%AB%E8%8A%82Bert%E5%AE%9E%E6%88%98/">http://example.com/2026/01/03/%E7%AC%AC%E5%85%AB%E8%8A%82Bert%E5%AE%9E%E6%88%98/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">线粒体donut</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Bert/">Bert</a></div><div class="post-share"><div class="social-share" data-image="/img/picture.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/01/05/Yolov11%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/" title="Yolov11相关知识"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Yolov11相关知识</div></div><div class="info-2"><div class="info-item-1">  </div></div></div></a><a class="pagination-related" href="/2026/01/03/%E7%AC%AC%E5%85%AD%E8%8A%82%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E4%B8%8E%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" title="第六节特征提取与无监督学习"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">第六节特征提取与无监督学习</div></div><div class="info-2"><div class="info-item-1">核心问题模型的训练需要梯度，梯度从loss中得到，所以怎么获得pred和y之间的loss就是关键。 无监督学习的方法机器学习：PCA（主成分分析）、聚类 深度学习：生成对抗网络、自监督学习 对比学习把自己和自己的增广图像作为一对 对抗生成网络 生成式自监督   </div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/picture.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">线粒体donut</div><div class="author-info-description">逆转时间的公式是珍惜当下</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>后发而先至</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这家伙不懒，但依旧什么都没有留下</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E8%BE%93%E5%85%A5%E9%9C%80%E8%A6%81%E5%88%86%E8%AF%8D"><span class="toc-number">1.</span> <span class="toc-text">对于输入需要分词</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Bert%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">Bert的参数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#768%E5%9C%A8Bert%E4%B8%AD%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E6%AE%8A%E5%90%AB%E4%B9%89%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E7%89%B9%E5%BE%81%E9%83%BD%E6%98%AF768%E7%9A%84%EF%BC%9F"><span class="toc-number">2.1.</span> <span class="toc-text">768在Bert中有什么特殊含义？为什么特征都是768的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#embedding%E5%B1%82%E7%9A%84%E4%B8%89%E4%B8%AA%E8%BE%93%E5%85%A5%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">2.2.</span> <span class="toc-text">embedding层的三个输入分别是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bertlayers%E9%87%8C%E9%9D%A2%E6%9C%89%E4%BB%80%E4%B9%88"><span class="toc-number">2.3.</span> <span class="toc-text">Bertlayers里面有什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#forward%E5%B1%82%E4%B8%AD%EF%BC%8C%E7%AC%AC%E4%B8%80%E6%AD%A5%E6%98%AF%E5%88%86%E8%AF%8D%E5%99%A8%EF%BC%8C%E9%82%A3%E8%BF%99%E4%B8%89%E4%B8%AA%E6%98%AF%E5%B9%B2%E5%95%A5%E7%9A%84"><span class="toc-number">2.4.</span> <span class="toc-text">forward层中，第一步是分词器，那这三个是干啥的</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-input-ids"><span class="toc-number">2.4.1.</span> <span class="toc-text">(1) input_ids</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-token-type-ids"><span class="toc-number">2.4.2.</span> <span class="toc-text">(2) token_type_ids</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-attention-mask"><span class="toc-number">2.4.3.</span> <span class="toc-text">(3) attention_mask</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B0%83%E8%AF%95%E9%98%B6%E6%AE%B5"><span class="toc-number">3.</span> <span class="toc-text">调试阶段</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/07/%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87%E5%88%9D%E6%AD%A5%E9%97%AE%E9%A2%98/" title="毕业论文初步问题">毕业论文初步问题</a><time datetime="2026-04-07T12:46:35.000Z" title="发表于 2026-04-07 20:46:35">2026-04-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/07/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E6%AF%94%E8%B5%9B%E6%80%9D%E8%B7%AF/" title="数学建模比赛思路">数学建模比赛思路</a><time datetime="2026-04-07T12:45:14.000Z" title="发表于 2026-04-07 20:45:14">2026-04-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/07/%E5%A4%8D%E8%AF%95%E9%A1%B9%E7%9B%AE%E4%BA%8C/" title="复试项目二">复试项目二</a><time datetime="2026-04-07T12:42:19.000Z" title="发表于 2026-04-07 20:42:19">2026-04-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/07/%E6%9C%BA%E8%AF%95%E6%A0%91%E5%92%8C%E5%9B%BE/" title="机试树和图">机试树和图</a><time datetime="2026-04-07T12:38:13.000Z" title="发表于 2026-04-07 20:38:13">2026-04-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/07/%E6%9C%BA%E8%AF%95%E6%90%9C%E7%B4%A2%E9%97%AE%E9%A2%98/" title="机试搜索问题">机试搜索问题</a><time datetime="2026-04-07T12:35:38.000Z" title="发表于 2026-04-07 20:35:38">2026-04-07</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 线粒体donut</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章ing..." type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.3"></script></div></div></body></html>
