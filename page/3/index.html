@@ -1,0 +1,252 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>线粒体donut</title><meta name="author" content="线粒体donut"><meta name="copyright" content="线粒体donut"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="逆转时间的公式是珍惜当下">
+<meta property="og:type" content="website">
+<meta property="og:title" content="线粒体donut">
+<meta property="og:url" content="http://example.com/page/3/index.html">
+<meta property="og:site_name" content="线粒体donut">
+<meta property="og:description" content="逆转时间的公式是珍惜当下">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/picture.jpg">
+<meta property="article:author" content="线粒体donut">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/picture.jpg"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/picture.jpg"><link rel="canonical" href="http://example.com/page/3/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '线粒体donut',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 8.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/picture.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">30</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-comments-o"></i><span> 分享</span></a></li><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(/img/background.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">线粒体donut</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-comments-o"></i><span> 分享</span></a></li><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">线粒体donut</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/05/Yolov11%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/" title="Yolov11相关知识">Yolov11相关知识</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-05T02:05:12.000Z" title="发表于 2026-01-05 10:05:12">2026-01-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/YOLO/">YOLO</a></span></div><div class="content">  </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/03/%E7%AC%AC%E4%B8%83%E8%8A%82%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/" title="第七节自注意力机制">第七节自注意力机制</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-03T13:00:40.000Z" title="发表于 2026-01-03 21:00:40">2026-01-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E9%A1%B9%E7%9B%AE/">深度学习项目</a></span></div><div class="content">常见的输入每个词对应一个编码，中文中对应差不多两万多个编码  这就组成了RNNRNN需要考虑前后关系，故需要一个从头穿到尾的传家宝–记忆单元 但其弊端是，如果想要的信息之间距离过远，，RNN就会在传家宝里放一些没有帮助的东西。故引出了LSTM LSTM 但缺点是太慢了，还是需要一个一个读入。故引出了自注意力 自注意力  这样就解决了前两个模型需要查看每一个字导致时间过长的问题。自注意力是完全并行的！ 而且自注意力在qkv处理过程中维度不变  自注意力机制在干嘛？自注意机制就是让句子里的每个词，都去 “看” 句子里的其他词，然后把有用的信息 “拿回来”，帮助自己变得更聪明。 QKV是干嘛的？“他告诉小明，他明天要去北京。” Q（Query）：我要找谁？我想知道什么？我这个词在寻找和我相关的词时，用什么特征去匹配？是一个 “搜索条件”、一个 “问题”、一个 “需求描述” 比如 “他” 的 Q 可能是：“我是一个代词，我需要找到一个人来指代。” K（Key）：我是谁？我能提供什么信息？我这个词能提供什么信息？别人可以用什么方式找到我？是一个 “标签”、一个 “索引”、一个 “联系方式”...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/03/%E7%AC%AC%E5%85%AB%E8%8A%82Bert%E5%AE%9E%E6%88%98/" title="第八节Bert实战">第八节Bert实战</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-03T13:00:40.000Z" title="发表于 2026-01-03 21:00:40">2026-01-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E9%A1%B9%E7%9B%AE/">深度学习项目</a></span></div><div class="content">对于输入需要分词输入的序列前面需要加上cls，，后面需要加上seq。 在这个基础上如果凑不够input的值，，则会填充两个padding。 输入被分成三部分  Bert的参数 768在Bert中有什么特殊含义？为什么特征都是768的？相当于一个约定俗成的值，因为这是Bert-base版本（折中了参数量和效率）中，每个 token（词 &#x2F; 字）经过 Embedding 层和 Transformer 层后，输出的向量维度是 768 维。那为什么是768？BERT-base 的 Transformer 层有12个注意力头（num_attention_heads=12），而注意力机制要求hidden_size必须能被注意力头数整除（方便将 768 维向量均分给到 12 个头）：768÷12&#x3D;64。每个注意力头负责处理 64 维的子向量，这是 Transformer 注意力机制的核心要求（均分维度保证计算效率）。 embedding层的三个输入分别是什么21128是指中文词表有21128种 2是指segment——embedding只有01两种，所以是2 512是指模型...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/03/%E7%AC%AC%E4%BA%94%E8%8A%82%E5%88%86%E7%B1%BB%E4%BB%BB%E5%8A%A1_%E9%A3%9F%E7%89%A9%E8%AF%86%E5%88%AB%E5%AE%9E%E6%88%98/" title="第五节分类任务_食物识别实战">第五节分类任务_食物识别实战</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-03T13:00:40.000Z" title="发表于 2026-01-03 21:00:40">2026-01-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E9%A1%B9%E7%9B%AE/">深度学习项目</a></span></div><div class="content">随机种子123456789101112def seed_everything(seed):    torch.manual_seed(seed)    torch.cuda.manual_seed(seed)    torch.cuda.manual_seed_all(seed)    torch.backends.cudnn.benchmark = False    torch.backends.cudnn.deterministic = True    random.seed(seed)    np.random.seed(seed)    os.environ[&#x27;PYTHONHASHSEED&#x27;] = str(seed)###############################################seed_everything(0)###############################################  数据部分在引用路径时，\被识别成转义字符怎么办？在前面加r 12path = r&quot;C:\Users\a&...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/03/%E7%AC%AC%E5%85%AD%E8%8A%82%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E4%B8%8E%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/" title="第六节特征提取与无监督学习">第六节特征提取与无监督学习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-03T13:00:40.000Z" title="发表于 2026-01-03 21:00:40">2026-01-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E9%A1%B9%E7%9B%AE/">深度学习项目</a></span></div><div class="content">核心问题模型的训练需要梯度，梯度从loss中得到，所以怎么获得pred和y之间的loss就是关键。 无监督学习的方法机器学习：PCA（主成分分析）、聚类 深度学习：生成对抗网络、自监督学习 对比学习把自己和自己的增广图像作为一对 对抗生成网络 生成式自监督   </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/03/conda%E6%93%8D%E4%BD%9C/" title="conda操作">conda操作</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-03T11:35:45.000Z" title="发表于 2026-01-03 19:35:45">2026-01-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/conda/">conda</a></span></div><div class="content">基本操作首先的首先，这个不是在cmd里运行的，而是在Anaconda Prompt 创建虚拟环境在终端输入（注意”python&#x3D;”没有空格） 1conda create -n 环境名称 python=想要的版本  激活虚拟环境1conda activate 环境名称  删除虚拟环境1conda env remove -n 环境名称 --all  或者直接在E:\Anaconda_new\envs里删除更快 查看所有系统环境1conda env list    pychram中使用创建好了怎么配置？右下角添加解释器，Conda环境，现有环境，解释器右边的三个点，E:\Anaconda_new\envs\环境名称\python.exe     ||     E:\conda_envs\bysj\python.exe 读论文怎么配置？方法一（常用）PyCharm底部终端，cd到项目根目录，pip install -r requirements.txt 方法二用Anaconda的prompt，cd到项目根目录，pip install -r requirements.txt C盘...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/03/%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E6%97%A5%E5%BF%97/" title="分类任务">分类任务</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-03T02:57:20.000Z" title="发表于 2026-01-03 10:57:20">2026-01-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></span></div><div class="content">本日志建立在模型已经能运行的情况下，记录对前后端的修改 移除关于界面删除路由配置中的 About 路径（src&#x2F;router&#x2F;index.ts）。 1234567// import About from &quot;@/views/About.vue&quot;;    // &#123;    //     path: &#x27;/about&#x27;,    //     name: &#x27;about&#x27;,    //     component: About // 实际的组件    // &#125;,  去除头部导航中的“关于”菜单项（src&#x2F;components&#x2F;Header.vue） 1&lt;li itemprop=&quot;name&quot; &gt;--&gt;    </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/03/%E7%AC%AC%E5%9B%9B%E8%8A%82%E5%88%86%E7%B1%BB%E4%BB%BB%E5%8A%A1/" title="第四节分类任务">第四节分类任务</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-03T02:57:20.000Z" title="发表于 2026-01-03 10:57:20">2026-01-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E9%A1%B9%E7%9B%AE/">深度学习项目</a></span></div><div class="content">理论问题环节为什么我们需要卷积神经网络？因为全连接神经网络的参数量过大，容易导致模型过拟合 输入必须是3 * 256 * 256吗不一定，这是一种非常经典且常用的输入尺寸但它并非 CNN 的强制要求，这个尺寸主要来源于早期的经典预训练模型，如AlexNet、VGG、ResNet 等经典预训练模型它们在训练时默认采用了 224×224 的图像分辨率，而 3 代表 RGB 彩色图像的 3 个通道（通道数 × 高度 × 宽度，即 C×H×W）。 每次卷积特征图的尺寸都变小了，如何保持尺度不变呢？零填充 更大的卷积核和更多的卷积核层数意味着什么？更大的卷积核意味着更大的感受野， 更多的卷积核层数，就像给模型升级成 “多级侦探”，能从表面细节挖到深层本质，处理更复杂的任务；但层数太多会出现 **“信号断联”的问题（梯度消失 &#x2F; 爆炸）  梯度消失：指令要经过很多层侦探（层数多），每传一层就被削弱一点，传到最前面的新手侦探时，指令已经弱到听不见了（梯度趋近于 0），新手侦探没法纠正自己的错误，模型学不会。 梯度爆炸：反过来，指令每传一层就被放大一点，传到前面时已经变成 “噪音”（梯...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/01/with%E7%9A%84%E7%94%A8%E6%B3%95/" title="with的用法">with的用法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-01-01T07:30:00.000Z" title="发表于 2026-01-01 15:30:00">2026-01-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/python%E8%AF%AD%E6%B3%95/">python语法</a></span></div><div class="content">用法一：文件如果不使用with，我们应该如何打开一个文件？12345678910try:    # 1. [进入]    f = open(&#x27;a.txt&#x27;, &#x27;r&#x27;, encoding=&quot;utf-8&quot;)    # 2. [执行]    print(f.read())finally:    if f:        # 3. [退出]        f.close()  with在这里就起到一个封装try和finally的作用，finally的作用就是如果文件在io过程中产生了错误，也能正常执行f.close()安全关闭文件 写成with语句12with open(&quot;a.txt&quot;, &quot;r&quot;, encoding=&quot;utf-8&quot;) as f:    print(f.read())  即把open(“a.txt”, “r”, encoding&#x3D;”utf-8”)的结果命名为f，再执行print(f.read())的语句块。 用法二：pytorch梯度管理with...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2025/12/30/%E7%AC%AC%E4%B8%89%E8%8A%82%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/" title="第三节深度学习项目实战">第三节深度学习项目实战</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-12-30T03:19:54.000Z" title="发表于 2025-12-30 11:19:54">2025-12-30</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E9%A1%B9%E7%9B%AE/">深度学习项目</a></span></div><div class="content">首先我们要新建一个类，一个类里面要有三部分 第一部分：初始化第一，打开文件123456def __init__(____________):    with open(file_train,&quot;r&quot;) as f:        csv_data = list(csv.reader(file_train))        column = csv_data[0]        x = csv_data[1:, 1:-1]        y = csv_data[1:, -1]  一、with open(file_train,”r”) as f中的with和as f是干嘛用的？with：自动关闭文件。相当于open()打开而自动使用close()关闭。若只open不close，会导致文件一直被程序占用，其他程序无法打开导致内存泄漏。 as f：相当于给文件命名 二、为什么需要list()？因为csv.reader()的作用是按照行分隔符（“&#x2F;n”）和列分隔符（“，”）做切割，如  但这个功能是一个迭代器，只能单向遍历一次，不能索引，故需要转换成list以便...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#content-inner">2</a><span class="page-number current">3</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/picture.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">线粒体donut</div><div class="author-info-description">逆转时间的公式是珍惜当下</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">30</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>后发而先至</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这家伙不懒，但依旧什么都没有留下</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/07/%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87%E5%88%9D%E6%AD%A5%E9%97%AE%E9%A2%98/" title="毕业论文初步问题">毕业论文初步问题</a><time datetime="2026-04-07T12:46:35.000Z" title="发表于 2026-04-07 20:46:35">2026-04-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/07/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E6%AF%94%E8%B5%9B%E6%80%9D%E8%B7%AF/" title="数学建模比赛思路">数学建模比赛思路</a><time datetime="2026-04-07T12:45:14.000Z" title="发表于 2026-04-07 20:45:14">2026-04-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/07/%E5%A4%8D%E8%AF%95%E9%A1%B9%E7%9B%AE%E4%BA%8C/" title="复试项目二">复试项目二</a><time datetime="2026-04-07T12:42:19.000Z" title="发表于 2026-04-07 20:42:19">2026-04-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/07/%E6%9C%BA%E8%AF%95%E6%A0%91%E5%92%8C%E5%9B%BE/" title="机试树和图">机试树和图</a><time datetime="2026-04-07T12:38:13.000Z" title="发表于 2026-04-07 20:38:13">2026-04-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/07/%E6%9C%BA%E8%AF%95%E6%90%9C%E7%B4%A2%E9%97%AE%E9%A2%98/" title="机试搜索问题">机试搜索问题</a><time datetime="2026-04-07T12:35:38.000Z" title="发表于 2026-04-07 20:35:38">2026-04-07</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/YOLO/"><span class="card-category-list-name">YOLO</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/conda/"><span class="card-category-list-name">conda</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/python%E8%AF%AD%E6%B3%95/"><span class="card-category-list-name">python语法</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%9C%BA%E8%AF%95%E7%9F%A5%E8%AF%86/"><span class="card-category-list-name">机试知识</span><span class="card-category-list-count">9</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"><span class="card-category-list-name">深度学习</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E9%A1%B9%E7%9B%AE/"><span class="card-category-list-name">深度学习项目</span><span class="card-category-list-count">8</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%94%99%E8%AF%AF%E6%80%BB%E7%BB%93/"><span class="card-category-list-name">错误总结</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE/"><span class="card-category-list-name">项目</span><span class="card-category-list-count">2</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Matplotlib/" style="font-size: 1.1em; color: #999">Matplotlib</a> <a href="/tags/%E6%97%A0%E7%9B%91%E7%9D%A3/" style="font-size: 1.1em; color: #999">无监督</a> <a href="/tags/%E9%94%99%E8%AF%AF%E6%80%BB%E7%BB%93/" style="font-size: 1.1em; color: #999">错误总结</a> <a href="/tags/%E7%94%9F%E6%88%90%E4%BB%BB%E5%8A%A1/" style="font-size: 1.3em; color: #99a1ac">生成任务</a> <a href="/tags/YOLOv11/" style="font-size: 1.3em; color: #99a1ac">YOLOv11</a> <a href="/tags/Dataset%E7%B1%BB/" style="font-size: 1.1em; color: #999">Dataset类</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E6%89%8B%E5%86%8C/" style="font-size: 1.1em; color: #999">操作手册</a> <a href="/tags/%E6%9C%BA%E8%AF%95/" style="font-size: 1.5em; color: #99a9bf">机试</a> <a href="/tags/%E5%9B%9E%E5%BD%92/" style="font-size: 1.1em; color: #999">回归</a> <a href="/tags/with%E8%AF%AD%E5%8F%A5/" style="font-size: 1.1em; color: #999">with语句</a> <a href="/tags/%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B/" style="font-size: 1.1em; color: #999">自注意力</a> <a href="/tags/%E5%A4%8D%E8%AF%95/" style="font-size: 1.3em; color: #99a1ac">复试</a> <a href="/tags/%E6%AF%95%E8%AE%BE/" style="font-size: 1.3em; color: #99a1ac">毕设</a> <a href="/tags/%E5%88%86%E7%B1%BB/" style="font-size: 1.3em; color: #99a1ac">分类</a> <a href="/tags/Bert/" style="font-size: 1.1em; color: #999">Bert</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/04/">
+            <span class="card-archive-list-date">
+              四月 2026
+            </span>
+            <span class="card-archive-list-count">8</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/03/">
+            <span class="card-archive-list-date">
+              三月 2026
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/02/">
+            <span class="card-archive-list-date">
+              二月 2026
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/01/">
+            <span class="card-archive-list-date">
+              一月 2026
+            </span>
+            <span class="card-archive-list-count">15</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/12/">
+            <span class="card-archive-list-date">
+              十二月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">30</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">44.1k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-04-07T12:48:00.566Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 线粒体donut</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.3"></script><script src="/js/main.js?v=5.5.3"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: subtitleType => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  },
+  processSubtitle: (content, extraContents = []) => {
+    if (true) {
+      const sub = ["纽约时间比加州早三小时，但加州的时间并没有因此变慢"].slice()
+
+      if (extraContents.length > 0) {
+        sub.unshift(...extraContents)
+      }
+
+      if (typeof content === 'string') {
+        sub.unshift(content)
+      } else if (Array.isArray(content)) {
+        sub.unshift(...content)
+      }
+
+      sub.length > 0 && typedJSFn.init(sub)
+    } else {
+      document.getElementById('subtitle').textContent = typeof content === 'string' ? content :
+        (Array.isArray(content) && content.length > 0 ? content[0] : '')
+    }
+  }
+}
+btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  typedJSFn.processSubtitle(["纽约时间比加州早三小时，但加州的时间并没有因此变慢"])
+}
+typedJSFn.run(subtitleType)</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章ing..." type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.3"></script></div></div></body></html>
